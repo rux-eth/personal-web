@@ -1,0 +1,120 @@
+[
+  {
+    "id": "personal",
+    "title": "Personal Site",
+    "description": "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
+    "thumbnail": "/thumbnails/portfolio-site.png",
+    "status": "Completed",
+    "role": "Full-Stack",
+    "languages": ["typescript", "javascript"],
+    "stack": ["next", "tailwind", "fastify"],
+    "repo": "https://github.com/rux-eth/portfolio-web",
+    "website": "https://www.maxrux.dev/",
+    "trello": "https://trello.com/b/vsLxrlKs/personal-site"
+  },
+  {
+    "id": "treasure",
+    "title": "Treasure",
+    "description": "An on-chain NFT collection with very advanced metadata generation aiming to make a role-playing game. There was a crazy amount of work put into this one as the clients goals were very challenging but I had a lot of fun because there was a lot of math involved.",
+    "thumbnail": "/thumbnails/treasure.png",
+    "status": "Completed",
+    "role": "Full-Stack",
+    "languages": ["typescript", "solidity"],
+    "stack": ["next", "hardhat"],
+    "repo": "https://github.com/rux-eth/treasure",
+    "article": "https://medium.com/coinsbench/treasure-nfts-advanced-on-chain-metadata-generation-1cc6fb6b4653"
+  },
+  {
+    "id": "eastern-standard",
+    "title": "Eastern Standard",
+    "description": "An E-commerce site where you can buy Eastern Standard merch and play an arcade to earn tokens. This is for the Rumble Kong League Club \"Eastern Standard\".",
+    "thumbnail": "/thumbnails/eastern-standard.png",
+    "status": "Building",
+    "role": "Full-Stack",
+    "languages": ["typescript", "solidity"],
+    "stack": [
+      "next",
+      "hardhat",
+      "tailwind",
+      "fastify",
+      "ethers",
+      "foundry",
+      "mongodb"
+    ],
+    "repo": "https://github.com/rux-eth/eastern-standard",
+    "trello": "https://trello.com/b/N0aFdaGR/eastern-standard"
+  },
+
+
+  {
+    "id": "defi-taxes",
+    "title": "DeFi Taxes",
+    "description": "Will compute DeFi capital gains taxes given an address or exchange csv file. My work, \"Crypto Rates\", was originally going to be this but I wanted to structure the project differently and use Rust and webassembly to do the computational work. I plan on making a UI element as well so users can sign in either traditionally by signing up or by simply logging in with their Ethereum wallet.",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Building",
+    "role": "Full-Stack",
+    "languages": ["rust", "typescript", "solidity", "javascript"],
+    "stack": ["next", "foundry", "mongodb", "ethers", "wasm"],
+    "repo": "https://github.com/rux-eth/defi-taxes",
+    "trello": "https://trello.com/b/JmeEcPCh/defi-tax-software"
+  },
+  {
+    "id": "crypto-rates",
+    "title": "Crypto Rates",
+    "description": "Computes exchanges rates using CoinGecko's API. Supports thousands of cryptos and limits API calls and caches rates into MongoDB. Was originally going to be a back-end application that computes Defi taxes but I decided it would be better to be its own application. This project was a major learning experience and has taught me most of what I know about algorithms and debugging. Also, I became very efficient at reading documentation after this project.",
+    "thumbnail": "/thumbnails/crypto-rates.png",
+    "status": "Completed",
+    "role": "Back-End",
+    "languages": ["typescript", "javascript"],
+    "stack": ["express", "mongodb"],
+    "repo": "https://github.com/rux-eth/defi-taxes"
+  },
+  {
+    "id": "rarity-ranker",
+    "title": "Rarity Ranker",
+    "description": "An implicit way of defining rarities for each trait in an NFT collection. A simple and over-the-top program but I made it to help me learn more about Rust.",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Completed",
+    "role": "Back-End",
+    "languages": ["rust"],
+    "stack": [],
+    "repo": "https://github.com/rux-eth/rarity-ranker"
+  },
+  {
+    "id": "nft-data-miner-v2",
+    "title": "NFT Data Miner V2",
+    "description": "Mines NFT collection data and compiles it into an csv file. It is currently not efficient and takes hours to get data for just one collection. I wrote it when I wasn't that experienced with Rust. Looking back, it could be optimized by encoding function parameters with the Rust library 'ethabi' and submitting thousands of requests at a time in a batch contract call then decoding the output. This would reduce the time to get data for each collection to minutes. I will do this when I have time.",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Building",
+    "role": "Back-End",
+    "languages": ["rust"],
+    "stack": [],
+    "repo": "https://github.com/rux-eth/nft-data-miner-rust"
+  },
+  {
+    "id": "eth-scanner",
+    "title": "Ethereum Scanner",
+    "description": "A Typescript/Javascript library for getting token information on Ethereum accounts. This library is incomplete and I may or may not come back and complete it. I would love to, but i just dont have time at the moment. If I do, I will open a trello board to manage it and I will post the link here.",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Building",
+    "role": "Back-End",
+    "languages": ["typescript", "javascript", "solidity"],
+    "stack": ["ethers", "hardhat"],
+    "repo": "https://github.com/rux-eth/eth-scanner"
+  },
+
+  {
+    "id": "club-cards",
+    "title": "Club Cards",
+    "description": "An expandable ERC1155 card collection. I wrote the back-end, not the front. This included the contract and API that handles claims. Gas fees were insanely high when this project was in development so efficiency was a priority. Claim authorization is handled off-chain and signatures are verified on-chain to reduce transaction costs.",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Completed",
+    "role": "Back-End",
+    "languages": ["typescript", "solidity"],
+    "stack": ["hardhat", "ethers", "express", "mongodb"],
+    "repo": "https://github.com/rux-eth/clubcards-backend",
+    "website": "https://www.clubcards.cc/"
+  }
+  
+]
+

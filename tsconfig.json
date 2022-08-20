@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/utils/reducers/index.js",
+    "src/utils/reducers/default.js",
+    "src/utils/hoc/wrapper.js",
+    "src/components/grid.js",
+    "src/styles/theme.js",
+    "stuff.js",
+    "stuff.js",
+    "src/scripts/*",
+    "src/pages/api/index.jsx"
+  ],
+  "exclude": ["node_modules", "api"]
+}
