@@ -8,7 +8,7 @@
     "role": "Full-Stack",
     "languages": ["typescript", "javascript"],
     "stack": ["next", "tailwind", "fastify"],
-    "repo": "https://github.com/rux-eth/portfolio-web",
+    "repo": "https://github.com/rux-eth/personal-web",
     "website": "https://www.maxrux.dev/",
     "trello": "https://trello.com/b/vsLxrlKs/personal-site"
   },

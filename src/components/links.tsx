@@ -1,5 +1,5 @@
 import transition from "@src/styles/utils";
-import { FaGithub, FaMedium, FaTelegram, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaMedium, FaTelegram, FaTwitter } from "react-icons/fa";
 import Link from "./link";
 
 interface LinkFormat {
@@ -16,8 +16,8 @@ const defaultStyles = {
 const allLinks: LinkFormat = {
   external: {
     twitter: {
-      link: "https://twitter.com/Rux_eth",
-      icon: <FaTwitter style={defaultStyles.icon} />,
+      link: "https://www.linkedin.com/in/maxwell-rux-22b936184/",
+      icon: <FaLinkedin style={defaultStyles.icon} />,
     },
     medium: {
       link: "https://medium.com/@rux.eth",
