@@ -9,11 +9,6 @@ const contacts: ContactItem[] = [
     value: "maxjrux@gmail.com",
   },
   {
-    title: "LinkedIn",
-    value: "https://www.linkedin.com/in/maxwell-rux-22b936184/",
-    link: "https://www.linkedin.com/in/maxwell-rux-22b936184/"
-  },
-  {
     title: "Telegram",
     value: "@Rux0x",
     link: "https://t.me/Rux0x",

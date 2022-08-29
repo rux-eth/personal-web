@@ -15,10 +15,6 @@ const defaultStyles = {
 };
 const allLinks: LinkFormat = {
   external: {
-    twitter: {
-      link: "https://www.linkedin.com/in/maxwell-rux-22b936184/",
-      icon: <FaLinkedin style={defaultStyles.icon} />,
-    },
     medium: {
       link: "https://medium.com/@rux.eth",
       icon: <FaMedium style={defaultStyles.icon} />,
