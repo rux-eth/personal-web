@@ -47,15 +47,15 @@
 
 
   {
-    "id": "defi-taxes",
-    "title": "DeFi Taxes",
-    "description": "Will compute DeFi capital gains taxes given an address or exchange csv file. My work, \"Crypto Rates\", was originally going to be this but I wanted to structure the project differently and use Rust and webassembly to do the computational work. I plan on making a UI element as well so users can sign in either traditionally by signing up or by simply logging in with their Ethereum wallet.",
+    "id": "dampfi",
+    "title": "DampFi",
+    "description": "Building decentralized asset management platform as a main project. Since I am the sole developer and this project is massive, I will be releasing features incrementally to gain users over time. The first feature will be free tax software where users can compute their DeFi taxes without signing up for an account or paying ridiculously high fees. I think I am going to use Rust and webassembly to do the heavy lifting.",
     "thumbnail": "/thumbnails/default.png",
     "status": "Building",
     "role": "Full-Stack",
     "languages": ["rust", "typescript", "solidity", "javascript"],
     "stack": ["next", "foundry", "mongodb", "ethers", "wasm"],
-    "repo": "https://github.com/rux-eth/defi-taxes",
+    "repo": "https://github.com/rux-eth/dampfi",
     "trello": "https://trello.com/b/JmeEcPCh/defi-tax-software"
   },
   {
@@ -67,7 +67,7 @@
     "role": "Back-End",
     "languages": ["typescript", "javascript"],
     "stack": ["express", "mongodb"],
-    "repo": "https://github.com/rux-eth/defi-taxes"
+    "repo": "https://github.com/rux-eth/crypto-rates"
   },
   {
     "id": "rarity-ranker",
