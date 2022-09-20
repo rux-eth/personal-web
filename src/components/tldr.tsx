@@ -46,22 +46,19 @@ const TLDR: React.FC = () => {
     {
       header: "Personal",
       content:
-        "In my free time I am usually working on side-projects. However when I'm not developing software, I am usually either enjoying nature or playing videogames",
+        "In my free time I am usually working on side-projects. However when I'm not developing software, I am usually either enjoying nature or studying.",
       highlights: {
         "My Hobbies": ["Fishing", "Hunting", "Cooking", "Learning"],
         "Interests/Passions": [
           "Music(all genres)",
           "Finance",
           "Crypto",
-          "Dogs :P",
         ],
-        "Favorite Movies/Videogames": [
+        "Favorite Movies": [
           "Lord of the Rings",
           "Scarface",
           "American Psycho",
           "Gran Torino",
-          "Red Dead Redemption",
-          "Skyrim",
         ],
       },
     },
