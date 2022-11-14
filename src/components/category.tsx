@@ -3,6 +3,7 @@ interface Category {
   name: string;
   rgb: number[];
 }
+// testing git
 const BuildCategory: FC<Category> = ({ name, rgb }) => {
   const textRGB = rgb.join(",");
   return (
