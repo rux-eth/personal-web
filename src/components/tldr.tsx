@@ -26,7 +26,7 @@ const TLDR: React.FC = () => {
     {
       header: "Work",
       content:
-        "I have been a software engineer for about 2 years. I have a strong passion for software development, especially cryptography and making decentralized applications. I have always been a learner, always researching interests until I have a deep understanding of the concept. This curiousity has led me to work with various frameworks and technologies.",
+        "I have been a professional software engineer for over 3 years. I have a strong passion for software development, especially cryptography and making decentralized applications. I have always been a learner, always researching interests until I have a deep understanding of the concept. This curiousity has led me to work with various frameworks and technologies.",
 
       extraCompenent: (
         <>
