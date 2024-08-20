@@ -48,7 +48,7 @@ const TLDR: React.FC = () => {
       content:
         "In my free time I am usually working on side-projects. However when I'm not developing software, I am usually either enjoying nature or studying.",
       highlights: {
-        "My Hobbies": ["Fishing", "Hunting", "Cooking", "Learning"],
+        "My Hobbies": ["Fishing", "Motorcycles", "Fitness", "Hunting", "Cooking", "Learning"],
         "Interests/Passions": [
           "Music(all genres)",
           "Finance",
