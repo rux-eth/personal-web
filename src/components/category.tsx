@@ -1,23 +1,23 @@
-import { FC } from "react";
+import { FC } from 'react'
 interface Category {
-  name: string;
-  rgb: number[];
+  name: string
+  rgb: number[]
 }
 // testing git
 const BuildCategory: FC<Category> = ({ name, rgb }) => {
-  const textRGB = rgb.join(",");
+  const textRGB = rgb.join(',')
   return (
     <span
       className={` font-Menlo rounded-[0.4ch] px-[0.5ch]`}
       style={{
         color: `rgba(${textRGB},1)`,
-        backgroundColor: `rgba(${textRGB},0.4)`,
+        backgroundColor: `rgba(${textRGB},0.4)`
       }}
     >
       {`${name}`}
     </span>
-  );
-};
+  )
+}
 export const categories: { [key: string]: JSX.Element } = {
   // status
   Building: <BuildCategory name="Building" rgb={[255, 255, 0]} />,
@@ -35,6 +35,8 @@ export const categories: { [key: string]: JSX.Element } = {
   tailwind: <BuildCategory name="TailwindCSS" rgb={[69, 140, 220]} />,
   fastify: <BuildCategory name="Fastify" rgb={[255, 90, 90]} />,
   wasm: <BuildCategory name="WebAssembly" rgb={[233, 10, 245]} />,
+  nestjs: <BuildCategory name="NestJS" rgb={[255, 153, 0]} />,
+  postgres: <BuildCategory name="Postgres" rgb={[102, 51, 153]} />,
   // languagesß
   typescript: <BuildCategory name="Typescript" rgb={[49, 120, 198]} />,
   python: <BuildCategory name="Python" rgb={[112, 81, 162]} />,
@@ -42,13 +44,13 @@ export const categories: { [key: string]: JSX.Element } = {
   rust: <BuildCategory name="Rust" rgb={[230, 123, 16]} />,
   javascript: <BuildCategory name="Javascript" rgb={[240, 219, 79]} />,
   // misc.
-  "Full-Stack": <BuildCategory name="Full-Stack" rgb={[255, 255, 0]} />,
-  "Front-End": <BuildCategory name="Front-End" rgb={[0, 255, 0]} />,
-  "Back-End": <BuildCategory name="Back-End" rgb={[255, 0, 0]} />,
+  'Full-Stack': <BuildCategory name="Full-Stack" rgb={[255, 255, 0]} />,
+  'Front-End': <BuildCategory name="Front-End" rgb={[0, 255, 0]} />,
+  'Back-End': <BuildCategory name="Back-End" rgb={[255, 0, 0]} />,
   website: <BuildCategory name="Website" rgb={[0, 126, 220]} />,
   article: <BuildCategory name="Article" rgb={[0, 158, 95]} />,
-  trello: <BuildCategory name="Trello" rgb={[230, 230, 230]} />,
-} as const;
+  trello: <BuildCategory name="Trello" rgb={[230, 230, 230]} />
+} as const
 
 /**
  * ethersjs

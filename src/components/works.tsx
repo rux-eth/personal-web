@@ -120,7 +120,11 @@ export class Works {
                   gap: '0.4ch'
                 }}
               >
-                {tags.map(elem => categories[elem])}
+                {tags.map(elem => {
+                  if (!(elem in categories))
+                    throw new Error(`Invalid tag ${elem}`)
+                  return categories[elem]
+                })}
               </div>
             </div>
           </Link>
@@ -179,7 +183,6 @@ export class Works {
     return this.works.find(val => val.id === id)
   }
   worksPage(): JSX.Element {
-    return <ComingSoonPage />
     // constants
     const [isList, setIsList] = useState(false)
     const fs = dynamicFont(100)
