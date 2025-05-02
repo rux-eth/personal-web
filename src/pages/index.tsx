@@ -2,7 +2,6 @@ import ComingSoonPage from '@src/components/comingSoon'
 import TLDR from '@src/components/tldr'
 import type { NextPage } from 'next'
 const Home: NextPage = () => {
-  // return <TLDR />;
-  return <ComingSoonPage />
+  return <TLDR />
 }
 export default Home
