@@ -1,18 +1,19 @@
-import { ThemeProvider } from "@mui/material/styles";
-import Layout from "@src/components/layouts/main";
-import "@src/styles/global.css";
-import { theme } from "@src/styles/theme";
-import ResizeObserver from "@src/utils/resize-observer";
-import { Config, DAppProvider, Mainnet } from "@usedapp/core";
-import { getDefaultProvider } from "ethers";
-import { AnimatePresence } from "framer-motion";
-import { AppProps } from "next/app";
+import { ThemeProvider } from '@mui/material/styles'
+import Layout from '@src/components/layouts/main'
+import '@src/styles/global.css'
+import { theme } from '@src/styles/theme'
+import ResizeObserver from '@src/utils/resize-observer'
+import { Config, DAppProvider, Mainnet } from '@usedapp/core'
+import { getDefaultProvider } from 'ethers'
+import { AnimatePresence } from 'framer-motion'
+import { AppProps } from 'next/app'
+
 const config: Config = {
   readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
-    [Mainnet.chainId]: getDefaultProvider("mainnet"),
-  },
-};
+    [Mainnet.chainId]: getDefaultProvider('mainnet')
+  }
+}
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <DAppProvider config={config}>
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         </ThemeProvider>
       </ResizeObserver>
     </DAppProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
