@@ -1,5 +1,15 @@
 [
   {
+    "id": "sapien",
+    "title": "Project Sapien",
+    "description": "To be announced... I will be posting updates on my X account so be sure to follow.",
+    "status": "Building",
+    "thumbnail": "/thumbnails/default.png",
+    "role": "Full-Stack",
+    "languages": [],
+    "stack": []
+  },
+  {
     "id": "personal",
     "title": "Personal Site",
     "description": "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
@@ -8,55 +18,39 @@
     "role": "Full-Stack",
     "languages": ["typescript", "javascript"],
     "stack": ["next", "tailwind", "fastify"],
-    "repo": "https://github.com/rux-eth/personal-web",
-    "website": "https://www.maxrux.dev/",
-    "trello": "https://trello.com/b/vsLxrlKs/personal-site"
+    "website": "https://www.maxrux.dev/"
   },
   {
-    "id": "treasure",
-    "title": "Treasure",
-    "description": "An on-chain NFT collection with very advanced metadata generation aiming to make a role-playing game. There was a crazy amount of work put into this one as the clients goals were very challenging but I had a lot of fun because there was a lot of math involved.",
-    "thumbnail": "/thumbnails/treasure.png",
+    "id": "zerepy",
+    "title": "ZerePy",
+    "description": "ZerePy an open-source framework for AI agents written in Python. I collaborated with several other talented engineers to build this framework. I was responsible for on-chain crypto integration as well as refactoring the codebase to be more efficient and enforce strict typing to reduce bugs.",
+    "thumbnail": "/thumbnails/zerepy-image.png",
+    "status": "Completed",
+    "role": "Back-End",
+    "languages": ["python"],
+    "stack": [],
+    "repo": "https://github.com/blorm-network/ZerePy",
+    "website": "https://www.zerepy.org/"
+  },
+  {
+    "id": "blormmy",
+    "title": "Blormmy",
+    "description": "Blormmy is an AI powered chat assistant that helps users perform actions on chain. I led backend development and was responsible for building the back-end entirely from scratch using a hexagonal/vertical-slice architecture design. The backend is responsible for deploying zerepy instances to the phala network via TEEs. It also manages users, stores agents action history in the DB, routes agent commands to the appropriate zerepy instance, and allows for plugins to process agent commands from numerous platforms such as X and discord with username-to-address resolvement.",
+    "thumbnail": "/thumbnails/blormmy-image.png",
+    "status": "Completed",
+    "role": "Back-End",
+    "languages": ["typescript"],
+    "stack": ["nestjs", "postgres"]
+  },
+  {
+    "id": "paystand",
+    "title": "Paystand",
+    "description": "Involved with numerous projects at Paystand. I was responsible for building a new payment method for the Paystand platform called cross border payments. Cross border payments was a payment system that used the bitcoin lightning network to process large B2B payments across borders instantly and without fees. I also worked on secure enterprise funding, a decentralized way for the organization to fund crypto projects. I worked closely with the Vice President of Engineering to build this system and learned a lot about software architecture and design patterns. I consider my 1.5 years at Paystand to be one of the most valuable experiences in my career and the lessons and skills I learned there have been priceless.",
+    "thumbnail": "/thumbnails/paystand-image.png",
     "status": "Completed",
     "role": "Full-Stack",
-    "languages": ["typescript", "solidity"],
-    "stack": ["next", "hardhat"],
-    "repo": "https://github.com/rux-eth/treasure",
-    "article": "https://medium.com/coinsbench/treasure-nfts-advanced-on-chain-metadata-generation-1cc6fb6b4653"
-  },
-  {
-    "id": "eastern-standard",
-    "title": "Eastern Standard",
-    "description": "An E-commerce site where you can buy Eastern Standard merch and play an arcade to earn tokens. This is for the Rumble Kong League Club \"Eastern Standard\".",
-    "thumbnail": "/thumbnails/eastern-standard.png",
-    "status": "Building",
-    "role": "Full-Stack",
-    "languages": ["typescript", "solidity"],
-    "stack": [
-      "next",
-      "hardhat",
-      "tailwind",
-      "fastify",
-      "ethers",
-      "foundry",
-      "mongodb"
-    ],
-    "repo": "https://github.com/rux-eth/eastern-standard",
-    "trello": "https://trello.com/b/N0aFdaGR/eastern-standard"
-  },
-
-
-  {
-    "id": "dampfi",
-    "title": "DampFi",
-    "description": "Building decentralized asset management platform as a main project. Since I am the sole developer and this project is massive, I will be releasing features incrementally to gain users over time. The first feature will be free tax software where users can compute their DeFi taxes without signing up for an account or paying ridiculously high fees. I think I am going to use Rust and webassembly to do the heavy lifting.",
-    "thumbnail": "/thumbnails/default.png",
-    "status": "Building",
-    "role": "Full-Stack",
-    "languages": ["rust", "typescript", "solidity", "javascript"],
-    "stack": ["next", "foundry", "mongodb", "ethers", "wasm"],
-    "repo": "https://github.com/rux-eth/dampfi",
-    "trello": "https://trello.com/b/JmeEcPCh/defi-tax-software"
+    "languages": ["typescript", "rust", "javascript"],
+    "stack": ["next", "hardhat", "foundry", "postgres", "ethers"]
   },
   {
     "id": "crypto-rates",
@@ -85,7 +79,7 @@
     "title": "NFT Data Miner V2",
     "description": "Mines NFT collection data and compiles it into an csv file. It is currently not efficient and takes hours to get data for just one collection. I wrote it when I wasn't that experienced with Rust. Looking back, it could be optimized by encoding function parameters with the Rust library 'ethabi' and submitting thousands of requests at a time in a batch contract call then decoding the output. This would reduce the time to get data for each collection to minutes. I will do this when I have time.",
     "thumbnail": "/thumbnails/default.png",
-    "status": "Building",
+    "status": "Deprecated",
     "role": "Back-End",
     "languages": ["rust"],
     "stack": [],
@@ -96,7 +90,7 @@
     "title": "Ethereum Scanner",
     "description": "A Typescript/Javascript library for getting token information on Ethereum accounts. This library is incomplete and I may or may not come back and complete it. I would love to, but i just dont have time at the moment. If I do, I will open a trello board to manage it and I will post the link here.",
     "thumbnail": "/thumbnails/default.png",
-    "status": "Building",
+    "status": "Deprecated",
     "role": "Back-End",
     "languages": ["typescript", "javascript", "solidity"],
     "stack": ["ethers", "hardhat"],
@@ -115,6 +109,4 @@
     "repo": "https://github.com/rux-eth/clubcards-backend",
     "website": "https://www.clubcards.cc/"
   }
-  
 ]
-
