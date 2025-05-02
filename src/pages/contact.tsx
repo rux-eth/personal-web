@@ -17,6 +17,16 @@ const contacts: ContactItem[] = [
   {
     title: 'Discord',
     value: 'Rux#2216'
+  },
+  {
+    title: 'Instagram',
+    value: '@ruxdoteth',
+    link: 'https://www.instagram.com/ruxdoteth/'
+  },
+  {
+    title: 'Snapchat',
+    value: 'mrruxdoteth',
+    link: 'https://www.snapchat.com/add/mrruxdoteth'
   }
 ]
 
