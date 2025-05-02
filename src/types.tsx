@@ -1,4 +1,4 @@
-import { ethers } from 'ethers'
+// import { ethers } from 'ethers'
 import { Set } from 'immutable'
 export type WorkStatus = 'Completed' | 'Building' | 'Deprecated'
 export type Role = 'Full-Stack' | 'Back-End' | 'Front-end'
@@ -18,10 +18,10 @@ export interface WorkInfo {
   trello?: string
 }
 export type Address = string
-export function assertAddress(str: string): asserts str is Address {
+/* export function assertAddress(str: string): asserts str is Address {
   if (!ethers.utils.isAddress(str)) throw Error('Not a valid address!')
   str = ethers.utils.getAddress(str)
-}
+} */
 export function assertAddressEq(a1: any, a2: any): boolean {
   if (typeof a1 !== typeof 'string' || typeof a2 !== typeof 'string')
     return false
@@ -40,7 +40,7 @@ export function assertWorkInfo(obj: any): WorkInfo {
       'stack' in obj
     )
   )
-    throw Error(`Missing required fields! ${JSON.stringify(obj)}`)
+    throw Error('Missing keys!')
   let {
     id,
     title,
