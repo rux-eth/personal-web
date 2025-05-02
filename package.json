@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "export ANALYZE='false' && next build",
     "build:analyze": "export ANALYZE='true' && next build",
-    "start": "next build && next start"
+    "start": "export ANALYZE='false' && next build && next start"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
