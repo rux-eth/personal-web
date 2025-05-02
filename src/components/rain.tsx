@@ -1,6 +1,7 @@
+import { floating, integer, pickset } from '@src/utils/chance'
 import { ResizeContext } from '@src/utils/resize-observer'
-import Chance from 'chance'
 import { FC, RefObject, useContext } from 'react'
+
 interface RainItem {
   path: string
   scale: number
@@ -17,7 +18,6 @@ interface RainProps {
 
 interface Config {
   numItems: number
-  // number of rain variants to cache
   numVars: number
   vertSpread: number
 }
@@ -25,7 +25,6 @@ interface Config {
 const config: Config = {
   numItems: 25,
   numVars: 10,
-  // modifies how many items per row. lower number = more items per row
   vertSpread: 7
 }
 
@@ -47,32 +46,18 @@ const pool: string[] = [
   'pythonIcon'
 ]
 
-const chance = new Chance()
-/* const rainPool: string[] = [
-  "btc-logo",
-  "cssIcon",
-  "expressJSIcon",
-  "GitIcon",
-].map((icon) => `/icons/${icon}.png`); */
+// Utility to generate random rain items, using custom replacements instead of Chance
 const getSeeds = (): RainItem[] => {
   let allItems: RainItem[] = []
   const addItems = (newItems: string[]) => {
     newItems.forEach(icon => {
       allItems.push({
         path: `/icons/${icon}.png`,
-        scale: chance.floating({
-          min: 0.6,
-          max: 1.8,
-          fixed: 2
-        }),
-        transX: chance.integer({ min: -100, max: 100 }),
-        rot: chance.floating({
-          min: -0.5,
-          max: 0.5,
-          fixed: 2
-        }),
-        startX: chance.integer({ min: -50, max: 200 }),
-        startY: -chance.integer({ min: 0, max: 20 })
+        scale: floating({ min: 0.6, max: 1.8, fixed: 2 }),
+        transX: integer({ min: -100, max: 100 }),
+        rot: floating({ min: -0.5, max: 0.5, fixed: 2 }),
+        startX: integer({ min: -50, max: 200 }),
+        startY: -integer({ min: 0, max: 20 })
       })
     })
   }
@@ -84,19 +69,19 @@ const getSeeds = (): RainItem[] => {
   const remainder: number = config.numItems - allItems.length
 
   if (remainder > 0) {
-    const r = chance.pickset(pool, remainder)
-
+    const r = pickset(pool, remainder)
     addItems(r)
   }
   allItems = allItems.sort((a, b) => a.scale - b.scale)
   return allItems
 }
-const variants: RainItem[][] = Array.from(Array(config.numVars), () =>
-  getSeeds()
-)
+
+const variants: RainItem[][] = Array.from(Array(config.numVars), getSeeds)
+
 const Rain: FC<RainProps> = ({ refContain, variant }) => {
   const { scrollY } = useContext(ResizeContext)
-  const v: number = variant ?? chance.integer({ min: 0 })
+  // If no variant is provided, pick one randomly
+  const v: number = variant ?? integer({ min: 0, max: config.numVars - 1 })
   let progress = 0
   const { current: elContainer } = refContain
   if (elContainer) {
@@ -115,9 +100,9 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
       {(() => {
         const items: RainItem[] = variants[v % variants.length]
         let allComps: JSX.Element[] = []
-        let splits: number = Math.floor(items!.length / config.vertSpread)
+        let splits: number = Math.floor(items.length / config.vertSpread)
         for (let i = 0; i <= splits; i++) {
-          const s: RainItem[] = items!.slice(i * splits, i * splits + splits)
+          const s: RainItem[] = items.slice(i * splits, i * splits + splits)
           allComps.push(
             <div
               key={`rain_id_${i}`}
@@ -132,7 +117,6 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
               {s.map((item, index) => (
                 <img
                   className="bg-white border-1 border-black"
-                  //className="bg-black border-2 border-white dark:border-black dark:bg-white"
                   key={`${item.path}_${index}`}
                   src={item.path}
                   style={{
@@ -156,6 +140,7 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
     </div>
   )
 }
+
 const Slot: FC<RainProps> = ({ refContain }) => {
   const { scrollY } = useContext(ResizeContext)
 
