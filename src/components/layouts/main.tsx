@@ -10,6 +10,7 @@ import Footer from '../footer'
 import Masthead from '../masthead'
 import Navbar from '../navbar'
 import NavDrawer from '../navDrawer'
+import { Analytics } from '@vercel/analytics/react'
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -86,6 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children, router }) => {
         </Alert>
       </Snackbar>
       <NavDrawer />
+      <Analytics />
     </motion.article>
   )
 }

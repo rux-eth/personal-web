@@ -7,7 +7,6 @@ import { Config, DAppProvider, Mainnet } from '@usedapp/core'
 import { getDefaultProvider } from 'ethers'
 import { AnimatePresence } from 'framer-motion'
 import { AppProps } from 'next/app'
-import { Analytics } from '@vercel/analytics/next'
 
 const config: Config = {
   readOnlyChainId: Mainnet.chainId,
@@ -28,7 +27,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           </Layout>
         </ThemeProvider>
       </ResizeObserver>
-      <Analytics />
     </DAppProvider>
   )
 }
