@@ -1,6 +1,6 @@
-import { useEthers, useLookupAddress } from "@usedapp/core";
-import { FC } from "react";
-
+// import { useEthers, useLookupAddress } from '@usedapp/core'
+import { FC } from 'react'
+/* 
 const Connect: FC = () => {
   const { active, account, activateBrowserWallet } = useEthers();
   const { ens } = useLookupAddress(account);
@@ -22,7 +22,7 @@ const Connect: FC = () => {
     </button>
   );
 };
-export default Connect;
+export default Connect; */
 /*
 const Connect: FC = () => {
   const { active, account, activateBrowserWallet } = useEthers();
