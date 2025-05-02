@@ -189,7 +189,6 @@ export class Works {
         ? setFilters(filters.remove(filter))
         : setFilters(filters.add(filter))
     }
-    // if (this.isClient && this.works.count() <= 0) return <NotClient />;
     // main
     return (
       <Layout title="Works">
