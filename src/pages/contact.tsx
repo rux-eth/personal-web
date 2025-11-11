@@ -25,8 +25,13 @@ const contacts: ContactItem[] = [
   },
   {
     title: 'Snapchat',
-    value: 'mrruxdoteth',
-    link: 'https://www.snapchat.com/add/mrruxdoteth'
+    value: 'maxrux25',
+    link: 'https://www.snapchat.com/add/maxrux25'
+  },
+  {
+    title: 'LinkedIn',
+    value: 'maxwell-rux-96682724a',
+    link: 'https://www.linkedin.com/in/maxwell-rux-96682724a/'
   }
 ]
 
