@@ -6,7 +6,7 @@ import { Set } from 'immutable'
 import React from 'react'
 import Link from './link'
 import { Works } from './works'
-import { getAge } from '@src/utils/time'
+import { getAge, getWorkingYears } from '@src/utils/time'
 
 interface Section {
   header: string
@@ -25,8 +25,7 @@ const TLDR: React.FC = () => {
     },
     {
       header: 'Work',
-      content:
-        'I have been a professional software engineer for over 4 years. I have a strong passion for software development, especially cryptography, making decentralized applications, and artificial intelligence/machine learning. I have always been a learner, always researching interests until I have a deep understanding of the concept. This curiousity has led me to work with various frameworks and technologies and the entreprenuership has led me to work with the most talented minds in the space and learn many things about tech, finance, and business.',
+      content: `I have been a professional software engineer for over ${getWorkingYears()} years. I have a strong passion for software development, especially cryptography, making decentralized applications, and artificial intelligence/machine learning. I have always been a learner, always researching interests until I have a deep understanding of the concept. This curiousity has led me to work with various frameworks and technologies and the entreprenuership has led me to work with the most talented minds in the space and learn many things about tech, finance, and business.`,
 
       extraCompenent: (
         <>
