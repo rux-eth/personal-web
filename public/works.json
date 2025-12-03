@@ -1,15 +1,5 @@
 [
   {
-    "id": "sapien",
-    "title": "Project Sapien",
-    "description": "To be announced... I will be posting updates on my X account so be sure to follow.",
-    "status": "Building",
-    "thumbnail": "/thumbnails/default.png",
-    "role": "Full-Stack",
-    "languages": [],
-    "stack": []
-  },
-  {
     "id": "personal",
     "title": "Personal Site",
     "description": "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
