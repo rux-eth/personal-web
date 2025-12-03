@@ -20,3 +20,6 @@ export const dynamicFont = (scale: number = 100, onlyWidth = false): string => {
     Math.pow(getCurrentBreakpoint()[1], onlyWidth ? 1 : 0.5) * (scale / 100)
   }px`;
 };
+export const dynamicFontNum = (scale: number = 100, onlyWidth = false): number => {
+  return Math.pow(getCurrentBreakpoint()[1], onlyWidth ? 1 : 0.5) * (scale / 100);
+};

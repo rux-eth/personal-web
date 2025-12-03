@@ -5,6 +5,11 @@ import { NextPage } from 'next'
 
 const contacts: ContactItem[] = [
   {
+    title: 'Email',
+    value: 'ruxdoteth@gmail.com',
+    link: 'mailto:ruxdoteth@gmail.com'
+  },
+  {
     title: 'Telegram',
     value: '@Rux0x',
     link: 'https://t.me/Rux0x'
@@ -22,11 +27,6 @@ const contacts: ContactItem[] = [
     title: 'Instagram',
     value: '@ruxdoteth',
     link: 'https://www.instagram.com/ruxdoteth/'
-  },
-  {
-    title: 'Snapchat',
-    value: 'maxrux25',
-    link: 'https://www.snapchat.com/add/maxrux25'
   },
   {
     title: 'LinkedIn',

@@ -43,3 +43,11 @@ body {
   display: block;
   overflow: hidden;
 }
+
+/* Hide the default arrow marker for Webkit browsers */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+
+
