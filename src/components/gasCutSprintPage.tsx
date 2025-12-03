@@ -235,7 +235,7 @@ const GasCutSprintPage: React.FC = () => {
       <CommentedContent
         header="7-Day Gas Cut Sprint for DeFi Protocols"
         content="Focus on changes that move business metrics: UX, net yield, and
-          protocol economics. Reduce gas costs on your most‑used DeFi flows by 20–40% in 7 days"
+          protocol economics. Reduce gas costs on your most‑used DeFi flows by 20–40% in 7 days and bring value not only to your business but also to your users and integrators."
       />
 
       <Seperator />
