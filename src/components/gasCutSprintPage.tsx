@@ -119,16 +119,25 @@ const sections: Section[] = [
   {
     header: 'Next step',
     content: [
-      'If you’re running a DeFi protocol and suspect some of your hot paths are more expensive than they need to be:',
-      '- DM me on X/Discord: <your-handle>',
-      '- Or email: <your-email>',
-      '- Or book a 15-minute intro call: <Calendly or booking link>',
+      'If you’re running a DeFi protocol and suspect some of your hot paths are more expensive than they need to be, let’s chat!',
+      'Please reach out to me through any of the following channels:',
+      '- Email (most reachable): ruxdoteth@gmail.com',
+      '- DM me on X/Discord/Telegram',
+      '- book a 15-minute free intro call',
       '',
       'On the call, we’ll:',
-      '1. Look at 1–2 of your core flows.',
-      '2. Estimate potential savings in gas and $ terms.',
-      '3. Decide whether a 7-Day Gas Cut Sprint makes sense right now.'
-    ].join('\n')
+      '1. Look at analytics.',
+      '2. Go over your core flows.',
+      '3. Discuss which flows would be beneficial to optimize.',
+      '4. See if we’re a good fit to work together.'
+    ].join('\n'),
+    component: (
+      <div className="mt-[1ch]">
+        <Link className="white-comp text-[2.2ch]" href={'/contact'}>
+          Contact Me
+        </Link>
+      </div>
+    )
   }
 ]
 
@@ -215,12 +224,6 @@ function CollapsibleSection({
 
 const GasCutSprintPage: React.FC = () => {
   const fs = dynamicFontNum(70)
-
-  const CTA = {
-    book: '<Calendly or booking link>',
-    email: 'mailto:<your-email>',
-    dm: '<X or Discord DM link>'
-  }
 
   return (
     <div

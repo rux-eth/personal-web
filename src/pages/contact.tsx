@@ -46,7 +46,7 @@ const ContactPage: NextPage = () => {
         }}
       >
         <div className="text-[2ch]">
-          <p>I only give out my phone number to clients</p>
+          <p>I only give out my phone number to verified clients</p>
         </div>
         <Contact items={contacts} />
       </div>

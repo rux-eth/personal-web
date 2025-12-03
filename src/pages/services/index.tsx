@@ -6,7 +6,7 @@ import { NextPage } from 'next'
 /* @ts-ignore */
 const Clients: NextPage = () => {
   return (
-    <Layout title="Client Page">
+    <Layout title="Services">
       <GasCutSprintPage />
     </Layout>
   )
