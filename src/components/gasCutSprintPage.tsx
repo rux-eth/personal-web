@@ -80,8 +80,8 @@ const sections: Section[] = [
   {
     header: 'Pricing & guarantee',
     content: [
-      'Intro price: $1,000 for a 7-Day Gas Cut Sprint',
-      'Intro cap: First 3 teams at this rate as part of an initial rollout.',
+      'Intro offer: $1,000 — only for the first 3 teams I work with on this sprint.',
+      'After the intro slots, pricing will increase based on results.',
       '',
       'Scope per sprint:',
       '- 1–3 contracts, depending on complexity.',
@@ -119,11 +119,7 @@ const sections: Section[] = [
   {
     header: 'Next step',
     content: [
-      'If you’re running a DeFi protocol and suspect some of your hot paths are more expensive than they need to be, let’s chat!',
-      'Please reach out to me through any of the following channels:',
-      '- Email (most reachable): ruxdoteth@gmail.com',
-      '- DM me on X/Discord/Telegram',
-      '- book a 15-minute free intro call',
+      'If you’re running a DeFi protocol and suspect some of your hot paths are more expensive than they need to be, book a free 15‑minute call or email me (See "Contact" page).',
       '',
       'On the call, we’ll:',
       '1. Look at analytics.',
@@ -133,8 +129,12 @@ const sections: Section[] = [
     ].join('\n'),
     component: (
       <div className="mt-[1ch]">
-        <Link className="white-comp text-[2.2ch]" href={'/contact'}>
-          Contact Me
+        <Link
+          className="white-comp text-[2.2ch]"
+          target="_blank"
+          href={'https://calendly.com/maxjrux/new-meeting'}
+        >
+          Schedule a Free Call
         </Link>
       </div>
     )
@@ -234,8 +234,10 @@ const GasCutSprintPage: React.FC = () => {
       {/* Hero */}
       <CommentedContent
         header="7-Day Gas Cut Sprint for DeFi Protocols"
-        content="Focus on changes that move business metrics: UX, net yield, and
-          protocol economics. Reduce gas costs on your most‑used DeFi flows by 20–40% in 7 days and bring value not only to your business but also to your users and integrators."
+        content={`Focus on changes that move business metrics: UX, net yield, and protocol economics. Reduce gas costs on your most‑used DeFi flows by 20–40% in 7 days and bring value not only to your business but also to your users and integrators.\n
+          - For: mid-tail DeFi protocols on Ethereum and major L2s.
+          - Outcome: 20–40% gas reduction on your 2–4 highest‑value flows in 7 days.
+          - Gaurantee: If I can’t hit ≥20% gas reduction on at least one flow, you pay half price.`}
       />
 
       <Seperator />
