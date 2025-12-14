@@ -37,12 +37,14 @@ export const categories: { [key: string]: JSX.Element } = {
   wasm: <BuildCategory name="WebAssembly" rgb={[233, 10, 245]} />,
   nestjs: <BuildCategory name="NestJS" rgb={[255, 153, 0]} />,
   postgres: <BuildCategory name="Postgres" rgb={[102, 51, 153]} />,
+  springboot: <BuildCategory name="Spring Boot" rgb={[0, 150, 136]} />,
   // languagesß
   typescript: <BuildCategory name="Typescript" rgb={[49, 120, 198]} />,
   python: <BuildCategory name="Python" rgb={[112, 81, 162]} />,
   solidity: <BuildCategory name="Solidity" rgb={[98, 126, 234]} />,
   rust: <BuildCategory name="Rust" rgb={[230, 123, 16]} />,
   javascript: <BuildCategory name="Javascript" rgb={[240, 219, 79]} />,
+  java: <BuildCategory name="Java" rgb={[176, 114, 25]} />,
   // misc.
   'Full-Stack': <BuildCategory name="Full-Stack" rgb={[255, 255, 0]} />,
   'Front-End': <BuildCategory name="Front-End" rgb={[0, 255, 0]} />,

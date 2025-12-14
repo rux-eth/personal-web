@@ -1,5 +1,16 @@
 [
   {
+    "id": "hospital-in-a-box",
+    "title": "Hospital In A Box",
+    "description": "Simulates a very common hospital integration task: ingest HL7 v2 messages (e.g., ADT admit/discharge/transfer and ORU lab results), transform them into FHIR resources (Patient, Encounter, Observation), store them, and show a simple web UI timeline (“Patient admitted → lab results posted → discharged”).",
+    "thumbnail": "/thumbnails/default.png",
+    "status": "Building",
+    "role": "Full-Stack",
+    "languages": ["java", "typescript", "javascript"],
+    "stack": ["next", "springboot", "postgres"],
+    "repo": "https://github.com/rux-eth/hospital-in-a-box"
+  },
+  {
     "id": "personal",
     "title": "Personal Site",
     "description": "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
