@@ -4,7 +4,7 @@ Ordered PR sequence implementing the 2026-08-07 design (see `docs/0.0/DESIGN-log
 
 | PR | Title | Depends on | Design decisions | Status |
 |----|-------|------------|------------------|--------|
-| PR-001 | Visual-regression baseline (Playwright harness + current-build screenshots) | — | D8 | implemented (branch pr/001-visual-baseline, awaiting merge) |
+| PR-001 | Visual-regression baseline (Playwright harness + current-build screenshots) | — | D8 | merged (GitHub PR #18) |
 | PR-002 | Tooling hygiene (Biome + repo-wide format, tsconfig/next.config/scripts cleanup, dead dev-deps) | PR-001 | D8 | not started |
 | PR-003 | MUI removal (hand-rolled drawer/snackbar/breakpoint hook; delete link.tsx, theme.tsx, _document JSS) | PR-001 | D2 | not started |
 | PR-004 | Scroll/resize rearchitecture (delete ResizeContext; IntersectionObserver, per-block ResizeObserver, masthead rAF; sha1/crypto id deleted) | PR-001 | D4, D5 (crypto) | not started |

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.7/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!.next",
+      "!node_modules",
+      "!public",
+      "!test-results",
+      "!playwright-report",
+      "!yarn.lock"
+    ]
+  },
+  // Formatter reproduces the former src/prettier.config.js exactly
+  // (mapping researched + locked in prs/PR-002-tooling-hygiene.md).
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "asNeeded",
+      "quoteStyle": "single",
+      "arrowParentheses": "asNeeded",
+      "trailingCommas": "none"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      // Rules below fire on PRE-REFACTOR code. PR-002 is config+format only
+      // (One PR, One Thing) — each rule is re-enabled by the PR that fixes
+      // its violations. Do not add new violations while a rule is off.
+      "correctness": {
+        "useJsxKeyInIterable": "off", // → PR-006 (missing keys, D9 bug list)
+        "useHookAtTopLevel": "off", // → PR-006 (Works class dissolution)
+        "useExhaustiveDependencies": "off", // → PR-004/PR-006 (effect rewrites)
+        "noUnusedImports": "off", // → PR-010 (dead-code sweep)
+        "noUnusedVariables": "off", // → PR-010
+        "useParseIntRadix": "off", // → PR-004 (dynamicFont replacement)
+        "noUnknownProperty": "off" // → PR-003 (style cleanup)
+      },
+      "suspicious": {
+        "noExplicitAny": "off", // → PR-006/PR-007 (typed works data, TS 5)
+        "noTsIgnore": "off", // → PR-007 (React 19 types remove the need)
+        "noArrayIndexKey": "off", // → PR-006
+        "noShadowRestrictedNames": "off", // → PR-005 (immutable Set/Map removal)
+        "noUnknownAtRules": "off" // tailwind directives; revisit in PR-008 (v4 syntax)
+      },
+      "style": {
+        "useImportType": "off", // → PR-007 (TS 5 modernization pass)
+        "useConst": "off", // → PR-010
+        "noNonNullAssertion": "off", // → PR-010
+        "useExponentiationOperator": "off", // → PR-004 (rain math rewrite)
+        "useNodejsImportProtocol": "off" // → PR-004 (crypto import deleted)
+      },
+      "complexity": {
+        "useLiteralKeys": "off", // → PR-006
+        "noUselessFragments": "off", // → PR-006 (tldr fragment cleanup)
+        "noBannedTypes": "off" // → PR-006 (types.tsx rewrite)
+      }
+    }
+  }
+}
