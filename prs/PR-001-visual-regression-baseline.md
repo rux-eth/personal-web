@@ -171,10 +171,17 @@ None. Must land before every other PR (Baseline Before Change constraint).
 
 ## Verification criteria
 
-- [ ] **Two consecutive full `yarn test:visual` runs produce zero diffs** (empirically validates the BGGC-labeled mechanism combination — see Group D)
-- [ ] Every page/breakpoint/state/scroll-offset listed in scope has a committed baseline image in both Chromium and WebKit projects
-- [ ] Masthead rain renders identically across runs (seeded PRNG effective at module-load time)
-- [ ] A deliberate 1-line CSS change (e.g. temporarily altering `.white-comp` opacity) produces a failing diff, then reverts clean — proves the harness actually catches regressions (No Phantom Implementations constraint)
+- [x] **Two consecutive full `yarn test:visual` runs produce zero diffs** — exceeded: THREE consecutive runs, 182/182 each (2026-08-07)
+- [x] Every page/breakpoint/state/scroll-offset listed in scope has a committed baseline image in both Chromium and WebKit projects (182 images, 29 MB)
+- [x] Masthead rain renders identically across runs (seeded PRNG effective at module-load time)
+- [x] A deliberate 1-line CSS change (`.white-comp` opacity 70%→60%) produces a failing diff (exit 1), reverts clean (exit 0) — 2026-08-07
+
+## Implementation notes (deviations from locked spec + tuning record)
+
+1. **`/loading`: clock replaced by masking** (deviation from the Phase-4 locked spec). The clock approach was nondeterministic in practice: hydration occasionally completed mid-`runFor`, shifting the dots interval's registration to a varying fake-time offset (off-by-one tick, ~1.1k px). Hydration-completion signals are timer-polled — frozen by the very clock being used — so the approach can't be made airtight. The animated `<p>` is masked instead; deterministic by construction. Coverage tradeoff accepted: `/loading`'s text is unverified (dead route, PR-010 removal candidate).
+2. **App-timing discoveries encoded in the harness**: the app's `setTimeout(handleResize, 1000)` init hack shifts layout ~1s after load (`awaitAppReady` waits it out); programmatic scroll → React state → transform is async and can be "stable but wrong" (`settleAfterScroll`); `next/image` lazy-loading races fullPage capture (`loadAllImages` scroll-through + decode).
+3. **Tolerance calibration (canary-driven)**: initial `threshold: 0.3` made the harness blind to a real 10%-opacity change — the canary caught the harness itself. Final shape: **strict per-pixel threshold (0.05)** + per-surface `maxDiffPixels` budgets sized from measured raster jitter (config default 200; pages 8000; works-index 45000 — renders all 10 scaled thumbnails; masthead scroll captures 9000; filter dropdown 6000; navbar-shown 8000). Playwright gotcha recorded: per-call options MERGE with config defaults (both constraints apply), so per-call budgets must be explicit.
+4. **Sensitivity boundaries (honest limits)**: each capture only flags changes exceeding its budget; works-index's large budget is cross-covered by home (canary-verified) and the filter-state capture for shared components. Sub-budget changes to unique works-index layout would not be caught by the harness alone.
 
 ## Research backing
 
