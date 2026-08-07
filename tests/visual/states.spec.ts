@@ -1,0 +1,51 @@
+import { test, expect, settle, settleAfterScroll, awaitAppReady } from './fixtures'
+
+// Interactive states. Downstream contracts: PR-003 names drawer + snackbar
+// explicitly; PR-006 needs the filter dropdown.
+
+test('navbar shown after scrolling past tldr', async ({ page }) => {
+  await page.goto('/')
+  await awaitAppReady(page)
+  await page.evaluate(() => {
+    const tldr = document.getElementById('tldr')!
+    window.scrollTo(0, window.scrollY + tldr.getBoundingClientRect().y + 10)
+  })
+  await settleAfterScroll(page)
+  // Backdrop-blur over rain-image content jitters (measured ~6.3k px once).
+  await expect(page).toHaveScreenshot('navbar-shown.png', {
+    maxDiffPixels: 8000
+  })
+})
+
+test('nav drawer open', async ({ page, viewport }) => {
+  // Hamburger is hidden at the md breakpoint (1280) and up.
+  test.skip(!!viewport && viewport.width >= 1280, 'hamburger hidden ≥ md')
+  await page.goto('/contact')
+  await awaitAppReady(page)
+  await page.locator('.hamburger-react').click()
+  await settle(page)
+  await expect(page).toHaveScreenshot('nav-drawer-open.png')
+})
+
+test('works filter dropdown open', async ({ page }) => {
+  await page.goto('/works')
+  await awaitAppReady(page)
+  await page.getByText('Filter Tags').click()
+  await settle(page)
+  // Translucent chip backgrounds in the dropdown jitter (measured ~4.2k px
+  // at threshold 0.05).
+  await expect(page).toHaveScreenshot('works-filter-open.png', {
+    maxDiffPixels: 6000
+  })
+})
+
+test('snackbar after copy', async ({ page }) => {
+  await page.goto('/contact')
+  await awaitAppReady(page)
+  // First copy button (FaCopy inside .white-comp button); clipboard write may
+  // be permission-denied headlessly — the snackbar fires regardless (state is
+  // set synchronously, the promise is not awaited by the app).
+  await page.locator('button.white-comp').first().click()
+  await settle(page)
+  await expect(page).toHaveScreenshot('snackbar-copy.png')
+})
