@@ -1,18 +1,18 @@
 /* eslint-disable react/display-name */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import MuiLink, { LinkProps as MuiLinkProps } from "@mui/material/Link";
-import clsx from "clsx";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import { useRouter } from "next/router";
-import * as React from "react";
+import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import clsx from 'clsx'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import { useRouter } from 'next/router'
+import * as React from 'react'
 
 /* @ts-ignore */
 interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">,
-    Omit<NextLinkProps, "href" | "as"> {
-  to: NextLinkProps["href"];
-  linkAs?: NextLinkProps["as"];
-  href?: NextLinkProps["href"];
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
+    Omit<NextLinkProps, 'href' | 'as'> {
+  to: NextLinkProps['href']
+  linkAs?: NextLinkProps['as']
+  href?: NextLinkProps['href']
 }
 
 export const NextLinkComposed = React.forwardRef<
@@ -30,7 +30,7 @@ export const NextLinkComposed = React.forwardRef<
     prefetch,
     locale,
     ...other
-  } = props;
+  } = props
 
   return (
     <NextLink
@@ -45,43 +45,43 @@ export const NextLinkComposed = React.forwardRef<
     >
       <a ref={ref} {...other} />
     </NextLink>
-  );
-});
+  )
+})
 
 export type LinkProps = {
-  activeClassName?: string;
-  as?: NextLinkProps["as"];
-  href: NextLinkProps["href"];
-  noLinkStyle?: boolean;
-} & Omit<NextLinkComposedProps, "to" | "linkAs" | "href"> &
-  Omit<MuiLinkProps, "href">;
+  activeClassName?: string
+  as?: NextLinkProps['as']
+  href: NextLinkProps['href']
+  noLinkStyle?: boolean
+} & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
+  Omit<MuiLinkProps, 'href'>
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
-    activeClassName = "active",
+    activeClassName = 'active',
     as: linkAs,
     className: classNameProps,
     href,
     noLinkStyle,
     role, // Link don't have roles.
     ...other
-  } = props;
+  } = props
 
-  const router = useRouter();
-  const pathname = typeof href === "string" ? href : href.pathname;
+  const router = useRouter()
+  const pathname = typeof href === 'string' ? href : href.pathname
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
-  });
+    [activeClassName]: router.pathname === pathname && activeClassName
+  })
   other.style = {
-    textDecoration: "none",
-    ...other.style,
-  };
+    textDecoration: 'none',
+    ...other.style
+  }
 
   const isExternal =
-    typeof href === "string" &&
-    (href.indexOf("http") === 0 || href.indexOf("mailto:") === 0);
+    typeof href === 'string' &&
+    (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0)
 
   if (isExternal) {
     if (noLinkStyle) {
@@ -92,7 +92,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
           ref={ref as any}
           {...other}
         />
-      );
+      )
     }
 
     return (
@@ -102,7 +102,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
         ref={ref}
         {...other}
       />
-    );
+    )
   }
 
   if (noLinkStyle) {
@@ -113,7 +113,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
         to={href}
         {...other}
       />
-    );
+    )
   }
 
   return (
@@ -125,7 +125,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
       to={href}
       {...other}
     />
-  );
-});
+  )
+})
 
-export default Link;
+export default Link

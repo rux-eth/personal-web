@@ -1,4 +1,10 @@
-import { test, expect, settle, settleAfterScroll, awaitAppReady } from './fixtures'
+import {
+  test,
+  expect,
+  settle,
+  settleAfterScroll,
+  awaitAppReady
+} from './fixtures'
 
 // Interactive states. Downstream contracts: PR-003 names drawer + snackbar
 // explicitly; PR-006 needs the filter dropdown.

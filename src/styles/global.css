@@ -10,7 +10,13 @@
 }
 body {
   background: #2f2f2f;
-  font-family: SF Pro Display, SF Pro, Menlo, Helvetica Neue, Helvetica, Arial,
+  font-family:
+    SF Pro Display,
+    SF Pro,
+    Menlo,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
     sans-serif;
   letter-spacing: 0em;
 }
@@ -48,6 +54,3 @@ body {
 summary::-webkit-details-marker {
   display: none;
 }
-
-
-

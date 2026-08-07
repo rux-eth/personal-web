@@ -27,7 +27,9 @@ export const test = base.extend<{ page: Page }>({
 export async function settle(page: Page) {
   await page.evaluate(async () => {
     await document.fonts.ready
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+    await new Promise(r =>
+      requestAnimationFrame(() => requestAnimationFrame(r))
+    )
   })
 }
 
@@ -67,12 +69,17 @@ export async function loadAllImages(page: Page) {
           ? img.decode().catch(() => {})
           : new Promise<void>(res => {
               img.onload = img.onerror = () => {
-                img.decode().catch(() => {}).finally(res)
+                img
+                  .decode()
+                  .catch(() => {})
+                  .finally(res)
               }
             })
       )
     )
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+    await new Promise(r =>
+      requestAnimationFrame(() => requestAnimationFrame(r))
+    )
   })
 }
 
