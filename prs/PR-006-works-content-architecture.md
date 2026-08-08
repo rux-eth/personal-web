@@ -1,6 +1,6 @@
 # PR-006: Works content architecture
 
-**Landed-in:** (open — GitHub PR #23, awaiting merge)
+**Landed-in:** master via GitHub PR #23, 2026-08-08 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 

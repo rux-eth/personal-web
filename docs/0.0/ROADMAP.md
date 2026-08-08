@@ -9,7 +9,7 @@ Ordered PR sequence implementing the 2026-08-07 design (see `docs/0.0/DESIGN-log
 | PR-003 | MUI removal (hand-rolled drawer/snackbar/breakpoint hook; slim link.tsx, delete theme.tsx, _document JSS) | PR-001 | D2 | merged (GitHub PR #20) |
 | PR-004 | Scroll/resize rearchitecture (delete ResizeContext; navbar-local check, per-block ResizeObserver, masthead rAF; sha1/crypto id deleted) | PR-001 | D4, D5 (crypto) | merged (GitHub PR #21) |
 | PR-005 | Utility diet (immutable → native Array/Set/Map) | PR-004 | D5 | merged (GitHub PR #22) |
-| PR-006 | Works content architecture (src/data/works.ts typed module, SSG, dissolve Works class; fix arrow-rotate bug, 404-flash, missing keys) | PR-001 | D7, D9 | not started |
+| PR-006 | Works content architecture (src/data/works.ts typed module, SSG, dissolve Works class; fix arrow-rotate bug, 404-flash, missing keys) | PR-001 | D7, D9 | merged (GitHub PR #23) |
 | PR-007 | Framework upgrade (Next 16, React 19, TS 5; framer-motion → motion v13 swap forced by peer deps; codemods; FC-children fixes) | PR-003, PR-004 | D1, D3 | not started |
 | PR-008 | Tailwind 4 migration (CSS-first config, single theme source) | PR-007 | D2 | not started |
 | PR-009 | Assets (next/font/local subset woff2; next/image everywhere; compress sources; delete dead public files after reference-check) | PR-007 | D6 | not started |
