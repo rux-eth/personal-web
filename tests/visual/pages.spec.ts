@@ -49,9 +49,15 @@ for (const [name, path] of staticPages) {
     //    works-filter state capture, and all per-work pages.
     // Home's unique content (tl;dr sections, buttons — the canary surface)
     // remains under the strict 8000 budget.
+    // works-index budget: WebKit resamples all 10 thumbnails from unstable
+    // srcset candidates per invocation (observed up to ~62.5k px, ~2% of the
+    // page). Structural grid regressions measure in the hundreds of thousands;
+    // grid text/chips are cross-covered by the tight filter-state capture and
+    // the per-work pages. PR-009's image rework (fixed sizes) is expected to
+    // remove the instability — revisit the budget then.
     await expect(page).toHaveScreenshot(`${name}.png`, {
       fullPage: true,
-      maxDiffPixels: name === 'works-index' ? 45000 : 8000,
+      maxDiffPixels: name === 'works-index' ? 80000 : 8000,
       mask:
         name === 'home'
           ? [page.locator('.w-screen').first(), page.locator('.grid').first()]

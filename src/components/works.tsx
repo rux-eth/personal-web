@@ -1,7 +1,6 @@
 import { categories } from '@src/components/category'
 import Link from '@src/components/link'
 import NotFound from '@src/pages/404'
-import transition from '@src/styles/utils'
 import { assertWorkInfo, WorkInfo } from '@src/types'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { Map as IMap, List, Set } from 'immutable'
@@ -369,16 +368,8 @@ export class Works {
         <Link
           href={href}
           target="_blank"
-          sx={{
-            color: '#DDDDDD',
-            textDecoration: 'none',
-            transition,
-            transitionDuration: '500ms',
-            ':hover': {
-              color: '#ffffff',
-              cursor: 'pointer'
-            }
-          }}
+          className="text-[#DDDDDD] hover:text-white hover:cursor-pointer"
+          style={{ transition: 'all 500ms cubic-bezier(0.23, 1, 0.32, 1)' }}
         >
           {children}
         </Link>

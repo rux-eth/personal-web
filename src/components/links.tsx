@@ -1,11 +1,4 @@
-import transition from '@src/styles/utils'
-import {
-  FaGithub,
-  FaLinkedin,
-  FaMedium,
-  FaTelegram,
-  FaTwitter
-} from 'react-icons/fa'
+import { FaGithub, FaMedium, FaTelegram } from 'react-icons/fa'
 import Link from './link'
 
 interface LinkFormat {
@@ -19,6 +12,11 @@ const defaultStyles = {
   text: { fontFamily: 'Menlo' },
   icon: {}
 }
+// Former MUI sx hover styling, preserved exactly: #bbbbbb → white on hover,
+// 500ms with the shared easing curve.
+const linkClass = 'text-[#bbbbbb] hover:text-white hover:cursor-pointer'
+const linkStyle = { transition: 'all 500ms cubic-bezier(0.23, 1, 0.32, 1)' }
+
 const allLinks: LinkFormat = {
   external: {
     medium: {
@@ -43,35 +41,14 @@ const Links: LinkReturn = {
       key={key}
       href={val.link}
       target="_blank"
-      sx={{
-        color: '#bbbbbb',
-        textDecoration: 'none',
-        transition,
-        transitionDuration: '500ms',
-        ':hover': {
-          color: '#ffffff',
-          cursor: 'pointer'
-        }
-      }}
+      className={linkClass}
+      style={linkStyle}
     >
       {val.icon}
     </Link>
   )),
   internal: allLinks.internal.map(val => (
-    <Link
-      key={val}
-      href={`/${val}`}
-      sx={{
-        color: '#bbbbbb',
-        textDecoration: 'none',
-        transition,
-        transitionDuration: '500ms',
-        ':hover': {
-          color: '#ffffff',
-          cursor: 'pointer'
-        }
-      }}
-    >
+    <Link key={val} href={`/${val}`} className={linkClass} style={linkStyle}>
       <p style={defaultStyles.text}>
         {val.charAt(0).toUpperCase() + val.slice(1)}
       </p>

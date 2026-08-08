@@ -1,11 +1,8 @@
-import { Breakpoint } from '@mui/material'
-import { theme } from '@src/styles/theme'
+import { Breakpoint, breakpoints as bpValues } from '@src/styles/constants'
 import useMatchesMediaQuery from './useMatchesMediaQuery'
 
 const getCurrentBreakpoint = (): [string, number] => {
-  const breakpoints: Array<[string, number]> = Object.entries(
-    theme.breakpoints.values
-  )
+  const breakpoints: Array<[string, number]> = Object.entries(bpValues)
   let res: [string, number] = breakpoints[0]
   for (let i = 1; i < breakpoints.length; i++) {
     let curr = breakpoints[i]

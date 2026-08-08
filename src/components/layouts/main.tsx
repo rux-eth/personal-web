@@ -1,16 +1,13 @@
-import { Box, Slide, Snackbar } from '@mui/material'
-import MuiAlert from '@mui/material/Alert'
-import snackbarAtom from '@src/store/jotai'
 import { Analytics } from '@vercel/analytics/react'
 import { motion } from 'framer-motion'
-import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { Router } from 'next/router'
-import React, { forwardRef, useCallback } from 'react'
+import React from 'react'
 import Footer from '../footer'
 import Masthead from '../masthead'
 import Navbar from '../navbar'
 import NavDrawer from '../navDrawer'
+import Snackbar from '../snackbar'
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -21,21 +18,8 @@ interface LayoutProps {
   router: Router
   title?: string
 }
-function SlideTransition(props: any) {
-  return <Slide {...props} direction="down" />
-}
 
-const Alert = forwardRef((props, ref) => (
-  <MuiAlert elevation={4} ref={ref as any} variant="filled" {...props} />
-))
 const Layout: React.FC<LayoutProps> = ({ children, router }) => {
-  const [snackbar, setSnackbar] = useAtom(snackbarAtom)
-  const handleClose = useCallback(
-    () => setSnackbar({ ...snackbar, isOpen: false }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [snackbar.isOpen]
-  )
-
   return (
     <motion.article
       initial="hidden"
@@ -61,31 +45,12 @@ const Layout: React.FC<LayoutProps> = ({ children, router }) => {
       <Navbar path={router.asPath} />
       {router.asPath === '/' && <Masthead />}
 
-      <Box bgcolor={'#333333'}>
+      <div style={{ backgroundColor: '#333333' }}>
         <div className="container auto min-h-screen">{children}</div>
-      </Box>
+      </div>
       <Footer />
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={snackbar.isOpen}
-        onClose={handleClose}
-        TransitionComponent={SlideTransition}
-        autoHideDuration={3000}
-      >
-        {/* @ts-ignore */}
-        <Alert
-          onClose={handleClose}
-          severity={snackbar.severity}
-          sx={
-            snackbar.severity === 'success'
-              ? { width: '100%', backgroundColor: '#06ff76', color: 'black' }
-              : {}
-          }
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+      <Snackbar />
       <NavDrawer />
       <Analytics />
     </motion.article>

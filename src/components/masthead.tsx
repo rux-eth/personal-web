@@ -1,4 +1,3 @@
-import { Stack } from '@mui/material'
 import useMatchesMediaQuery from '@src/utils/hooks/useMatchesMediaQuery'
 import { ResizeContext } from '@src/utils/resize-observer'
 import React, { useContext, useRef } from 'react'
@@ -8,6 +7,8 @@ interface Pieces {
   [key: string]: JSX.Element
 }
 
+// Former MUI Stack spacing values, preserved exactly: spacing(2) = 16px gap,
+// spacing(-3) = −24px top margin on all children after the first.
 const pieces = ['R', 'U', 'X', 'dot', 'E', 'T', 'H']
 const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
   scale = scale ?? 1
@@ -82,12 +83,15 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
         }}
       >
         {useMatchesMediaQuery('up', 'sm') ? (
-          <Stack direction={'row'} spacing={2} fontSize={'18vw'}>
+          <div
+            className="flex flex-row"
+            style={{ gap: '16px', fontSize: '18vw' }}
+          >
             {Object.values(allPieces).map(elem => elem)}
-          </Stack>
+          </div>
         ) : (
-          <Stack direction={'column'} spacing={-3}>
-            <Stack direction={'row'}>
+          <div className="flex flex-col">
+            <div className="flex flex-row">
               {Object.values(allPieces)
                 .slice(0, 3)
                 .map((elem, index) => (
@@ -95,11 +99,14 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
                     {elem}
                   </div>
                 ))}
-            </Stack>
-            <Stack className="flex items-center" zIndex={100}>
+            </div>
+            <div
+              className="flex flex-col items-center"
+              style={{ zIndex: 100, marginTop: '-24px' }}
+            >
               {allPieces.dot}
-            </Stack>
-            <Stack direction={'row'}>
+            </div>
+            <div className="flex flex-row" style={{ marginTop: '-24px' }}>
               {Object.values(allPieces)
                 .slice(4)
                 .map((elem, index) => (
@@ -107,8 +114,8 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
                     {elem}
                   </div>
                 ))}
-            </Stack>
-          </Stack>
+            </div>
+          </div>
         )}
       </div>
     </div>

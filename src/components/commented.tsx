@@ -1,4 +1,3 @@
-import { Stack } from '@mui/material'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { ResizeContext } from '@src/utils/resize-observer'
 import { createHash } from 'crypto'
@@ -45,12 +44,10 @@ const CommentedContent: FC<CommentedContentProps> = ({
   const nl = numLines.get(id) ?? 1
   const comments = `/**\n${Array(nl).fill('*\n').join('')}*/`
   return (
-    <Stack
-      fontFamily={'Menlo'}
-      direction={'row'}
-      position={'relative'}
-      fontSize={fs}
+    <div
+      className="flex flex-row relative font-Menlo"
       style={{
+        fontSize: fs,
         lineHeight: lh,
         whiteSpace: 'pre-line',
         opacity: '80%'
@@ -71,7 +68,7 @@ const CommentedContent: FC<CommentedContentProps> = ({
         <br />
         <br />
       </div>
-    </Stack>
+    </div>
   )
 }
 const CommentedHeader: FC<CommentedHeaderProps> = ({ content, scale }) => {
