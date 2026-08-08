@@ -16,7 +16,8 @@ _To be populated by `PROCEDURE-pr-research.md`._
 
 ## Scope
 
-- Delete remaining dead code: `connect.tsx`, `account-observer.jsx`, `url.tsx`, `header.tsx`, `headers.tsx` (if unused post-refactor), `notClient.tsx`, `FailedLoad`, commented-out blocks, unused `ComingSoonPage` import in `pages/index.tsx`, vestigial types in `types.tsx`.
+- Delete remaining dead code: `connect.tsx`, `account-observer.jsx`, `url.tsx`, `header.tsx`, `headers.tsx` (if unused post-refactor), `notClient.tsx`, `FailedLoad`, commented-out blocks, unused `ComingSoonPage` import in `pages/index.tsx`. (`types.tsx` itself was deleted whole in PR-006.)
+- **Biome off-list sweep** (flagged from PR-006): `biome.jsonc` still carries the PR-002 off-list; no PR has re-enabled its routed rules (PR-003/004/005/006 all left the config untouched by precedent). Re-enable every rule whose violations are gone; for each rule that must stay off, update its comment to the real blocker (e.g. the a11y pair on the works filter toggle would need semantic-markup changes — a functionality addition needing user sign-off).
 - **`/loading` route**: dead standalone route — removal changes the URL surface, needs explicit user sign-off (flagged in RESEARCH-BACKLOG). If kept, fix the setInterval leak (D9); if removed, the leak dies with it.
 - Reconcile docs: update `docs/ARCHITECTURE.md`/`CLAUDE.md` to describe the final state; mark roadmap complete.
 - **Re-measure everything** against the design projections and record in the PR: First Load JS (target ~110–130 kB gz vs 318), `_app` chunk (~50–65 vs 238), dep count, LOC, work-page transfer, Lighthouse.

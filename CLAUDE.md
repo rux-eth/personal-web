@@ -38,9 +38,9 @@ Personal portfolio site (rux.eth / Maxwell Rux) on Next.js 12 **Pages Router** w
 3. `src/components/layouts/main.tsx` — global `<Head>`, `Navbar`, `Masthead` (home route only), `Footer`, `NavDrawer`, global MUI `Snackbar`, and Vercel Analytics.
 4. framer-motion `AnimatePresence` for page enter/exit transitions.
 
-### Works content is data-driven
+### Works content is typed code
 
-`public/works.json` is the single source of portfolio content. `src/components/works.tsx` exports a `Works` class that loads and validates each entry with `assertWorkInfo` (`src/types.tsx`, which throws on malformed entries) and renders both the list page and detail pages. `src/pages/works/index.tsx` and `src/pages/works/[wid]/index.tsx` are thin wrappers that instantiate `Works` client-side — there is no `getStaticProps`/`getServerSideProps`; adding a work means editing `works.json` (thumbnails live in `public/thumbnails/`).
+`src/data/works.ts` is the single source of portfolio content: it exports `works: WorkInfo[]` plus pure helpers (`getWork`, `compileTags`, `tagCounts`). The classification fields (`status`/`role`/`languages`/`stack`) are literal-union types derived from the grouped vocabulary in `src/components/category.tsx` — an unknown tag is a compile error; there is no runtime validation. `src/components/works.tsx` holds the presentational components (`WorkPreviews`, `WorksPage`, `WorkPage`). `/works` uses `getStaticProps` and `/works/[wid]` uses `getStaticPaths` (`fallback: false`) + `getStaticProps`, so every work page is fully pre-rendered and unknown ids are real 404s. Adding a work means editing `works.ts` (thumbnails live in `public/thumbnails/`).
 
 ### "Commented" text styling
 

@@ -1,8 +1,15 @@
-import { Works } from '@src/components/works'
-import { NextPage } from 'next'
+import { WorksPage } from '@src/components/works'
+import { WorkInfo, works } from '@src/data/works'
+import { GetStaticProps, NextPage } from 'next'
 
-const WorksPage: NextPage = () => {
-  const works = new Works()
-  return works.worksPage()
+interface Props {
+  works: readonly WorkInfo[]
 }
-export default WorksPage
+
+const Works: NextPage<Props> = ({ works }) => <WorksPage works={works} />
+
+export const getStaticProps: GetStaticProps<Props> = async () => ({
+  props: { works }
+})
+
+export default Works
