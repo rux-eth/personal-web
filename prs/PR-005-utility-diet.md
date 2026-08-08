@@ -1,6 +1,6 @@
 # PR-005: Utility diet (immutable → native)
 
-**Landed-in:** (not yet landed)
+**Landed-in:** master via GitHub PR #22, 2026-08-08 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 

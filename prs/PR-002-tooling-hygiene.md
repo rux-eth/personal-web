@@ -1,6 +1,6 @@
 # PR-002: Tooling hygiene
 
-**Landed-in:** (not yet landed)
+**Landed-in:** master via GitHub PR #19, 2026-08-08 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 
