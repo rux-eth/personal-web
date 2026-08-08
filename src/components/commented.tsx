@@ -1,8 +1,5 @@
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { ResizeContext } from '@src/utils/resize-observer'
-import { createHash } from 'crypto'
-import { Map as IMap } from 'immutable'
-import { FC, RefObject, useContext, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 interface CommentedHeaderProps {
   content: string
@@ -13,7 +10,10 @@ interface CommentedContentProps extends CommentedHeaderProps {
   header?: string
 }
 
-let refs: IMap<string, RefObject<HTMLDivElement>> = IMap()
+// Each block measures itself with its own ResizeObserver and derives its
+// /** * … */ gutter line count locally — no shared registry, no DOM ids, no
+// global context (docs/ARCHITECTURE.md § Scroll/resize). Line math preserved
+// exactly from the original: floor(offsetHeight / lineHeight) − 2, initial 1.
 const CommentedContent: FC<CommentedContentProps> = ({
   content,
   header,
@@ -21,6 +21,19 @@ const CommentedContent: FC<CommentedContentProps> = ({
 }) => {
   const fs = fontSize ?? dynamicFont(80)
   const lh: string = `${Math.floor(parseInt(fs, 10) * 1.6)}px`
+  const refContain = useRef<HTMLDivElement>(null)
+  const [nl, setNl] = useState(1)
+  useEffect(() => {
+    const el = refContain.current
+    if (!el) return
+    const compute = () => {
+      const lineHeight = parseInt(el.style.lineHeight)
+      if (lineHeight > 0) setNl(Math.floor(el.offsetHeight / lineHeight) - 2)
+    }
+    const ro = new ResizeObserver(compute)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
   const concatStr: JSX.Element =
     header === undefined ? (
       <span>{`\n${content}\n`}</span>
@@ -33,15 +46,6 @@ const CommentedContent: FC<CommentedContentProps> = ({
         <span>{`${content}\n`}</span>
       </>
     )
-  const id: string = createHash('sha1')
-    .update(`${header}${content}`)
-    .digest('hex')
-    .slice(0, 10)
-  const refContain = useRef<HTMLDivElement>(null)
-  refs = refs.set(id, refContain)
-  const { numLines } = useContext(ResizeContext)
-
-  const nl = numLines.get(id) ?? 1
   const comments = `/**\n${Array(nl).fill('*\n').join('')}*/`
   return (
     <div
@@ -57,8 +61,6 @@ const CommentedContent: FC<CommentedContentProps> = ({
 
       <div
         ref={refContain}
-        id={id}
-        className="commented"
         style={{
           marginLeft: lh,
           lineHeight: lh
@@ -84,4 +86,4 @@ const CommentedHeader: FC<CommentedHeaderProps> = ({ content, scale }) => {
   )
 }
 
-export { CommentedContent, CommentedHeader, refs }
+export { CommentedContent, CommentedHeader }

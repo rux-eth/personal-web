@@ -1,6 +1,5 @@
 import { floating, integer, pickset } from '@src/utils/chance'
-import { ResizeContext } from '@src/utils/resize-observer'
-import { FC, RefObject, useContext } from 'react'
+import { FC, RefObject } from 'react'
 
 interface RainItem {
   path: string
@@ -13,6 +12,7 @@ interface RainItem {
 
 interface RainProps {
   refContain: RefObject<HTMLDivElement>
+  scrollY: number
   variant?: number
 }
 
@@ -78,8 +78,7 @@ const getSeeds = (): RainItem[] => {
 
 const variants: RainItem[][] = Array.from(Array(config.numVars), getSeeds)
 
-const Rain: FC<RainProps> = ({ refContain, variant }) => {
-  const { scrollY } = useContext(ResizeContext)
+const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
   // If no variant is provided, pick one randomly
   const v: number = variant ?? integer({ min: 0, max: config.numVars - 1 })
   let progress = 0
@@ -141,9 +140,7 @@ const Rain: FC<RainProps> = ({ refContain, variant }) => {
   )
 }
 
-const Slot: FC<RainProps> = ({ refContain }) => {
-  const { scrollY } = useContext(ResizeContext)
-
+const Slot: FC<RainProps> = ({ refContain, scrollY }) => {
   let progress = 0
   const { current: elContainer } = refContain
   if (elContainer) {
