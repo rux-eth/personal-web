@@ -115,7 +115,7 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
             >
               {s.map((item, index) => (
                 <img
-                  className="bg-white border-1 border-black"
+                  className="bg-white border-black"
                   key={`${item.path}_${index}`}
                   src={item.path}
                   style={{

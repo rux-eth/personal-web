@@ -8,7 +8,8 @@
       "!public",
       "!test-results",
       "!playwright-report",
-      "!yarn.lock"
+      "!yarn.lock",
+      "!next-env.d.ts"
     ]
   },
   // Formatter reproduces the former src/prettier.config.js exactly
@@ -18,6 +19,10 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf"
+  },
+  "css": {
+    // Tailwind v4 at-rules (@theme, @custom-variant) in global.css
+    "parser": { "tailwindDirectives": true }
   },
   "javascript": {
     "formatter": {

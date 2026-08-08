@@ -1,5 +1,5 @@
 import { navDrawerAtom } from '@src/store/jotai'
-import { colors } from '@src/styles/constants'
+
 import transition from '@src/styles/utils'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Hamburger from 'hamburger-react'
@@ -113,7 +113,7 @@ const Navbar: FC<{ path: any }> = ({ path }) => {
           <Hamburger
             toggled={isNavDrawerOpen}
             toggle={setIsNavDrawerOpen}
-            color={colors.primaryMain}
+            color="currentColor"
             hideOutline
           />
         </div>

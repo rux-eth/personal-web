@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test'
 
-// Viewport matrix mirrors the site's Tailwind/MUI breakpoints (see tailwind.config.js):
+// Viewport matrix mirrors the site's Tailwind breakpoints (single source:
+// @theme --breakpoint-* in src/styles/global.css):
 // xs 350 · mb 600 · sm 960 · md 1280
 const viewports = {
   xs: { width: 350, height: 700 },

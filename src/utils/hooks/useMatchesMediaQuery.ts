@@ -1,4 +1,4 @@
-import { Breakpoint, breakpoints } from '@src/styles/constants'
+import { Breakpoint, breakpoints } from '@src/utils/hooks/breakpoints'
 import { useEffect, useState } from 'react'
 
 export type MatchQueryType = 'up' | 'down' | 'between'
@@ -8,7 +8,7 @@ export type MatchQueryType = 'up' | 'down' | 'between'
 // between(a,b) = both. Like MUI's default (noSsr: false), the first render
 // returns false and the real match applies after hydration.
 const toPx = (v: Breakpoint | number): number =>
-  typeof v === 'number' ? v : breakpoints[v]
+  typeof v === 'number' ? v : breakpoints()[v]
 
 const buildQuery = (
   query: MatchQueryType,

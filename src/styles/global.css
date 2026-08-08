@@ -1,6 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/*
+  Single theme source (D2). Breakpoints/colors formerly lived in
+  tailwind.config.js + src/styles/constants.ts (hand-synced); both are
+  deleted. The runtime breakpoint hooks read these same --breakpoint-*
+  variables via getComputedStyle (src/utils/hooks/breakpoints.ts).
+*/
+@theme static {
+  /* Replaces the default screens entirely, as the v3 config did. */
+  --breakpoint-*: initial;
+  --breakpoint-xs: 350px;
+  --breakpoint-mb: 600px;
+  --breakpoint-sm: 960px;
+  --breakpoint-md: 1280px;
+  --breakpoint-lg: 1920px;
+  --breakpoint-xl: 2560px;
+  --breakpoint-2xl: 3840px;
+
+  /* Replaces the default font families entirely, as the v3 config did. */
+  --font-*: initial;
+  --font-SF_Pro_Display: "SF Pro";
+  --font-Menlo: Menlo;
+
+  /* Default-palette colors in use, pinned to their v3 hex values — v4's
+     oklch palette renders visibly differently (the suite caught bg-red-500
+     shifting). Part of the single theme source, not hardcodes. */
+  --color-red-500: #ef4444;
+  --color-blue-300: #93c5fd;
+  --color-blue-500: #3b82f6;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+  --color-gray-900: #111827;
+
+  --color-paper: #f9f9f9;
+  --color-primary-main: #ffffff;
+  --color-primary-dark: #000000;
+  --color-secondary-main: #000000;
+  --color-secondary-dark: #ffffff;
+  --color-error-main: #b22222;
+  --color-error-dark: #8b0000;
+  --color-fg: #fff;
+  --color-fg-dark: rgba(55, 65, 81, 1);
+}
+
+/* Hover-capability variant (formerly the `ha` raw screen in the v3 config):
+   gates hover styling to devices that actually support hover. Note v4 also
+   gates the plain hover: variant this way by default. */
+@custom-variant ha (@media (hover: hover));
+
+/* v4 changed space-x/space-y from "margin-top/left on every sibling after
+   the first" to "margin-bottom/right on all but the last". With the site's
+   ch-unit spacing values the margin then resolves against a DIFFERENT
+   element's font size wherever siblings differ (e.g. contact-card titles vs
+   subtitles), shifting layout. These overrides restore the v3 selector and
+   margin side exactly. */
+@utility space-y-* {
+  /* Neutralize the v4 core rule (emitted alongside this custom utility)… */
+  > :not(:last-child) {
+    margin-bottom: 0;
+  }
+  /* …and apply the v3 rule. */
+  > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * --value(number));
+    /* biome-ignore lint/suspicious/noDuplicateProperties: Tailwind v4 functional-utility idiom — the non-matching --value() declaration is dropped at build. */
+    margin-top: --value([*]);
+  }
+}
+@utility space-x-* {
+  > :not(:last-child) {
+    margin-right: 0;
+  }
+  > :not([hidden]) ~ :not([hidden]) {
+    margin-left: calc(var(--spacing) * --value(number));
+    /* biome-ignore lint/suspicious/noDuplicateProperties: Tailwind v4 functional-utility idiom — the non-matching --value() declaration is dropped at build. */
+    margin-left: --value([*]);
+  }
+}
+
+/* v4 Preflight sets button cursors to `default`; restore the v3 pointer
+   behavior the site was designed with. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* The v3 default-border-color compat layer suggested by the upgrade tool is
+   intentionally omitted: every border-width utility in src/ carries an
+   explicit border-color (grep-verified in PR-008). */
 
 .container.auto {
   padding-left: 5vw;
