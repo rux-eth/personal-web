@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
-const MainHeader: FC = ({ children }) => {
+const MainHeader: FC<PropsWithChildren> = ({ children }) => {
   return <div className="text-4xl text-white font-bold">{children}</div>
 }
-const SubHeader: FC = ({ children }) => {
+const SubHeader: FC<PropsWithChildren> = ({ children }) => {
   return <div className="text-2xl text-white font-bold">{children}</div>
 }
 

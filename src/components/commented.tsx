@@ -1,5 +1,5 @@
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, JSX, useEffect, useRef, useState } from 'react'
 
 interface CommentedHeaderProps {
   content: string

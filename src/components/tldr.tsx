@@ -3,7 +3,7 @@ import Seperator from '@src/components/seperator'
 import { compileTags, works } from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { getAge, getWorkingYears } from '@src/utils/time'
-import React from 'react'
+import React, { JSX } from 'react'
 import Link from './link'
 import { WorkPreviews } from './works'
 

@@ -1,5 +1,5 @@
 import { floating, integer, pickset } from '@src/utils/chance'
-import { FC, RefObject } from 'react'
+import { FC, JSX, RefObject } from 'react'
 
 interface RainItem {
   path: string
@@ -11,7 +11,7 @@ interface RainItem {
 }
 
 interface RainProps {
-  refContain: RefObject<HTMLDivElement>
+  refContain: RefObject<HTMLDivElement | null>
   scrollY: number
   variant?: number
 }

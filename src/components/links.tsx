@@ -1,3 +1,4 @@
+import { JSX } from 'react'
 import { FaGithub, FaMedium, FaTelegram } from 'react-icons/fa'
 import Link from './link'
 
