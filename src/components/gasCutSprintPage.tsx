@@ -147,7 +147,7 @@ function InsetDivider() {
   return (
     <div
       aria-hidden="true"
-      className="mx-[1.2ch] my-[0.8ch] h-px bg-gradient-to-r from-transparent via-gray-500/30 to-transparent"
+      className="mx-[1.2ch] my-[0.8ch] h-px bg-linear-to-r from-transparent via-gray-500/30 to-transparent"
     />
   )
 }
@@ -163,7 +163,7 @@ function CollapsibleSection({
       className="
         group mt-[1.5ch]
         rounded-xl border border-gray-700/50
-        bg-gray-900/30 shadow-sm
+        bg-gray-900/30 shadow-xs
         transition-colors
       "
       open={defaultOpen}
@@ -174,7 +174,7 @@ function CollapsibleSection({
           cursor-pointer select-none list-none
           px-4 py-3 rounded-xl
           hover:bg-white/5
-          focus-visible:outline-none
+          focus-visible:outline-hidden
           focus-visible:ring-2 focus-visible:ring-white/15
           [&::-webkit-details-marker]:hidden
         "

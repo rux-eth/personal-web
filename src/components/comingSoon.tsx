@@ -7,7 +7,7 @@ const ComingSoonPage: React.FC = () => {
     <div className="text-white">
       <CommentedHeader content="Under Construction..." />
       <div
-        className="w-full text-center justify-center opacity-[90%]  font-Menlo"
+        className="w-full text-center justify-center opacity-90  font-Menlo"
         style={{
           fontSize: dynamicFont(4, true)
         }}

@@ -121,7 +121,7 @@ const TLDR: React.FC = () => {
         <div className="text-white flex flex-col space-y-[0.4ch]">
           <div>
             <p className="font-bold text-[3.4ch]">Rux</p>
-            <p className="opacity-70 -mt-[1ch] text-[1.3ch]">ENS: rux.eth</p>
+            <p className="opacity-70 mt-[-1ch] text-[1.3ch]">ENS: rux.eth</p>
           </div>
 
           <p>Full-Stack Software Engineer</p>

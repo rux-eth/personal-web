@@ -66,7 +66,7 @@ const Snackbar: FC = () => {
     document.addEventListener('click', onClickAway, true)
     return () => {
       stop()
-      window.removeEventListener('blur', onBlur)
+      window.removeEventListener('blur-sm', onBlur)
       window.removeEventListener('focus', onFocus)
       document.removeEventListener('keydown', onKeyDown)
       document.removeEventListener('click', onClickAway, true)

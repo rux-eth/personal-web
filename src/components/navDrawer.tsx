@@ -92,7 +92,7 @@ const NavDrawer: FC = () => {
         ref={panelRef}
         tabIndex={-1}
         onClick={close}
-        className="flex flex-col text-center font-Menlo outline-none"
+        className="flex flex-col text-center font-Menlo outline-hidden"
         style={{
           position: 'absolute',
           top: 0,
