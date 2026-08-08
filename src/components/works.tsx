@@ -3,7 +3,6 @@ import Link from '@src/components/link'
 import NotFound from '@src/pages/404'
 import { assertWorkInfo, WorkInfo } from '@src/types'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { Map as IMap, List, Set } from 'immutable'
 import Image from 'next/image'
 import worksJSON from 'public/works.json'
 import { FC, useState } from 'react'
@@ -21,10 +20,10 @@ import Layout from './layouts/pages'
 import Seperator from './seperator'
 
 export class Works {
-  works: List<WorkInfo>
+  works: WorkInfo[]
 
   constructor(_works?: any[]) {
-    this.works = List(worksJSON.map(assertWorkInfo))
+    this.works = worksJSON.map(assertWorkInfo)
     /*     this.works = _works
       ? List(_works.map(assertWorkInfo))
       : List(worksJSON.map(assertWorkInfo)); */
@@ -32,7 +31,7 @@ export class Works {
 
   compileTags(item: WorkInfo): Set<string> {
     const { status, role, languages, stack, website, article, trello } = item
-    let tags = [status, role, ...languages.toArray(), ...stack.toArray()]
+    let tags = [status, role, ...languages, ...stack]
     if (website) {
       tags.push('website')
     }
@@ -42,13 +41,13 @@ export class Works {
     if (trello) {
       tags.push('trello')
     }
-    return Set(tags)
+    return new Set(tags)
   }
 
   getAllPreviews(filters?: Set<string>): JSX.Element[] {
     const fs = dynamicFont(100)
-    let temp = this.works.toArray()
-    let filt = filters?.toArray()
+    let temp = [...this.works]
+    const filt = filters ? [...filters] : undefined
     if (filt && filt.length > 0) {
       temp = temp.filter(elem => {
         let res = (filt as string[]).some((tag, _) =>
@@ -71,7 +70,7 @@ export class Works {
         article,
         trello
       } = elem
-      let tags = [status, role, ...languages.toArray(), ...stack.toArray()]
+      let tags = [status, role, ...languages, ...stack]
       if (website) {
         tags.push('website')
       }
@@ -132,50 +131,31 @@ export class Works {
     })
   }
 
-  getTags(): IMap<
-    'Status' | 'Stack' | 'Language' | 'Other',
-    IMap<string, number>
-  > {
-    let temp: IMap<
-      'Status' | 'Stack' | 'Language' | 'Other',
-      IMap<string, number>
-    > = IMap()
+  getTags(): Record<string, Record<string, number>> {
+    // Insertion-ordered plain objects reproduce the former immutable-Map
+    // dropdown ordering exactly (category order + per-category tag order).
+    const temp: Record<string, Record<string, number>> = {
+      Status: {},
+      Stack: {},
+      Language: {},
+      Other: {}
+    }
+    const bump = (cat: string, key: string) => {
+      temp[cat][key] = (temp[cat][key] ?? 0) + 1
+    }
     this.works.forEach(elem => {
-      temp = temp.updateIn(
-        ['Status', elem.status],
-        0,
-        val => (val as number) + 1
-      )
+      bump('Status', elem.status)
       elem.stack.forEach((s: string) => {
-        if (s in categories) {
-          temp = temp.updateIn(['Stack', s], 0, val => (val as number) + 1)
-        }
+        if (s in categories) bump('Stack', s)
       })
       elem.languages.forEach(l => {
-        if (l in categories) {
-          temp = temp.updateIn(['Language', l], 0, val => (val as number) + 1)
-        }
+        if (l in categories) bump('Language', l)
       })
-      temp = temp.updateIn(['Other', elem.role], 0, val => (val as number) + 1)
-      if (elem.website) {
-        temp = temp.updateIn(
-          ['Other', 'website'],
-          0,
-          val => (val as number) + 1
-        )
-      }
-      if (elem.article) {
-        temp = temp.updateIn(
-          ['Other', 'article'],
-          0,
-          val => (val as number) + 1
-        )
-      }
-      if (elem.trello) {
-        temp = temp.updateIn(['Other', 'trello'], 0, val => (val as number) + 1)
-      }
+      bump('Other', elem.role)
+      if (elem.website) bump('Other', 'website')
+      if (elem.article) bump('Other', 'article')
+      if (elem.trello) bump('Other', 'trello')
     })
-
     return temp
   }
   getWork(id: string): WorkInfo | undefined {
@@ -185,11 +165,15 @@ export class Works {
     // constants
     const [isList, setIsList] = useState(false)
     const fs = dynamicFont(100)
-    const [filters, setFilters] = useState(Set([]) as Set<string>)
+    const [filters, setFilters] = useState(new Set<string>())
     const handleFilterChange = (filter: string) => {
-      filters.has(filter)
-        ? setFilters(filters.remove(filter))
-        : setFilters(filters.add(filter))
+      const next = new Set(filters)
+      if (next.has(filter)) {
+        next.delete(filter)
+      } else {
+        next.add(filter)
+      }
+      setFilters(next)
     }
     // main
     return (
@@ -231,68 +215,61 @@ export class Works {
                   className="relative max-h-[18ch] overflow-auto px-[1.3ch]"
                   style={{}}
                 >
-                  {this.getTags()
-                    .map(
-                      (subTags, mainTag): JSX.Element => (
-                        <>
-                          <div className="flex items-center justify-between py-[0.2ch]">
-                            <div className="flex items-center">
-                              <p className="text-[1.5ch] leading-normal font-bold">{`${mainTag}`}</p>
-                            </div>
-                            <p className="text-[1.5ch] text-blue-300">
-                              {(() => {
-                                return `${List(subTags.values()).reduce(
-                                  (p: number, c: number) => p + c
-                                )}`
-                              })()}
-                            </p>
+                  {Object.entries(this.getTags()).map(
+                    ([mainTag, subTags]): JSX.Element => (
+                      <>
+                        <div className="flex items-center justify-between py-[0.2ch]">
+                          <div className="flex items-center">
+                            <p className="text-[1.5ch] leading-normal font-bold">{`${mainTag}`}</p>
                           </div>
-                          <div className="space-y-[0.3ch]">
-                            {subTags
-                              .map(
-                                (nums, subTag): JSX.Element => (
-                                  <button
-                                    className="white-comp w-full flex items-center justify-between"
-                                    onClick={() => handleFilterChange(subTag)}
-                                    style={{
-                                      background: filters.has(subTag)
-                                        ? 'white'
-                                        : 'black'
-                                    }}
-                                  >
-                                    <div className=" flex items-center">
-                                      <p className="text-[1ch] text-black ">
-                                        {filters.has(subTag)
-                                          ? subTag.charAt(0).toUpperCase() +
-                                            subTag.slice(1)
-                                          : categories[subTag]}
-                                      </p>
-                                    </div>
-                                    <p
-                                      className="w-8 text-[1ch] leading-3 text-right text-blue-300"
-                                      style={{
-                                        color: filters.has(subTag)
-                                          ? 'black'
-                                          : ''
-                                      }}
-                                    >
-                                      {`${nums}`}
-                                    </p>
-                                  </button>
-                                )
-                              )
-                              .valueSeq()}
-                          </div>
-                        </>
-                      )
+                          <p className="text-[1.5ch] text-blue-300">
+                            {`${Object.values(subTags).reduce(
+                              (p, c) => p + c,
+                              0
+                            )}`}
+                          </p>
+                        </div>
+                        <div className="space-y-[0.3ch]">
+                          {Object.entries(subTags).map(
+                            ([subTag, nums]): JSX.Element => (
+                              <button
+                                className="white-comp w-full flex items-center justify-between"
+                                onClick={() => handleFilterChange(subTag)}
+                                style={{
+                                  background: filters.has(subTag)
+                                    ? 'white'
+                                    : 'black'
+                                }}
+                              >
+                                <div className=" flex items-center">
+                                  <p className="text-[1ch] text-black ">
+                                    {filters.has(subTag)
+                                      ? subTag.charAt(0).toUpperCase() +
+                                        subTag.slice(1)
+                                      : categories[subTag]}
+                                  </p>
+                                </div>
+                                <p
+                                  className="w-8 text-[1ch] leading-3 text-right text-blue-300"
+                                  style={{
+                                    color: filters.has(subTag) ? 'black' : ''
+                                  }}
+                                >
+                                  {`${nums}`}
+                                </p>
+                              </button>
+                            )
+                          )}
+                        </div>
+                      </>
                     )
-                    .valueSeq()}
+                  )}
                 </div>
                 <div className="bg-black">
                   <div className="grid grid-cols-2 gap-2 p-2 justify-items-stretch">
                     <button
                       className="bg-red-500 rounded-[0.5ch]"
-                      onClick={() => setFilters(Set([]))}
+                      onClick={() => setFilters(new Set())}
                     >
                       Reset
                     </button>
@@ -320,7 +297,7 @@ export class Works {
               gap: '.4ch'
             }}
           >
-            {filters.map(filter => (
+            {[...filters].map(filter => (
               <button
                 className="-my-[0.31ch]"
                 onClick={() => handleFilterChange(filter)}
@@ -460,13 +437,13 @@ export class Works {
         <div className="mx-auto opacity-80 text-[1.3ch]">
           {'const Details = {'}
           <br />
-          {stack.size > 0 && (
+          {stack.length > 0 && (
             <ItemsJSON
               cat="Stack"
               items={Array.from(stack).map(elem => categories[elem])}
             />
           )}
-          {languages.size > 0 && (
+          {languages.length > 0 && (
             <ItemsJSON
               cat="Languages"
               items={Array.from(languages).map(elem => categories[elem])}

@@ -14,7 +14,6 @@
     "autoprefixer": "^10.4.8",
     "framer-motion": "^6.3.10",
     "hamburger-react": "^2.5.0",
-    "immutable": "^4.1.0",
     "jotai": "^1.6.3",
     "next": "^12.2.3",
     "react": "^17.0.2",
