@@ -1,8 +1,6 @@
-import { Slide } from '@mui/material'
-import MuiAlert from '@mui/material/Alert'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
-import { FC, forwardRef } from 'react'
+import { FC } from 'react'
 import { CommentedHeader } from '../commented'
 import Seperator from '../seperator'
 
@@ -14,13 +12,7 @@ const variants = {
 interface LayoutProps {
   title?: string
 }
-function SlideTransition(props: any) {
-  return <Slide {...props} direction="down" />
-}
 
-const Alert = forwardRef((props, ref) => (
-  <MuiAlert elevation={4} ref={ref as any} variant="filled" {...props} />
-))
 const Layout: FC<LayoutProps> = ({ children, title }) => {
   const t = title ? `${title} - Rux.eth` : 'Rux.eth'
   return (

@@ -84,7 +84,10 @@ export async function loadAllImages(page: Page) {
         await waitLoaded(img)
         await img.decode().catch(() => {})
       }
-      if (Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)) break
+      if (
+        Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)
+      )
+        break
     }
     window.scrollTo(0, 0)
     await new Promise(r =>

@@ -1,4 +1,3 @@
-import { Stack } from '@mui/material'
 import { CommentedContent, CommentedHeader } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
@@ -112,15 +111,9 @@ const TLDR: React.FC = () => {
       <CommentedHeader content="tl;dr" />
 
       <Seperator />
-      <Stack
-        direction={'row'}
-        paddingX={'3ch'}
-        fontFamily="Menlo"
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
+      <div
+        className="flex flex-row justify-between items-center font-Menlo"
+        style={{ paddingLeft: '3ch', paddingRight: '3ch' }}
       >
         <div className="text-white flex flex-col space-y-[0.4ch]">
           <div>
@@ -130,7 +123,7 @@ const TLDR: React.FC = () => {
 
           <p>Full-Stack Software Engineer</p>
         </div>
-      </Stack>
+      </div>
       {sections.map(s => (
         <>
           <Seperator />

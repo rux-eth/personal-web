@@ -1,131 +1,34 @@
-/* eslint-disable react/display-name */
-/* eslint-disable jsx-a11y/anchor-has-content */
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
-import clsx from 'clsx'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
-import { useRouter } from 'next/router'
-import * as React from 'react'
+import NextLink from 'next/link'
+import { AnchorHTMLAttributes, forwardRef } from 'react'
 
-/* @ts-ignore */
-interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
-  to: NextLinkProps['href']
-  linkAs?: NextLinkProps['as']
-  href?: NextLinkProps['href']
+// Slim replacement for the former MUI-composed Link (131 lines → this).
+// Same import surface for all consumers; external URLs (http/mailto) render a
+// plain anchor, internal paths route through next/link (Next 12 anchor-child
+// form — simplified again in PR-007).
+export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href: string
 }
 
-export const NextLinkComposed = React.forwardRef<
-  HTMLAnchorElement,
-  NextLinkComposedProps
->((props, ref) => {
-  const {
-    to,
-    linkAs,
-    href,
-    replace,
-    scroll,
-    passHref,
-    shallow,
-    prefetch,
-    locale,
-    ...other
-  } = props
-
-  return (
-    <NextLink
-      href={to}
-      prefetch={prefetch}
-      as={linkAs}
-      replace={replace}
-      scroll={scroll}
-      shallow={shallow}
-      passHref={passHref}
-      locale={locale}
-    >
-      <a ref={ref} {...other} />
-    </NextLink>
-  )
-})
-
-export type LinkProps = {
-  activeClassName?: string
-  as?: NextLinkProps['as']
-  href: NextLinkProps['href']
-  noLinkStyle?: boolean
-} & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
-  Omit<MuiLinkProps, 'href'>
-
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/#with-link
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-  const {
-    activeClassName = 'active',
-    as: linkAs,
-    className: classNameProps,
-    href,
-    noLinkStyle,
-    role, // Link don't have roles.
-    ...other
-  } = props
-
-  const router = useRouter()
-  const pathname = typeof href === 'string' ? href : href.pathname
-  const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName
-  })
-  other.style = {
-    textDecoration: 'none',
-    ...other.style
-  }
-
-  const isExternal =
-    typeof href === 'string' &&
-    (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0)
-
-  if (isExternal) {
-    if (noLinkStyle) {
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  ({ href, children, style, ...rest }, ref) => {
+    const mergedStyle = { textDecoration: 'none', ...style }
+    const isExternal = href.startsWith('http') || href.startsWith('mailto:')
+    if (isExternal) {
       return (
-        <a
-          className={className}
-          href={href as string}
-          ref={ref as any}
-          {...other}
-        />
+        <a href={href} ref={ref} style={mergedStyle} {...rest}>
+          {children}
+        </a>
       )
     }
-
     return (
-      <MuiLink
-        className={className}
-        href={href as string}
-        ref={ref}
-        {...other}
-      />
+      <NextLink href={href}>
+        <a ref={ref} style={mergedStyle} {...rest}>
+          {children}
+        </a>
+      </NextLink>
     )
   }
-
-  if (noLinkStyle) {
-    return (
-      <NextLinkComposed
-        className={className}
-        ref={ref as any}
-        to={href}
-        {...other}
-      />
-    )
-  }
-
-  return (
-    <MuiLink
-      component={NextLinkComposed}
-      linkAs={linkAs}
-      className={className}
-      ref={ref}
-      to={href}
-      {...other}
-    />
-  )
-})
+)
+Link.displayName = 'Link'
 
 export default Link
