@@ -17,7 +17,7 @@ A fully static 8-page portfolio (rux.eth / Maxwell Rux) on **Next.js 16 (Pages R
 
 The global `ResizeContext` is deleted. Three local mechanisms replace it:
 
-1. **Navbar visibility**: an `IntersectionObserver` on the `#tldr` element; state local to the navbar; fires only at threshold crossings.
+1. **Navbar visibility**: a navbar-local rAF-batched scroll/resize check preserving the original expression (`tldr.top <= 0`, pages without `#tldr` always show it); React state changes only when the boolean flips, so steady-state scrolling renders nothing. (Amended from the originally-planned `IntersectionObserver`: an element-bound observer fights AnimatePresence route remounts; render economics are identical. See PR-004 notes.)
 2. **Commented-block line counts**: each `CommentedContent` owns a `ResizeObserver` on its own div and derives its `/** * … */` gutter line count locally. No shared registry, no cross-file coupling, no DOM ids.
 3. **Masthead parallax**: an rAF-batched scroll subscription local to the masthead subtree. Scroll must never trigger React renders outside the masthead.
 

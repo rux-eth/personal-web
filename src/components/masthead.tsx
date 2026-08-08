@@ -1,6 +1,6 @@
 import useMatchesMediaQuery from '@src/utils/hooks/useMatchesMediaQuery'
-import { ResizeContext } from '@src/utils/resize-observer'
-import React, { useContext, useRef } from 'react'
+import useScrollY from '@src/utils/hooks/useScrollY'
+import React, { useRef } from 'react'
 import Rain, { Slot } from './rain'
 
 interface Pieces {
@@ -13,7 +13,7 @@ const pieces = ['R', 'U', 'X', 'dot', 'E', 'T', 'H']
 const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
   scale = scale ?? 1
   const refContainer = useRef<HTMLDivElement>(null)
-  const { scrollY } = useContext(ResizeContext)
+  const scrollY = useScrollY()
   let progress = 0
   const { current: elContainer } = refContainer
   if (elContainer) {
@@ -31,7 +31,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
             key={`masthead_${p}`}
             className="relative text-[30vw] sm:text-[15vw]"
           >
-            <Rain refContain={refContainer} variant={index} />
+            <Rain refContain={refContainer} scrollY={scrollY} variant={index} />
 
             <div
               style={{
@@ -51,7 +51,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
             key={`masthead_${p}`}
             className="relative h-[10vw] w-[10vw] self-center justify-self-center"
           >
-            <Slot refContain={refContainer} />
+            <Slot refContain={refContainer} scrollY={scrollY} />
             <div
               style={{
                 backgroundColor: 'black',

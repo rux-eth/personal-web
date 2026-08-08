@@ -2,11 +2,10 @@ import { navDrawerAtom } from '@src/store/jotai'
 import { colors } from '@src/styles/constants'
 import transition from '@src/styles/utils'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { ResizeContext } from '@src/utils/resize-observer'
 import Hamburger from 'hamburger-react'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
-import { FC, useContext } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Link from './link'
 import Links from './links'
 
@@ -14,7 +13,35 @@ import Links from './links'
 // column, fixed on home / sticky elsewhere, z-index 1201, glass styling.
 const Navbar: FC<{ path: any }> = ({ path }) => {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useAtom(navDrawerAtom)
-  const { showNavbar } = useContext(ResizeContext)
+  // Navbar-local visibility check, preserving the original expression exactly:
+  // pages WITHOUT #tldr always show the navbar (?? 0), home shows it once
+  // tldr's top crosses the viewport top (and keeps it at page bottom).
+  // rAF-batched listener; React state changes only when the boolean flips, so
+  // scroll re-renders nothing here in steady state. (A tldr-bound
+  // IntersectionObserver fights AnimatePresence remounts across route
+  // transitions — deviation from the original ARCHITECTURE.md wording,
+  // amended in the same commit; render economics are identical.)
+  const [showNavbar, setShowNavbar] = useState(false)
+  useEffect(() => {
+    let raf = 0
+    const check = () => {
+      raf = 0
+      setShowNavbar(
+        (document.getElementById('tldr')?.getBoundingClientRect()?.y ?? 0) <= 0
+      )
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check)
+    }
+    check()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [path])
   const { w, h } = (() => {
     let dynHNum = parseInt(dynamicFont(110))
     return { w: dynHNum / 1.666, h: dynHNum }

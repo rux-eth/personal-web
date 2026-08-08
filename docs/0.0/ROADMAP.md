@@ -7,7 +7,7 @@ Ordered PR sequence implementing the 2026-08-07 design (see `docs/0.0/DESIGN-log
 | PR-001 | Visual-regression baseline (Playwright harness + current-build screenshots) | — | D8 | merged (GitHub PR #18) |
 | PR-002 | Tooling hygiene (Biome + repo-wide format, tsconfig/next.config/scripts cleanup, dead dev-deps) | PR-001 | D8 | implemented (branch pr/002-tooling-hygiene, awaiting merge) |
 | PR-003 | MUI removal (hand-rolled drawer/snackbar/breakpoint hook; slim link.tsx, delete theme.tsx, _document JSS) | PR-001 | D2 | implemented (branch pr/003-mui-removal, awaiting merge) |
-| PR-004 | Scroll/resize rearchitecture (delete ResizeContext; IntersectionObserver, per-block ResizeObserver, masthead rAF; sha1/crypto id deleted) | PR-001 | D4, D5 (crypto) | not started |
+| PR-004 | Scroll/resize rearchitecture (delete ResizeContext; navbar-local check, per-block ResizeObserver, masthead rAF; sha1/crypto id deleted) | PR-001 | D4, D5 (crypto) | implemented (branch pr/004-scroll-rearchitecture, awaiting merge) |
 | PR-005 | Utility diet (immutable → native Array/Set/Map) | PR-004 | D5 | not started |
 | PR-006 | Works content architecture (src/data/works.ts typed module, SSG, dissolve Works class; fix arrow-rotate bug, 404-flash, missing keys) | PR-001 | D7, D9 | not started |
 | PR-007 | Framework upgrade (Next 16, React 19, TS 5; framer-motion → motion v13 swap forced by peer deps; codemods; FC-children fixes) | PR-003, PR-004 | D1, D3 | not started |
