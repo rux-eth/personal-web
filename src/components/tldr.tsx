@@ -2,7 +2,6 @@ import { CommentedContent, CommentedHeader } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { getAge, getWorkingYears } from '@src/utils/time'
-import { Set } from 'immutable'
 import React from 'react'
 import Link from './link'
 import { Works } from './works'
@@ -32,7 +31,7 @@ const TLDR: React.FC = () => {
           <CommentedHeader content="Recent Works" />
           <div className="flex flex-col text-center space-y-[1.3ch]">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 p-6">
-              {works.getAllPreviews(Set(['Completed'])).slice(0, 3)}
+              {works.getAllPreviews(new Set(['Completed'])).slice(0, 3)}
             </div>
           </div>
           <Link className="white-comp text-[2.5ch]" href="/works">

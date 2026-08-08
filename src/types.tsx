@@ -1,5 +1,4 @@
 // import { ethers } from 'ethers'
-import { Set } from 'immutable'
 export type WorkStatus = 'Completed' | 'Building' | 'Deprecated'
 export type Role = 'Full-Stack' | 'Back-End' | 'Front-end'
 export interface WorkInfo {
@@ -9,9 +8,9 @@ export interface WorkInfo {
   thumbnail: string
   status: WorkStatus
   role: Role
-  languages: Set<string>
-  stack: Set<string>
-  admins?: Set<string>
+  languages: string[]
+  stack: string[]
+  admins?: string[]
   repo?: string
   website?: string
   article?: string
@@ -64,27 +63,15 @@ export function assertWorkInfo(obj: any): WorkInfo {
     typeof thumbnail !== typeof 'string' ||
     typeof status !== typeof 'string' ||
     typeof role !== typeof 'string' ||
-    (!Set.isSet(languages) && !Array.isArray(languages)) ||
-    (!Set.isSet(stack) && !Array.isArray(stack)) ||
-    (authAddresses &&
-      !Set.isSet(authAddresses) &&
-      !Array.isArray(authAddresses)) ||
+    !Array.isArray(languages) ||
+    !Array.isArray(stack) ||
+    (authAddresses && !Array.isArray(authAddresses)) ||
     (repo && typeof repo !== typeof 'string') ||
     (website && typeof website !== typeof 'string') ||
     (article && typeof article !== typeof 'string') ||
     (trello && typeof trello !== typeof 'string')
   )
     throw Error('Invalid Types!')
-  if (languages && Array.isArray(languages)) {
-    languages = Set(languages)
-  }
-  if (stack && Array.isArray(stack)) {
-    stack = Set(stack)
-  }
-  if (authAddresses && Array.isArray(authAddresses)) {
-    authAddresses = Set(authAddresses)
-  }
-
   obj = {
     id,
     title,
