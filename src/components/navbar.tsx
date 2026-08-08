@@ -83,8 +83,14 @@ const Navbar: FC<{ path: any }> = ({ path }) => {
           <Image
             className="grid-item-thumbnail"
             src="/eth-logo-white.png"
+            alt=""
             width={w}
             height={h}
+            // Explicit box: pre-13 next/image forced the w×h box; the modern
+            // component lets the file's natural ratio set height (height:auto
+            // preflight), which shifts everything below the sticky navbar by a
+            // fraction of a pixel. Pin the authored box.
+            style={{ width: w, height: h }}
           />
           <span>Rux.eth</span>
         </Link>

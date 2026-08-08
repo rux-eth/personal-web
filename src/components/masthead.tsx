@@ -1,6 +1,6 @@
 import useMatchesMediaQuery from '@src/utils/hooks/useMatchesMediaQuery'
 import useScrollY from '@src/utils/hooks/useScrollY'
-import React, { useRef } from 'react'
+import React, { JSX, useRef } from 'react'
 import Rain, { Slot } from './rain'
 
 interface Pieces {

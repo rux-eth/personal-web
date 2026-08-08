@@ -16,27 +16,24 @@ This repo is mid-refactor under a designed plan (design session 2026-08-07). Bef
 
 Uses yarn (yarn.lock is committed).
 
-- `yarn dev` — start the dev server (Next.js 12)
-- `yarn build` — production build
-- `yarn build:analyze` — build with `@next/bundle-analyzer` enabled (toggled via the `ANALYZE` env var)
-- `yarn start` — build then serve production
+- `yarn dev` — start the dev server
+- `yarn build` — production build (Turbopack)
+- `yarn start` — serve the production build
+- `yarn lint` / `yarn format` — Biome check / write
+- `yarn test:visual` — Playwright visual-regression suite (builds and serves on port 4179 itself)
 
-There are no lint or test scripts. Type checking is the only verification: `yarn tsc --noEmit`.
-
-`next.config.js` loads `.env` via dotenv and inlines `MONGO_URL`, `MASTER_ADMIN`, and `NEXT_ENV`.
+Type checking: `yarn tsc --noEmit`. There is no `next.config.js` — defaults only.
 
 ## Architecture
 
-Personal portfolio site (rux.eth / Maxwell Rux) on Next.js 12 **Pages Router** with React 17 and TypeScript. Path alias: `@src/*` → `src/*`.
+Personal portfolio site (rux.eth / Maxwell Rux) on Next.js 16 **Pages Router** with React 19 and TypeScript 5. Path alias: `@src/*` → `src/*`.
 
 ### Rendering/layout chain
 
 `src/pages/_app.tsx` wraps every page in, outermost first:
 
-1. `src/utils/resize-observer.tsx` — a React context (`ResizeContext`) that listens to window resize/scroll and provides `scrollY`, `showNavbar` (true once the `#tldr` element scrolls past the top), and `numLines` — per-element line counts for `.commented` blocks (see below).
-2. MUI `ThemeProvider` with the theme from `src/styles/theme.tsx`.
-3. `src/components/layouts/main.tsx` — global `<Head>`, `Navbar`, `Masthead` (home route only), `Footer`, `NavDrawer`, global MUI `Snackbar`, and Vercel Analytics.
-4. framer-motion `AnimatePresence` for page enter/exit transitions.
+1. `src/components/layouts/main.tsx` — global `<Head>`, `Navbar`, `Masthead` (home route only), `Footer`, `NavDrawer`, `Snackbar` (hand-rolled), and Vercel Analytics.
+2. `LazyMotion` (motion v13, `domAnimation` subset, strict) + `AnimatePresence mode="wait"` + a single `m.article` keyed by route — the one motion wrapper owning page enter/exit transitions (0.4s easeInOut fade/slide). Layout components contain no motion wrappers.
 
 ### Works content is typed code
 
@@ -44,13 +41,11 @@ Personal portfolio site (rux.eth / Maxwell Rux) on Next.js 12 **Pages Router** w
 
 ### "Commented" text styling
 
-Site copy is rendered to look like code comments via `src/components/commented.tsx`, which keeps a module-level `refs` registry of rendered blocks. `resize-observer.tsx` reads that registry to compute how many `//` line prefixes each block needs. These two files are coupled — changes to one usually affect the other.
+Site copy is rendered to look like code comments via `src/components/commented.tsx`; each `CommentedContent` owns a `ResizeObserver` on its own div and derives its comment-gutter line count locally.
 
-### Styling: two parallel theme systems
+### Styling
 
-- Tailwind (JIT) with custom breakpoints (`xs/mb/sm/md/lg/xl/2xl` plus `ha`, a `(hover: hover)` media-query breakpoint used to disable hover animations on touch devices).
-- Both MUI v5 (`@mui/material`, used by components) and legacy Material-UI v4 (`@material-ui/core`, whose `createTheme` builds the theme) are installed.
-- The `themeConstants` object (colors + breakpoints) is **duplicated** in `tailwind.config.js` and `src/styles/theme.tsx` and must be kept in sync by hand when changing either.
+Tailwind 3 (JIT) with custom breakpoints (`xs/mb/sm/md/lg/xl/2xl` plus `ha`, a `(hover: hover)` media-query breakpoint used to disable hover animations on touch devices). No component library — drawer, snackbar, and the breakpoint hook are hand-rolled (`src/components/`, `src/utils/hooks/`). Tailwind 4 / CSS-first config lands in PR-008.
 
 ### State
 

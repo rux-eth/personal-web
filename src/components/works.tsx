@@ -3,7 +3,7 @@ import Link from '@src/components/link'
 import { compileTags, tagCounts, WorkInfo } from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Image from 'next/image'
-import { FC, Fragment, useState } from 'react'
+import { FC, Fragment, JSX, useState } from 'react'
 import {
   FaArrowDown,
   FaGithub,
@@ -45,9 +45,19 @@ export const WorkPreviews: FC<{
                 <Image
                   src={thumbnail}
                   alt={title}
-                  width={'1980px'}
-                  height={'1080px'}
+                  width={1980}
+                  height={1080}
                   className="grid-item-thumbnail rounded-lg"
+                  // Explicit box: pre-13 next/image stretched every thumbnail
+                  // into the 1980:1080 frame; modern height:auto follows each
+                  // file's natural ratio instead, changing card heights. Pin
+                  // the authored frame (content stretches via object-fit fill,
+                  // as before). PR-009 revisits true image sizing.
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '1980 / 1080'
+                  }}
                 />
                 <p className="font-bold text-[1.4ch]">{title}</p>
                 <p

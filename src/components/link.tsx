@@ -3,8 +3,8 @@ import { AnchorHTMLAttributes, forwardRef } from 'react'
 
 // Slim replacement for the former MUI-composed Link (131 lines → this).
 // Same import surface for all consumers; external URLs (http/mailto) render a
-// plain anchor, internal paths route through next/link (Next 12 anchor-child
-// form — simplified again in PR-007).
+// plain anchor, internal paths route through next/link (modern anchor-less
+// form — next/link renders the <a> itself since v13).
 export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string
 }
@@ -21,10 +21,8 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       )
     }
     return (
-      <NextLink href={href}>
-        <a ref={ref} style={mergedStyle} {...rest}>
-          {children}
-        </a>
+      <NextLink href={href} ref={ref} style={mergedStyle} {...rest}>
+        {children}
       </NextLink>
     )
   }
