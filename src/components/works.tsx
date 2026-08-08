@@ -34,7 +34,7 @@ export const WorkPreviews: FC<{
         return (
           <div
             key={id}
-            className="w-full text-center opacity-[75%] hover:opacity-[100%] duration-300"
+            className="w-full text-center opacity-75 hover:opacity-100 duration-300"
             style={{
               fontSize: fs
             }}
@@ -135,7 +135,7 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
               </div>
             </div>
             <div
-              className="absolute p-[0.3ch] left-[50%] w-[20ch] text-white shadow rounded-[0.5ch] z-10 bg-black"
+              className="absolute p-[0.3ch] left-[50%] w-[20ch] text-white shadow-sm rounded-[0.5ch] z-10 bg-black"
               style={{
                 opacity: isList ? '100%' : '0%',
                 transitionDuration: '300ms',
@@ -235,7 +235,7 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
           {[...filters].map(filter => (
             <button
               key={filter}
-              className="-my-[0.31ch]"
+              className="my-[-0.31ch]"
               onClick={() => handleFilterChange(filter)}
             >
               {categories[filter]}

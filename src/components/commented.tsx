@@ -76,7 +76,7 @@ const CommentedContent: FC<CommentedContentProps> = ({
 const CommentedHeader: FC<CommentedHeaderProps> = ({ content, scale }) => {
   return (
     <div
-      className="w-full flex text-center justify-center opacity-[70%]  font-Menlo italic"
+      className="w-full flex text-center justify-center opacity-70  font-Menlo italic"
       style={{
         fontSize: dynamicFont((scale ?? 110) / (content.length + 6), true)
       }}
