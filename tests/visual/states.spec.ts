@@ -1,9 +1,9 @@
 import {
-  test,
+  awaitAppReady,
   expect,
   settle,
   settleAfterScroll,
-  awaitAppReady
+  test
 } from './fixtures'
 
 // Interactive states. Downstream contracts: PR-003 names drawer + snackbar
@@ -42,6 +42,24 @@ test('works filter dropdown open', async ({ page }) => {
   // at threshold 0.05).
   await expect(page).toHaveScreenshot('works-filter-open.png', {
     maxDiffPixels: 6000
+  })
+})
+
+test('services section expanded', async ({ page }) => {
+  await page.goto('/services')
+  await awaitAppReady(page)
+  await page.locator('summary').first().click()
+  // Expanding mounts new CommentedContent blocks whose comment-gutter line
+  // counts only recompute on the app's scroll/resize handler — nothing fires
+  // it after a click. Jiggle the scroll position to force the recompute,
+  // then let React flush.
+  await page.evaluate(() => {
+    window.scrollBy(0, 1)
+    window.scrollBy(0, -1)
+  })
+  await settleAfterScroll(page)
+  await expect(page).toHaveScreenshot('services-section-open.png', {
+    fullPage: true
   })
 })
 

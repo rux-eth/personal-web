@@ -1,4 +1,4 @@
-import { test, expect, awaitAppReady } from './fixtures'
+import { awaitAppReady, expect, test } from './fixtures'
 
 // /loading animates "loading..." dots on a 300ms setInterval — a JS timer,
 // which animations:'disabled' does NOT cover. A fake-clock approach proved
