@@ -1,10 +1,11 @@
 import { CommentedContent, CommentedHeader } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
+import { compileTags, works } from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { getAge, getWorkingYears } from '@src/utils/time'
 import React from 'react'
 import Link from './link'
-import { Works } from './works'
+import { WorkPreviews } from './works'
 
 interface Section {
   header: string
@@ -15,7 +16,6 @@ interface Section {
 
 const TLDR: React.FC = () => {
   const fs = dynamicFont(70)
-  const works = new Works()
   const sections: Section[] = [
     {
       header: 'Introduction',
@@ -31,7 +31,11 @@ const TLDR: React.FC = () => {
           <CommentedHeader content="Recent Works" />
           <div className="flex flex-col text-center space-y-[1.3ch]">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 p-6">
-              {works.getAllPreviews(new Set(['Completed'])).slice(0, 3)}
+              <WorkPreviews
+                works={works
+                  .filter(work => compileTags(work).has('Completed'))
+                  .slice(0, 3)}
+              />
             </div>
           </div>
           <Link className="white-comp text-[2.5ch]" href="/works">
@@ -124,7 +128,7 @@ const TLDR: React.FC = () => {
         </div>
       </div>
       {sections.map(s => (
-        <>
+        <React.Fragment key={s.header}>
           <Seperator />
           <CommentedContent
             content={
@@ -135,8 +139,8 @@ const TLDR: React.FC = () => {
             header={s.header}
             fontSize={fs}
           />
-          <>{s.extraCompenent ?? <></>}</>
-        </>
+          {s.extraCompenent}
+        </React.Fragment>
       ))}
     </div>
   )

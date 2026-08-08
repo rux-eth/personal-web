@@ -1,6 +1,6 @@
 import { awaitAppReady, expect, loadAllImages, test } from './fixtures'
 
-// Full-page baselines for every route. Work ids mirror public/works.json.
+// Full-page baselines for every route. Work ids mirror src/data/works.ts.
 const workIds = [
   'hospital-in-a-box',
   'personal',

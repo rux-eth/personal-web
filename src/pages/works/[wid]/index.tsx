@@ -1,11 +1,21 @@
-import { Works } from '@src/components/works'
-import { useRouter } from 'next/router'
+import { WorkPage } from '@src/components/works'
+import { getWork, WorkInfo, works } from '@src/data/works'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
-const Work = () => {
-  const router = useRouter()
-  const works = new Works()
-  const { wid } = router.query
-  return works.workPage(wid as string)
+interface Props {
+  work: WorkInfo
+}
+
+const Work: NextPage<Props> = ({ work }) => <WorkPage work={work} />
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: works.map(work => ({ params: { wid: work.id } })),
+  fallback: false
+})
+
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const work = getWork(String(params?.wid))
+  return work ? { props: { work } } : { notFound: true }
 }
 
 export default Work
