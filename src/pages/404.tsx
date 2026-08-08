@@ -3,6 +3,7 @@ import Link from '@src/components/link'
 import Seperator from '@src/components/seperator'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { FC } from 'react'
+
 const NotFound: FC = () => {
   const fs = dynamicFont(100)
   return (

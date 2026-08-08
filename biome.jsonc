@@ -30,7 +30,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       // Rules below fire on PRE-REFACTOR code. PR-002 is config+format only
       // (One PR, One Thing) — each rule is re-enabled by the PR that fixes
       // its violations. Do not add new violations while a rule is off.
@@ -56,6 +56,13 @@
         "noNonNullAssertion": "off", // → PR-010
         "useExponentiationOperator": "off", // → PR-004 (rain math rewrite)
         "useNodejsImportProtocol": "off" // → PR-004 (crypto import deleted)
+      },
+      "a11y": {
+        "useButtonType": "off", // → PR-003 (button rewrites in MUI removal)
+        "useAltText": "off", // → PR-009 (next/image everywhere adds alt)
+        "noStaticElementInteractions": "off", // → PR-006 (works rewrite)
+        "useKeyWithClickEvents": "off", // → PR-006
+        "useGenericFontNames": "off" // → PR-009 (font stack rework)
       },
       "complexity": {
         "useLiteralKeys": "off", // → PR-006

@@ -1,6 +1,7 @@
 import { Breakpoint } from '@mui/material'
 import { theme } from '@src/styles/theme'
 import useMatchesMediaQuery from './useMatchesMediaQuery'
+
 const getCurrentBreakpoint = (): [string, number] => {
   const breakpoints: Array<[string, number]> = Object.entries(
     theme.breakpoints.values

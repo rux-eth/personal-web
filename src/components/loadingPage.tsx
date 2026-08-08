@@ -1,5 +1,6 @@
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import { FC, useEffect, useState } from 'react'
+
 const FailedLoad: FC<{ error: any }> = ({ error }) => {
   let err = ''
   try {

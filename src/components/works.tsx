@@ -4,7 +4,7 @@ import NotFound from '@src/pages/404'
 import transition from '@src/styles/utils'
 import { assertWorkInfo, WorkInfo } from '@src/types'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { List, Map as IMap, Set } from 'immutable'
+import { Map as IMap, List, Set } from 'immutable'
 import Image from 'next/image'
 import worksJSON from 'public/works.json'
 import { FC, useState } from 'react'
@@ -15,11 +15,11 @@ import {
   FaMedium,
   FaTrello
 } from 'react-icons/fa'
+import ComingSoonPage from './comingSoon'
 import { CommentedContent, CommentedHeader } from './commented'
 import Contact, { ContactItem } from './contact'
 import Layout from './layouts/pages'
 import Seperator from './seperator'
-import ComingSoonPage from './comingSoon'
 
 export class Works {
   works: List<WorkInfo>

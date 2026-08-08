@@ -94,10 +94,16 @@ PR-001.
 
 ## Verification criteria
 
-- [ ] `yarn build` succeeds; `yarn test:visual` diffs clean vs baseline
-- [ ] `biome check` passes repo-wide
-- [ ] No references to removed env vars remain outside dead files scheduled for PR-010
-- [ ] Type-check (`tsc --noEmit`) passes
+- [x] `yarn build` succeeds; `yarn test:visual` diffs clean vs baseline — 190/190 across three consecutive fresh-build runs (2026-08-07)
+- [x] `biome check` passes repo-wide
+- [x] No references to removed env vars remain outside dead files scheduled for PR-010 (`NEXT_ENV` only in never-imported `url.tsx`)
+- [x] Type-check (`tsc --noEmit`) passes
+
+## Implementation notes
+
+- Biome 2.5.7, config at `biome.jsonc` (comments needed for the per-rule off-list). Formatter maps the prettier style 1:1 per the locked research. Linter: recommended preset with every currently-firing rule disabled and annotated with the PR that re-enables it (One PR, One Thing — no app-code lint fixes here). `biome check --write` applied import organization; note that import reordering permutes the seeded-random consumption order, which required regenerating rain-affected baselines (documented in fixtures.ts and PR-001).
+- Deprecation fixed during implementation: `linter.rules.recommended` → `preset` (Biome 2.5).
+- The PR-001 baseline amendment (services-era coverage + determinism hardening) rides in this branch as separate commits, cross-documented in both PR files.
 
 ## Research backing
 

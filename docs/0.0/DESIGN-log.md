@@ -71,6 +71,10 @@ Research trail: Next 16 removed `next lint`, officially names Biome or ESLint [p
 
 This is the ONLY exception to "maintain the same functionality and visuals." Known bug list at decision time: filter-arrow rotate ternary with identical branches (never animates); loadingPage setInterval never cleaned up; 404-flash on direct /works/[wid] visits; missing React key props; stale-closure in resize-observer handleResize (dies with D4); module-level refs mutation during render (dies with D4); hooks called in Works class methods (dies with D7 refactor).
 
+### Drift addendum (2026-08-07, discovered during PR-002 implementation)
+
+Parallel user development entered master via the PR-018 merge window: `/clients` route replaced by `/services` (new `gasCutSprintPage.tsx`, ~264 LOC marketing page with native `<details>` collapsibles), first work renamed `sapien` → `hospital-in-a-box`, contact info updated, `dynamicFontNum` export added. **Design impact: none** — the new page uses only existing-stack primitives (CommentedContent, Tailwind, next/link wrapper; no MUI, no immutable, no new deps), so D1–D9 hold unchanged; the pixel-identical invariant now covers the services-era site. Harness impact: two baselines were mislabeled 404 captures (`clients`, `work-sapien`) — removed; `/services` page + expanded-section state + `work-hospital-in-a-box` added to coverage (PR-001 amendment, landed inside the PR-002 branch, documented in both PR files). Audit evidence deltas: route list is /, /works, /works/[wid]×10, /services, /contact, /404, /loading; source LOC ~2,800.
+
 ### Convergence (Phase 3, confirmed by user)
 
 Full design confirmed 2026-08-07. Projected outcomes [best-guess arithmetic on measured parts]: First Load JS 318 → ~110–130 kB gz; runtime deps 16 → ~7; LOC meaningfully down. Open implementation-time flags (non-blocking): drawer focus/Esc parity checklist; font-display swap-vs-block user preference; btc.png/download.jpg/eth-logo-black.png reference-check; Node ≥ 20.9 verified locally + Vercel at implementation start.

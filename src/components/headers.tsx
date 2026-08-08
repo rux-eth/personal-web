@@ -6,4 +6,5 @@ const MainHeader: FC = ({ children }) => {
 const SubHeader: FC = ({ children }) => {
   return <div className="text-2xl text-white font-bold">{children}</div>
 }
+
 export { MainHeader, SubHeader }

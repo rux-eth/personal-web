@@ -176,6 +176,17 @@ None. Must land before every other PR (Baseline Before Change constraint).
 - [x] Masthead rain renders identically across runs (seeded PRNG effective at module-load time)
 - [x] A deliberate 1-line CSS change (`.white-comp` opacity 70%→60%) produces a failing diff (exit 1), reverts clean (exit 0) — 2026-08-07
 
+## Post-merge amendment (2026-08-07, landed in the PR-002 branch)
+
+Parallel development (clients → services rename, work id rename `sapien` → `hospital-in-a-box`) had already merged when baselines were captured, so all baselines reflect the current site — but two were mislabeled 404 captures (`clients`, `work-sapien`; the routes no longer exist) and `/services` was uncovered. Amendment: spec routes corrected, stale baselines deleted, added `services` full-page + `services-section-open` state + `work-hospital-in-a-box` captures (×8 projects). See DESIGN-log drift addendum.
+
+Additional determinism findings hardened during the amendment (each verified by fresh-build triple runs):
+- **SSG bakes unseeded randomness**: `next build` runs rain's module-load `Math.random` in Node (the browser seed can't reach it), so pre-scroll masthead markup varies per build (verified: consecutive builds differ only in rain markup + buildId). Home capture masks the masthead; masthead.spec's post-scroll captures (which converge to seeded values) remain its coverage.
+- **Lazy-image observer race**: legacy `next/image`'s IntersectionObserver loses races against fast scroll-throughs, leaving whole invocations with placeholder thumbnails. `loadAllImages` now forces each image via `scrollIntoView` + naturalWidth/decode waits.
+- **WebKit srcset instability at the 960px boundary**: home's preview thumbnails resample from differing srcset candidates per invocation (~20.7k px ghosting). Home masks the preview grid — redundantly covered by works-index, the filter-state capture, and all 10 work pages; home's unique content (tl;dr text, buttons — the canary surface) stays at the strict 8000 budget.
+- **Expanded `<details>` gutter settling**: newly-mounted CommentedContent only recomputes its comment gutter on the app's scroll handler; the services-expanded capture jiggles scroll to force it.
+- Canary re-proven after all masks (fails on deliberate change, clean after revert).
+
 ## Implementation notes (deviations from locked spec + tuning record)
 
 1. **`/loading`: clock replaced by masking** (deviation from the Phase-4 locked spec). The clock approach was nondeterministic in practice: hydration occasionally completed mid-`runFor`, shifting the dots interval's registration to a varying fake-time offset (off-by-one tick, ~1.1k px). Hydration-completion signals are timer-polled — frozen by the very clock being used — so the approach can't be made airtight. The animated `<p>` is masked instead; deterministic by construction. Coverage tradeoff accepted: `/loading`'s text is unverified (dead route, PR-010 removal candidate).
