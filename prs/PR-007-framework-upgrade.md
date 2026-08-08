@@ -1,6 +1,6 @@
 # PR-007: Framework upgrade (Next 16 / React 19 / TS 5 / motion v13)
 
-**Landed-in:** (not yet landed)
+**Landed-in:** master via GitHub PR #24, 2026-08-08 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 
