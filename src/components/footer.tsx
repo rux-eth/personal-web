@@ -1,12 +1,12 @@
-import { dynamicFont } from "@src/utils/hooks/getCurrentBreakpoint";
-import Links from "./links";
+import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
+import Links from './links'
 
 const Footer = () => {
   return (
     <div
       className="flex flex-col bg-black items-center space-y-[0.1ch] py-[1ch]"
       style={{
-        fontSize: dynamicFont(70),
+        fontSize: dynamicFont(70)
       }}
     >
       {Links.internal}
@@ -17,7 +17,7 @@ const Footer = () => {
         © 2022 Maxwell Rux. All Rights Reserved.
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

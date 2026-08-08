@@ -1,16 +1,16 @@
 const compileURL = (path?: string) => {
-  let basePath = "http://localhost:3000";
+  let basePath = 'http://localhost:3000'
   switch (process.env.NEXT_ENV) {
-    case "production":
-      basePath = "https://www.maxrux.dev";
-      break;
+    case 'production':
+      basePath = 'https://www.maxrux.dev'
+      break
     default:
-      break;
+      break
   }
   return path
-    ? path.startsWith("/")
+    ? path.startsWith('/')
       ? `${basePath}${path}`
       : `${basePath}/${path}`
-    : `${basePath}/`;
-};
-export default compileURL;
+    : `${basePath}/`
+}
+export default compileURL

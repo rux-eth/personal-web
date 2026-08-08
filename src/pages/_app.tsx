@@ -6,6 +6,7 @@ import ResizeObserver from '@src/utils/resize-observer'
 // import { Config, DAppProvider, Mainnet } from '@usedapp/core'
 import { AnimatePresence } from 'framer-motion'
 import { AppProps } from 'next/app'
+
 /* 
 const config: Config = {
   readOnlyChainId: Mainnet.chainId,

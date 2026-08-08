@@ -1,4 +1,4 @@
-import { test, expect, settleAfterScroll, awaitAppReady } from './fixtures'
+import { awaitAppReady, expect, settleAfterScroll, test } from './fixtures'
 
 // Fixed-scroll-offset captures of the masthead parallax (PR-004 contract:
 // transform positions must be comparable at exact scroll offsets).

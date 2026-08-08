@@ -2,11 +2,11 @@ import { Stack } from '@mui/material'
 import { CommentedContent, CommentedHeader } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
+import { getAge, getWorkingYears } from '@src/utils/time'
 import { Set } from 'immutable'
 import React from 'react'
 import Link from './link'
 import { Works } from './works'
-import { getAge, getWorkingYears } from '@src/utils/time'
 
 interface Section {
   header: string

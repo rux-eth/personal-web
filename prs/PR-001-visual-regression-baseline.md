@@ -1,6 +1,6 @@
 # PR-001: Visual-regression baseline
 
-**Landed-in:** (not yet landed)
+**Landed-in:** master via GitHub PR #18, 2026-08-07 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 
@@ -175,6 +175,17 @@ None. Must land before every other PR (Baseline Before Change constraint).
 - [x] Every page/breakpoint/state/scroll-offset listed in scope has a committed baseline image in both Chromium and WebKit projects (182 images, 29 MB)
 - [x] Masthead rain renders identically across runs (seeded PRNG effective at module-load time)
 - [x] A deliberate 1-line CSS change (`.white-comp` opacity 70%→60%) produces a failing diff (exit 1), reverts clean (exit 0) — 2026-08-07
+
+## Post-merge amendment (2026-08-07, landed in the PR-002 branch)
+
+Parallel development (clients → services rename, work id rename `sapien` → `hospital-in-a-box`) had already merged when baselines were captured, so all baselines reflect the current site — but two were mislabeled 404 captures (`clients`, `work-sapien`; the routes no longer exist) and `/services` was uncovered. Amendment: spec routes corrected, stale baselines deleted, added `services` full-page + `services-section-open` state + `work-hospital-in-a-box` captures (×8 projects). See DESIGN-log drift addendum.
+
+Additional determinism findings hardened during the amendment (each verified by fresh-build triple runs):
+- **SSG bakes unseeded randomness**: `next build` runs rain's module-load `Math.random` in Node (the browser seed can't reach it), so pre-scroll masthead markup varies per build (verified: consecutive builds differ only in rain markup + buildId). Home capture masks the masthead; masthead.spec's post-scroll captures (which converge to seeded values) remain its coverage.
+- **Lazy-image observer race**: legacy `next/image`'s IntersectionObserver loses races against fast scroll-throughs, leaving whole invocations with placeholder thumbnails. `loadAllImages` now forces each image via `scrollIntoView` + naturalWidth/decode waits.
+- **WebKit srcset instability at the 960px boundary**: home's preview thumbnails resample from differing srcset candidates per invocation (~20.7k px ghosting). Home masks the preview grid — redundantly covered by works-index, the filter-state capture, and all 10 work pages; home's unique content (tl;dr text, buttons — the canary surface) stays at the strict 8000 budget.
+- **Expanded `<details>` gutter settling**: newly-mounted CommentedContent only recomputes its comment gutter on the app's scroll handler; the services-expanded capture jiggles scroll to force it.
+- Canary re-proven after all masks (fails on deliberate change, clean after revert).
 
 ## Implementation notes (deviations from locked spec + tuning record)
 

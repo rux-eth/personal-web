@@ -4,6 +4,7 @@ import { ResizeContext } from '@src/utils/resize-observer'
 import { createHash } from 'crypto'
 import { Map as IMap } from 'immutable'
 import { FC, RefObject, useContext, useRef } from 'react'
+
 interface CommentedHeaderProps {
   content: string
   scale?: number
@@ -85,4 +86,5 @@ const CommentedHeader: FC<CommentedHeaderProps> = ({ content, scale }) => {
     </div>
   )
 }
-export { refs, CommentedContent, CommentedHeader }
+
+export { CommentedContent, CommentedHeader, refs }

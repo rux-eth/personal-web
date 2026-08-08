@@ -1,11 +1,12 @@
 // src/components/gasCutSprintPage.tsx
-import React from 'react'
+
 import { CommentedContent } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
 import {
   dynamicFont,
   dynamicFontNum
 } from '@src/utils/hooks/getCurrentBreakpoint'
+import React from 'react'
 import Link from './link'
 
 type Section = {

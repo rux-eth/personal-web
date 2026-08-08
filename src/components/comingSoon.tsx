@@ -1,5 +1,6 @@
 import { CommentedHeader } from '@src/components/commented'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
+
 /* @ts-ignore */
 const ComingSoonPage: React.FC = () => {
   return (

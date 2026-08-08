@@ -1,6 +1,7 @@
 import { Box, Slide, Snackbar } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 import snackbarAtom from '@src/store/jotai'
+import { Analytics } from '@vercel/analytics/react'
 import { motion } from 'framer-motion'
 import { useAtom } from 'jotai'
 import Head from 'next/head'
@@ -10,7 +11,6 @@ import Footer from '../footer'
 import Masthead from '../masthead'
 import Navbar from '../navbar'
 import NavDrawer from '../navDrawer'
-import { Analytics } from '@vercel/analytics/react'
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },

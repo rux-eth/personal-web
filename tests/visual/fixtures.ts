@@ -4,6 +4,13 @@ import { test as base, expect, Page } from '@playwright/test'
 // contract: "after the document was created but before any of its scripts were
 // run"). rain.tsx builds its random variants at module load, so this MUST run
 // pre-module. mulberry32 — tiny, deterministic.
+//
+// KNOWN SENSITIVITY: the seed fixes the random SEQUENCE, but module execution
+// order decides which draws rain consumes. Any change to import order (e.g.
+// biome organizeImports) permutes rain layouts — deterministic, but different
+// from prior baselines. After import-order changes, expect rain-dependent
+// baselines (home / masthead / navbar-shown) to need regeneration; text and
+// layout captures are unaffected and remain the true regression signal.
 const SEED = 0xc0ffee
 
 export const test = base.extend<{ page: Page }>({
@@ -27,7 +34,9 @@ export const test = base.extend<{ page: Page }>({
 export async function settle(page: Page) {
   await page.evaluate(async () => {
     await document.fonts.ready
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+    await new Promise(r =>
+      requestAnimationFrame(() => requestAnimationFrame(r))
+    )
   })
 }
 
@@ -49,31 +58,41 @@ export async function settleAfterScroll(page: Page) {
   await settle(page)
 }
 
-// For fullPage captures: next/image lazy-loads below-fold images, and capture
-// races async decode. Scroll through the document to trigger every loader,
-// wait for all images to load + decode, then restore scroll position.
+// For fullPage captures: legacy next/image lazy-loads via its own
+// IntersectionObserver; a fast scroll-through RACES the observer (measured:
+// preview thumbnails stayed placeholders in whole invocations, bistable
+// baselines). Force each image individually: scrollIntoView (fires the
+// observer deterministically), then wait until it is genuinely loaded
+// (naturalWidth > 0) and decoded. Restore scroll position at the end.
 export async function loadAllImages(page: Page) {
   await page.evaluate(async () => {
-    const step = window.innerHeight / 2
-    for (let y = 0; y <= document.body.scrollHeight; y += step) {
-      window.scrollTo(0, y)
-      await new Promise(r => requestAnimationFrame(r))
+    const waitLoaded = (img: HTMLImageElement) =>
+      img.complete && img.naturalWidth > 0
+        ? Promise.resolve()
+        : new Promise<void>(res => {
+            const done = () => res()
+            img.addEventListener('load', done, { once: true })
+            img.addEventListener('error', done, { once: true })
+            setTimeout(done, 5000) // never hang a capture on a broken image
+          })
+    // document.images is live; iterate until no unloaded images remain
+    // (scrolling can mount new lazy loaders).
+    for (let pass = 0; pass < 3; pass++) {
+      for (const img of Array.from(document.images)) {
+        img.scrollIntoView({ block: 'center' })
+        await new Promise(r => requestAnimationFrame(r))
+        await waitLoaded(img)
+        await img.decode().catch(() => {})
+      }
+      if (Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)) break
     }
     window.scrollTo(0, 0)
-    const imgs = Array.from(document.images)
-    await Promise.all(
-      imgs.map(img =>
-        img.complete
-          ? img.decode().catch(() => {})
-          : new Promise<void>(res => {
-              img.onload = img.onerror = () => {
-                img.decode().catch(() => {}).finally(res)
-              }
-            })
-      )
+    await new Promise(r =>
+      requestAnimationFrame(() => requestAnimationFrame(r))
     )
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
   })
+  // The scroll-back triggers the app's scroll listener; let React flush.
+  await settleAfterScroll(page)
 }
 
 export { expect }

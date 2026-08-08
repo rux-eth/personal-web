@@ -1,6 +1,6 @@
-import { dynamicFont } from "@src/utils/hooks/getCurrentBreakpoint";
-import { FC } from "react";
-import Layout from "./layouts/pages";
+import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
+import { FC } from 'react'
+import Layout from './layouts/pages'
 
 const NotClient: FC = () => {
   return (
@@ -8,8 +8,8 @@ const NotClient: FC = () => {
       <div
         className="text-red-500 font-Menlo italic opacity-80 text-center items-center"
         style={{
-          whiteSpace: "pre",
-          fontSize: dynamicFont(100),
+          whiteSpace: 'pre',
+          fontSize: dynamicFont(100)
         }}
       >
         <p>{`Please make sure your wallet is connected`}</p>
@@ -17,6 +17,6 @@ const NotClient: FC = () => {
         <p>{`Contact me to register.`}</p>
       </div>
     </Layout>
-  );
-};
-export default NotClient;
+  )
+}
+export default NotClient
