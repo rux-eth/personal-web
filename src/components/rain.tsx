@@ -7,6 +7,7 @@ import javascriptIcon from '@src/images/icons/javascriptIcon.png'
 import LinuxIcon from '@src/images/icons/LinuxIcon.png'
 import nodeJSIcon from '@src/images/icons/nodeJSIcon.png'
 import pythonIcon from '@src/images/icons/pythonIcon.png'
+import rustIcon from '@src/images/icons/rustIcon.png'
 import { floating, integer, pickset } from '@src/utils/chance'
 import Image, { type StaticImageData } from 'next/image'
 import type { FC, JSX, RefObject } from 'react'
@@ -38,7 +39,7 @@ const config: Config = {
   vertSpread: 7
 }
 
-const slotIcons = [pythonIcon, nodeJSIcon, GitIcon, LinuxIcon]
+const slotIcons = [pythonIcon, rustIcon, LinuxIcon, GitIcon]
 // Same icon order as the former string pool — rain layouts are seeded-random
 // and draw-order-sensitive (see tests/visual/fixtures.ts).
 const pool: StaticImageData[] = [
@@ -136,7 +137,7 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
                     }%) translateX(${item.transX * (progress + 1)}%) rotate(${
                       item.rot * progress - item.rot
                     }turn) `,
-                    border: '3px solid '
+                    border: '1px solid black'
                   }}
                 />
               ))}
