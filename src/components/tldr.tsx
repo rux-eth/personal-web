@@ -18,7 +18,7 @@ const TLDR: React.FC = () => {
   const sections: Section[] = [
     {
       header: 'whoami',
-      content: `Maxwell Rux — Rux professionally, Max to friends. (There are too many Maxes.)\n\nI build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things.\n\nMy software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
+      content: `Maxwell Rux — Rux professionally, Max to friends.\n\nI build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things.\n\nMy software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
     },
     {
       header: 'evidence',
