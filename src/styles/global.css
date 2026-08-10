@@ -17,10 +17,12 @@
   --breakpoint-xl: 2560px;
   --breakpoint-2xl: 3840px;
 
-  /* Replaces the default font families entirely, as the v3 config did. */
+  /* Replaces the default font families entirely, as the v3 config did.
+     Faces come from next/font (_app.tsx): Inter Bold (SF Pro replacement)
+     and DejaVu Sans Mono (Menlo replacement) — D6 as amended 2026-08-10. */
   --font-*: initial;
-  --font-SF_Pro_Display: "SF Pro";
-  --font-Menlo: Menlo;
+  --font-SF_Pro_Display: var(--font-inter);
+  --font-Menlo: var(--font-dejavu-mono);
 
   /* Default-palette colors in use, pinned to their v3 hex values — v4's
      oklch palette renders visibly differently (the suite caught bg-red-500
@@ -99,22 +101,30 @@
 }
 body {
   background: #2f2f2f;
+  letter-spacing: 0em;
+}
+/* Font stack for the whole app tree; lives on the main layout article (the
+   next/font variable classes are applied there, so the vars resolve).
+   The two --font-* theme bridges are RE-declared here on purpose: custom
+   properties substitute their var() references at the DECLARING element, and
+   at :root (where @theme emits them) the next/font variables don't exist yet
+   — the bridge only resolves declared in the same scope as the font classes. */
+.fonts-root {
+  --font-SF_Pro_Display: var(--font-inter);
+  --font-Menlo: var(--font-dejavu-mono);
   font-family:
-    SF Pro Display,
-    SF Pro,
-    Menlo,
+    var(--font-inter),
     Helvetica Neue,
     Helvetica,
     Arial,
     sans-serif;
-  letter-spacing: 0em;
 }
 .white-comp {
   color: white;
   text-align: center;
   justify: center;
   border-radius: 0.5ch;
-  font-family: Menlo;
+  font-family: var(--font-dejavu-mono);
   background: black;
   opacity: 70%;
   transition-duration: 500ms;

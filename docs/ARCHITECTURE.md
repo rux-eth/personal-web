@@ -31,7 +31,7 @@ Escalation path (documented, not built): if content grows long-form prose, move 
 
 ## Assets (D6)
 
-- **Fonts**: subset woff2 (SF Pro Display Bold, Menlo Regular) self-hosted via `next/font/local` — single load point, automatic preload, no render-blocking font CSS, no font `<link>`s in `_app`/`_document`. `font-display: swap`.
+- **Fonts** (D6 as amended 2026-08-10): **Inter Bold** via `next/font/google` (SF Pro Display replacement) and **DejaVu Sans Mono** subset woff2 via `next/font/local` (Menlo replacement) — the Apple fonts' licenses prohibit web embedding (see CONSTRAINTS.md Exception 2). Single load point, automatic preload, no render-blocking font CSS, no font `<link>`s in `_app`/`_document`. `font-display: swap`. Inter is loaded at weight 700 only — the old SF file was a Bold face serving every weight, so all sans text has always rendered bold.
 - **Images**: everything renders through `next/image` sized to true display dimensions — including work-detail images and masthead rain/slot icons. Source assets are compressed to sane sizes (no multi-MB PNGs in `public/`).
 - **Public dir**: contains only referenced assets. No service-worker/workbox/manifest files (PWA remnants deleted), no editor backups, no orphaned images.
 

@@ -81,7 +81,9 @@ Project-specific non-negotiables for the personal-web refactor (design session 2
 
 The refactor must not change the rendered site: visuals and functionality are identical before and after. Enforced by the Playwright visual-regression baseline (PR-001) captured from the **pre-refactor** build. Every PR diffs clean against that baseline.
 
-**Sole exception (D9)**: bug fixes. Each fix is a deliberate, reviewed, per-PR documented deviation from the baseline. The known-bug list at design time is recorded in `docs/0.0/DESIGN-log.md` under D9.
+**Exception 1 (D9)**: bug fixes. Each fix is a deliberate, reviewed, per-PR documented deviation from the baseline. The known-bug list at design time is recorded in `docs/0.0/DESIGN-log.md` under D9.
+
+**Exception 2 (D6 amendment, user-directed 2026-08-10)**: typeface replacement in PR-009. Research (PR-009 Phase 3) proved Apple's SF Pro and Menlo licenses prohibit web embedding; the user chose licensed lookalike faces over continuing to ship the Apple fonts. Glyph shapes therefore change wholesale — the full baseline set is regenerated under the new faces in PR-009, with layout-integrity review (no overflow/clipping/wrap regressions) in place of pixel equality for that PR. Layout geometry, spacing semantics, and all non-text pixels remain bound by the invariant.
 
 ### No New Content Systems
 

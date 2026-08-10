@@ -1,8 +1,22 @@
+import avaxLogo from '@src/images/icons/avax-logo.png'
+import btcLogo from '@src/images/icons/btc-logo.png'
+import cssIcon from '@src/images/icons/cssIcon.png'
+import ethLogo from '@src/images/icons/eth-logo.png'
+import expressJSIcon from '@src/images/icons/expressJSIcon.png'
+import GitIcon from '@src/images/icons/GitIcon.png'
+import htmlIcon from '@src/images/icons/htmlIcon.png'
+import JavaIcon from '@src/images/icons/JavaIcon.png'
+import javascriptIcon from '@src/images/icons/javascriptIcon.png'
+import LinuxIcon from '@src/images/icons/LinuxIcon.png'
+import nodeJSIcon from '@src/images/icons/nodeJSIcon.png'
+import pythonIcon from '@src/images/icons/pythonIcon.png'
+import solLogo from '@src/images/icons/sol-logo.png'
 import { floating, integer, pickset } from '@src/utils/chance'
+import Image, { StaticImageData } from 'next/image'
 import { FC, JSX, RefObject } from 'react'
 
 interface RainItem {
-  path: string
+  src: StaticImageData
   scale: number
   transX: number
   rot: number
@@ -28,31 +42,28 @@ const config: Config = {
   vertSpread: 7
 }
 
-const coins = [
-  '/icons/btc-logo.png',
-  '/icons/eth-logo.png',
-  '/icons/sol-logo.png',
-  '/icons/avax-logo.png'
-]
-const pool: string[] = [
-  'cssIcon',
-  'expressJSIcon',
-  'GitIcon',
-  'htmlIcon',
-  'JavaIcon',
-  'javascriptIcon',
-  'LinuxIcon',
-  'nodeJSIcon',
-  'pythonIcon'
+const coins = [btcLogo, ethLogo, solLogo, avaxLogo]
+// Same icon order as the former string pool — rain layouts are seeded-random
+// and draw-order-sensitive (see tests/visual/fixtures.ts).
+const pool: StaticImageData[] = [
+  cssIcon,
+  expressJSIcon,
+  GitIcon,
+  htmlIcon,
+  JavaIcon,
+  javascriptIcon,
+  LinuxIcon,
+  nodeJSIcon,
+  pythonIcon
 ]
 
 // Utility to generate random rain items, using custom replacements instead of Chance
 const getSeeds = (): RainItem[] => {
   let allItems: RainItem[] = []
-  const addItems = (newItems: string[]) => {
+  const addItems = (newItems: StaticImageData[]) => {
     newItems.forEach(icon => {
       allItems.push({
-        path: `/icons/${icon}.png`,
+        src: icon,
         scale: floating({ min: 0.6, max: 1.8, fixed: 2 }),
         transX: integer({ min: -100, max: 100 }),
         rot: floating({ min: -0.5, max: 0.5, fixed: 2 }),
@@ -114,10 +125,12 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
               }}
             >
               {s.map((item, index) => (
-                <img
+                <Image
                   className="bg-white border-black"
-                  key={`${item.path}_${index}`}
-                  src={item.path}
+                  alt=""
+                  loading="eager"
+                  key={`${item.src.src}_${index}`}
+                  src={item.src}
                   style={{
                     zIndex: index,
                     borderRadius: '50%',
@@ -163,8 +176,10 @@ const Slot: FC<RainProps> = ({ refContain, scrollY }) => {
         }}
       >
         {coins.map((c, index) => (
-          <img
-            key={`slot_${c}_${index}`}
+          <Image
+            alt=""
+            loading="eager"
+            key={`slot_${c.src}_${index}`}
             src={c}
             style={{ transform: 'scale(0.7)', borderRadius: '50%' }}
           />

@@ -11,14 +11,16 @@ import Snackbar from '../snackbar'
 interface LayoutProps {
   router: Router
   title?: string
+  fontsClass?: string
 }
 
 const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
   children,
-  router
+  router,
+  fontsClass
 }) => {
   return (
-    <article style={{ position: 'relative' }}>
+    <article className={fontsClass} style={{ position: 'relative' }}>
       <Head>
         <title>Rux.eth - Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,8 +30,6 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <meta property="og:site_name" content="Rux.eth" />
         <meta name="og:title" content="Rux.eth" />
         <meta property="og:type" content="website" />
-        <link rel="stylesheet" href="/fonts/sf-pro.css" />
-        <link rel="stylesheet" href="/fonts/menlo.css" />
       </Head>
 
       <Navbar path={router.asPath} />
