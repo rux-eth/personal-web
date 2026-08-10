@@ -1,6 +1,6 @@
 # PR-010: Final sweep
 
-**Landed-in:** (not yet landed)
+**Landed-in:** GitHub PR #27, merged 2026-08-10
 
 ## Before Implementation (NON-NEGOTIABLE)
 
