@@ -6,10 +6,8 @@ import type {
   WorkStatus
 } from '@src/components/category'
 import blormmyImage from '@src/images/thumbnails/blormmy-image.png'
-import cryptoRates from '@src/images/thumbnails/crypto-rates.png'
 import defaultThumb from '@src/images/thumbnails/default.png'
 import paystandImage from '@src/images/thumbnails/paystand-image.png'
-import portfolioSite from '@src/images/thumbnails/portfolio-site.png'
 import zerepyImage from '@src/images/thumbnails/zerepy-image.png'
 import type { StaticImageData } from 'next/image'
 
@@ -33,34 +31,107 @@ export interface WorkInfo {
 
 export const works: readonly WorkInfo[] = [
   {
+    id: 'rumpy-execution',
+    title: 'Rumpy Execution',
+    description:
+      'The public execution layer of my quantitative trading research platform: a cost-aware convex portfolio optimizer (second-order cone program with a market-impact cost model) and a holdings-based backtester, in Rust. Optimality is independently verified rather than trusted — KKT-condition probes against closed-form references, dimensional-analysis checks, and byte-level cross-platform float determinism. 177 tests.',
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['rust'],
+    stack: [],
+    repo: 'https://github.com/rux-eth/rumpy-execution'
+  },
+  {
+    id: 'casus',
+    title: 'Casus.fyi',
+    description:
+      "AI exam-prep platform that generates board-style practice questions from students' uploaded course material; reached 100+ users through shareable question sets. Schema-constrained LLM pipeline with streaming and embedding-based dedup, passwordless magic-link auth with fail-closed authorization, Redis rate limiting, Sentry/PostHog observability, and 7-workflow CI/CD with staged deploys.",
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Full-Stack',
+    languages: ['typescript'],
+    stack: ['next', 'postgres', 'drizzle', 'redis', 'tailwind'],
+    website: 'https://casus.fyi'
+  },
+  {
+    id: 'iris',
+    title: 'Iris',
+    description:
+      'Self-hosted AI assistant that runs my calendar, tasks, and daily planning over Telegram. A TypeScript MCP tool server with a deterministic planner and a security envelope — prompt-injection quarantine, approval-gated writes, git-backed memory. A model-eval harness replaying its own captured traffic drove a default-model switch that cut per-turn cost by roughly two-thirds. 294 tests.',
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['typescript'],
+    stack: ['mcp', 'docker', 'node'],
+    repo: 'https://github.com/rux-eth/iris'
+  },
+  {
+    id: 'maestro',
+    title: 'Maestro',
+    description:
+      'Production runtime for a DAG of trading agents (NestJS): compile-time-typed graph wiring where invalid connections fail the build, staleness gates and circuit breakers, idempotent order submission, and an append-only event log that feeds the research loop. Hexagonal architecture with CI-enforced boundaries; validated on testnet. 994 tests.',
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['typescript'],
+    stack: ['nestjs', 'postgres', 'docker'],
+    repo: 'https://github.com/rux-eth/maestro'
+  },
+  {
+    id: 'rux-ml',
+    title: 'Rux-ML',
+    description:
+      'Config-driven ML workbench for gradient-boosted models (XGBoost, LightGBM, CatBoost): Optuna hyperparameter search with purged, time-aware cross-validation for leakage control, full per-trial reproducibility provenance (config hashes, data hashes, seeds, environment), and a gated model registry with atomic champion promotion. 407 tests.',
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['python'],
+    stack: ['xgboost', 'optuna'],
+    repo: 'https://github.com/rux-eth/rux-ml'
+  },
+  {
+    id: 'pp-editor',
+    title: 'PP-Editor',
+    description:
+      "AI-driven PowerPoint editor built on a hard constraint: anything the AI doesn't touch passes through untouched. Decks live as their raw OOXML tree with a JSON editing view projected on top; edits splice back with hash-verified passthrough regions and Microsoft's OpenXML SDK as the validation gate. The repo includes an end-to-end tour with before/after renders.",
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['python', 'csharp'],
+    stack: ['dotnet'],
+    repo: 'https://github.com/rux-eth/pp-editor',
+    article: 'https://github.com/rux-eth/pp-editor/blob/main/examples/tour.md'
+  },
+  {
+    id: 'vid-to-text',
+    title: 'Vid-To-Text',
+    description:
+      'Turns video into a timestamped speech/visual/sound timeline using local models — Whisper on CPU, Qwen3-VL via Ollama on GPU — with ffmpeg chunking, transcript-aware vision prompting, and crash-resumable jobs. A Rust client/server pair; nothing leaves my machines except an optional formatting step.',
+    thumbnail: defaultThumb,
+    status: 'Completed',
+    role: 'Back-End',
+    languages: ['rust'],
+    stack: ['ollama', 'ffmpeg', 'axum'],
+    repo: 'https://github.com/rux-eth/vid-to-text'
+  },
+  {
     id: 'hospital-in-a-box',
     title: 'Hospital In A Box',
     description:
       'Simulates a very common hospital integration task: ingest HL7 v2 messages (e.g., ADT admit/discharge/transfer and ORU lab results), transform them into FHIR resources (Patient, Encounter, Observation), store them, and show a simple web UI timeline (“Patient admitted → lab results posted → discharged”).',
     thumbnail: defaultThumb,
-    status: 'Building',
+    status: 'Completed',
     role: 'Full-Stack',
     languages: ['java', 'typescript', 'javascript'],
     stack: ['next', 'springboot', 'postgres'],
     repo: 'https://github.com/rux-eth/hospital-in-a-box'
   },
   {
-    id: 'personal',
-    title: 'Personal Site',
-    description:
-      "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
-    thumbnail: portfolioSite,
-    status: 'Completed',
-    role: 'Full-Stack',
-    languages: ['typescript', 'javascript'],
-    stack: ['next', 'tailwind', 'fastify'],
-    website: 'https://www.maxrux.dev/'
-  },
-  {
     id: 'zerepy',
     title: 'ZerePy',
     description:
-      'ZerePy an open-source framework for AI agents written in Python. I collaborated with several other talented engineers to build this framework. I was responsible for on-chain crypto integration as well as refactoring the codebase to be more efficient and enforce strict typing to reduce bugs.',
+      'ZerePy is an open-source framework for AI agents written in Python. I collaborated with several other talented engineers to build this framework during my time at Blorm. I was responsible for platform integrations as well as refactoring the codebase to be more efficient and enforce strict typing to reduce bugs.',
     thumbnail: zerepyImage,
     status: 'Completed',
     role: 'Back-End',
@@ -73,7 +144,7 @@ export const works: readonly WorkInfo[] = [
     id: 'blormmy',
     title: 'Blormmy',
     description:
-      'Blormmy is an AI powered chat assistant that helps users perform actions on chain. I led backend development and was responsible for building the back-end entirely from scratch using a hexagonal/vertical-slice architecture design. The backend is responsible for deploying zerepy instances to the phala network via TEEs. It also manages users, stores agents action history in the DB, routes agent commands to the appropriate zerepy instance, and allows for plugins to process agent commands from numerous platforms such as X and discord with username-to-address resolvement.',
+      'Blormmy is an AI-powered chat assistant that performs actions on behalf of users. I led backend development, building the service from scratch on a hexagonal/vertical-slice architecture (NestJS/PostgreSQL): per-user agent routing, persistent action history, secure APIs, automated deployment of agent instances to isolated compute, and a plugin layer that processes agent commands from platforms like X and Discord.',
     thumbnail: blormmyImage,
     status: 'Completed',
     role: 'Back-End',
@@ -84,7 +155,7 @@ export const works: readonly WorkInfo[] = [
     id: 'paystand',
     title: 'Paystand',
     description:
-      'Involved with numerous projects at Paystand. I was responsible for building a new payment method for the Paystand platform called cross border payments. Cross border payments was a payment system that used the bitcoin lightning network to process large B2B payments across borders instantly and without fees. I also worked on secure enterprise funding, a decentralized way for the organization to fund crypto projects. I worked closely with the Vice President of Engineering to build this system and learned a lot about software architecture and design patterns. I consider my 1.5 years at Paystand to be one of the most valuable experiences in my career and the lessons and skills I learned there have been priceless.',
+      'Involved with numerous projects across ~2 years at Paystand. I designed a zero-fee, instant-transaction payment system for large cross-border B2B payments (hexagonal architecture, plug-and-play providers), working directly with the VP of Engineering on architecture, CI/CD, and launch. I also led a small team building secure multi-approval enterprise funding flows, and built and operated a service anchoring transaction state for auditability. The lessons and skills I learned there have been priceless.',
     thumbnail: paystandImage,
     status: 'Completed',
     role: 'Full-Stack',
@@ -92,22 +163,10 @@ export const works: readonly WorkInfo[] = [
     stack: ['next', 'hardhat', 'foundry', 'postgres', 'ethers']
   },
   {
-    id: 'crypto-rates',
-    title: 'Crypto Rates',
-    description:
-      "Computes exchanges rates using CoinGecko's API. Supports thousands of cryptos and limits API calls and caches rates into MongoDB. Was originally going to be a back-end application that computes Defi taxes but I decided it would be better to be its own application. This project was a major learning experience and has taught me most of what I know about algorithms and debugging. Also, I became very efficient at reading documentation after this project.",
-    thumbnail: cryptoRates,
-    status: 'Completed',
-    role: 'Back-End',
-    languages: ['typescript', 'javascript'],
-    stack: ['express', 'mongodb'],
-    repo: 'https://github.com/rux-eth/crypto-rates'
-  },
-  {
     id: 'rarity-ranker',
     title: 'Rarity Ranker',
     description:
-      'An implicit way of defining rarities for each trait in an NFT collection. A simple and over-the-top program but I made it to help me learn more about Rust.',
+      'An NLP + Elo-rating system built during my time at Treasure — generated tens of millions of ranked game items with tuned rarity distributions. Written in Rust with heavy testing.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
@@ -116,34 +175,10 @@ export const works: readonly WorkInfo[] = [
     repo: 'https://github.com/rux-eth/rarity-ranker'
   },
   {
-    id: 'nft-data-miner-v2',
-    title: 'NFT Data Miner V2',
-    description:
-      "Mines NFT collection data and compiles it into an csv file. It is currently not efficient and takes hours to get data for just one collection. I wrote it when I wasn't that experienced with Rust. Looking back, it could be optimized by encoding function parameters with the Rust library 'ethabi' and submitting thousands of requests at a time in a batch contract call then decoding the output. This would reduce the time to get data for each collection to minutes. I will do this when I have time.",
-    thumbnail: defaultThumb,
-    status: 'Deprecated',
-    role: 'Back-End',
-    languages: ['rust'],
-    stack: [],
-    repo: 'https://github.com/rux-eth/nft-data-miner-rust'
-  },
-  {
-    id: 'eth-scanner',
-    title: 'Ethereum Scanner',
-    description:
-      'A Typescript/Javascript library for getting token information on Ethereum accounts. This library is incomplete and I may or may not come back and complete it. I would love to, but i just dont have time at the moment. If I do, I will open a trello board to manage it and I will post the link here.',
-    thumbnail: defaultThumb,
-    status: 'Deprecated',
-    role: 'Back-End',
-    languages: ['typescript', 'javascript', 'solidity'],
-    stack: ['ethers', 'hardhat'],
-    repo: 'https://github.com/rux-eth/eth-scanner'
-  },
-  {
     id: 'club-cards',
     title: 'Club Cards',
     description:
-      'An expandable ERC1155 card collection. I wrote the back-end, not the front. This included the contract and API that handles claims. Gas fees were insanely high when this project was in development so efficiency was a priority. Claim authorization is handled off-chain and signatures are verified on-chain to reduce transaction costs.',
+      'An expandable digital card collection. I wrote the back-end: the protocol contract and the API that handles claims. Transaction costs were a major constraint during development, so efficiency was the priority — claim authorization is handled off-chain and signatures are verified on-chain, with bit-level optimization to cut storage and transaction costs.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',

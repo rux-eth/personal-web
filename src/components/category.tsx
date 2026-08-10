@@ -42,7 +42,17 @@ const stackDefs = {
   wasm: { name: 'WebAssembly', rgb: [233, 10, 245] },
   nestjs: { name: 'NestJS', rgb: [255, 153, 0] },
   postgres: { name: 'Postgres', rgb: [102, 51, 153] },
-  springboot: { name: 'Spring Boot', rgb: [0, 150, 136] }
+  springboot: { name: 'Spring Boot', rgb: [0, 150, 136] },
+  docker: { name: 'Docker', rgb: [29, 155, 209] },
+  mcp: { name: 'MCP', rgb: [217, 119, 87] },
+  redis: { name: 'Redis', rgb: [220, 60, 60] },
+  drizzle: { name: 'Drizzle', rgb: [163, 230, 53] },
+  xgboost: { name: 'XGBoost', rgb: [30, 144, 255] },
+  optuna: { name: 'Optuna', rgb: [138, 43, 226] },
+  dotnet: { name: '.NET', rgb: [140, 82, 255] },
+  ollama: { name: 'Ollama', rgb: [230, 230, 230] },
+  ffmpeg: { name: 'FFmpeg', rgb: [70, 180, 100] },
+  axum: { name: 'Axum', rgb: [255, 120, 80] }
 }
 const languageDefs = {
   typescript: { name: 'Typescript', rgb: [49, 120, 198] },
@@ -50,7 +60,8 @@ const languageDefs = {
   solidity: { name: 'Solidity', rgb: [98, 126, 234] },
   rust: { name: 'Rust', rgb: [230, 123, 16] },
   javascript: { name: 'Javascript', rgb: [240, 219, 79] },
-  java: { name: 'Java', rgb: [176, 114, 25] }
+  java: { name: 'Java', rgb: [176, 114, 25] },
+  csharp: { name: 'C#', rgb: [178, 102, 255] }
 }
 const roleDefs = {
   'Full-Stack': { name: 'Full-Stack', rgb: [255, 255, 0] },
