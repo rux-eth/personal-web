@@ -18,7 +18,7 @@ const TLDR: React.FC = () => {
   const sections: Section[] = [
     {
       header: 'whoami',
-      content: `Maxwell Rux — Rux professionally, Max to friends. (There are too many Maxes.) I build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things. My software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
+      content: `Maxwell Rux — Rux professionally, Max to friends. (There are too many Maxes.)\n\nI build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things.\n\nMy software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
     },
     {
       header: 'evidence',
@@ -82,10 +82,9 @@ const TLDR: React.FC = () => {
         <div className="text-white flex flex-col space-y-[0.4ch]">
           <div>
             <p className="font-bold text-[3.4ch]">Rux</p>
-            <p className="opacity-70 mt-[-1ch] text-[1.3ch]">ENS: rux.eth</p>
           </div>
 
-          <p>Software Engineer — Rust · ML · Agents</p>
+          <p>Software Engineer — Trading Systems · ML · Agents</p>
         </div>
       </div>
       {sections.map(s => (
