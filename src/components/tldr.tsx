@@ -2,7 +2,6 @@ import { CommentedContent, CommentedHeader } from '@src/components/commented'
 import Seperator from '@src/components/seperator'
 import { compileTags, works } from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { getAge, getWorkingYears } from '@src/utils/time'
 import React, { type JSX } from 'react'
 import Link from './link'
 import { WorkPreviews } from './works'
@@ -18,13 +17,20 @@ const TLDR: React.FC = () => {
   const fs = dynamicFont(70)
   const sections: Section[] = [
     {
-      header: 'Introduction',
-      content: `Hello, I am Rux, a ${getAge()} year old software engineer from the midwest, USA. I work across fintech, payments, and AI — Rust and Python ML systems, TypeScript backends, and LLM/agent infrastructure, from architecture through production. Since I was young, I have had a strong interest in computers, and that interest eventually became my career: several startups, a lot of shipped systems, and plenty of mistakes I learned from along the way. I believe in strong values of integrity, discipline, honesty, and hard work — professionally and otherwise. Currently I am finishing a degree in computer science and mathematics while building the systems below.`
+      header: 'whoami',
+      content: `Maxwell Rux — Rux professionally, Max to friends. (There are too many Maxes.) I build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things. My software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
     },
     {
-      header: 'Work',
-      content: `I have been a professional software engineer for over ${getWorkingYears()} years — payment infrastructure at Paystand, AI-agent backends at Blorm, and digital-asset platforms earlier on. These days my own work sits at the intersection of machine learning and markets: a quantitative research and execution platform in Rust, Python, and TypeScript, plus AI products and infrastructure. I have always been a learner, researching interests until I understand them deeply — and I test heavily enough to defend everything I ship, line by line.`,
-
+      header: 'evidence',
+      content: 'Adjectives are cheap, so here are specifics instead:',
+      highlights: {
+        'On the record': [
+          'A 23-crate Rust research monorepo for quantitative trading; its execution core is public, with KKT-condition probes that verify the optimizer against closed-form references instead of trusting the solver',
+          'A production agent runtime where invalid graph wiring fails at compile time, orders are idempotent by construction, and every event lands in an append-only log — 994 of the 2,000+ tests across my public systems live here',
+          'An AI assistant with write access to my actual calendar and tasks — untrusted content is quarantined, destructive actions are verified against fresh reads and approval-gated, and its memory is one git revert from undone',
+          'An ML workbench where every trial carries full reproducibility provenance — config hashes, data hashes, seeds, environment — and models are promoted through a gated registry, never by hand'
+        ]
+      },
       extraCompenent: (
         <>
           <Seperator />
@@ -45,56 +51,11 @@ const TLDR: React.FC = () => {
       )
     },
     {
-      header: 'Personal',
-      content:
-        "In my free time I am usually working on side-projects. However when I'm not developing software, I am usually either enjoying nature or studying.",
-      highlights: {
-        'Start a conversation with me about': [
-          'Tech',
-          'Finance/Trading',
-          'Business',
-          'Philosophy',
-          'Psychology',
-          'Gaming',
-          'Music',
-          'Movies',
-          'Fitness',
-          'Motorcycles (I have a 2024 Yamaha R3 and a 2025 Kawasaki ZX-6R)',
-          'Fishing/Hunting'
-        ],
-        'Favorite Movies': [
-          'Lord of the Rings',
-          'Scarface',
-          'American Psycho',
-          'Gran Torino',
-          'Straight Outta Compton',
-          'The Wolf of Wall Street',
-          'The Social Network',
-          'The Blues Brothers',
-          'Life of Pi'
-        ],
-        'Favorite Books': [
-          'Atomic Habits',
-          'The Art of War',
-          'Rich Dad Poor Dad',
-          'Harry Potter'
-        ],
-        'Favorite Music': [
-          'Rap',
-          'Country (only the classics, 70s - early 2000s)',
-          'Metal',
-          'Electronic',
-          'Hip-Hop'
-        ]
-      }
-    },
-    {
-      header: 'Contact',
-      content:
-        'Feel free to contact me if you have any questions or business inquiries.',
+      header: 'now',
+      content: `Finishing a computer science and mathematics degree while building the trading platform in the open. Off the clock: two motorcycles, old country, and more philosophy than is strictly useful. If any of this reads like your kind of engineering — or your kind of conversation — I'm easy to reach.`,
       extraCompenent: (
         <Link className="white-comp text-[2.2ch]" href={'/contact'}>
-          Contact Me
+          Get In Touch
         </Link>
       )
     }
@@ -124,7 +85,7 @@ const TLDR: React.FC = () => {
             <p className="opacity-70 mt-[-1ch] text-[1.3ch]">ENS: rux.eth</p>
           </div>
 
-          <p>Full-Stack Software Engineer</p>
+          <p>Software Engineer — Rust · ML · Agents</p>
         </div>
       </div>
       {sections.map(s => (
