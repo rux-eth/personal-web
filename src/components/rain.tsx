@@ -1,7 +1,4 @@
-import avaxLogo from '@src/images/icons/avax-logo.png'
-import btcLogo from '@src/images/icons/btc-logo.png'
 import cssIcon from '@src/images/icons/cssIcon.png'
-import ethLogo from '@src/images/icons/eth-logo.png'
 import expressJSIcon from '@src/images/icons/expressJSIcon.png'
 import GitIcon from '@src/images/icons/GitIcon.png'
 import htmlIcon from '@src/images/icons/htmlIcon.png'
@@ -10,7 +7,6 @@ import javascriptIcon from '@src/images/icons/javascriptIcon.png'
 import LinuxIcon from '@src/images/icons/LinuxIcon.png'
 import nodeJSIcon from '@src/images/icons/nodeJSIcon.png'
 import pythonIcon from '@src/images/icons/pythonIcon.png'
-import solLogo from '@src/images/icons/sol-logo.png'
 import { floating, integer, pickset } from '@src/utils/chance'
 import Image, { type StaticImageData } from 'next/image'
 import type { FC, JSX, RefObject } from 'react'
@@ -42,7 +38,7 @@ const config: Config = {
   vertSpread: 7
 }
 
-const coins = [btcLogo, ethLogo, solLogo, avaxLogo]
+const slotIcons = [pythonIcon, nodeJSIcon, GitIcon, LinuxIcon]
 // Same icon order as the former string pool — rain layouts are seeded-random
 // and draw-order-sensitive (see tests/visual/fixtures.ts).
 const pool: StaticImageData[] = [
@@ -175,7 +171,7 @@ const Slot: FC<RainProps> = ({ refContain, scrollY }) => {
           transform: `translateY(${progress * 105}%)`
         }}
       >
-        {coins.map((c, index) => (
+        {slotIcons.map((c, index) => (
           <Image
             alt=""
             loading="eager"

@@ -4,7 +4,6 @@ import transition from '@src/styles/utils'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Hamburger from 'hamburger-react'
 import { useAtom } from 'jotai'
-import Image from 'next/image'
 import { type FC, useEffect, useState } from 'react'
 import Link from './link'
 import Links from './links'
@@ -43,9 +42,9 @@ const Navbar: FC<{ path: string }> = ({ path }) => {
       if (raf) cancelAnimationFrame(raf)
     }
   }, [path])
-  const { w, h } = (() => {
+  const { h } = (() => {
     const dynHNum = parseInt(dynamicFont(110), 10)
-    return { w: dynHNum / 1.666, h: dynHNum }
+    return { h: dynHNum }
   })()
 
   return (
@@ -81,19 +80,7 @@ const Navbar: FC<{ path: string }> = ({ path }) => {
             alignItems: 'center'
           }}
         >
-          <Image
-            className="grid-item-thumbnail"
-            src="/eth-logo-white.png"
-            alt=""
-            width={w}
-            height={h}
-            // Explicit box: pre-13 next/image forced the w×h box; the modern
-            // component lets the file's natural ratio set height (height:auto
-            // preflight), which shifts everything below the sticky navbar by a
-            // fraction of a pixel. Pin the authored box.
-            style={{ width: w, height: h }}
-          />
-          <span>Rux.eth</span>
+          <span>Rux</span>
         </Link>
 
         <div

@@ -10,7 +10,7 @@ interface LayoutProps {
 // The page-transition wrapper (formerly a duplicated motion.article here)
 // lives in _app.tsx since PR-007 (D3): this layout renders content only.
 const Layout: FC<PropsWithChildren<LayoutProps>> = ({ children, title }) => {
-  const t = title ? `${title} - Rux.eth` : 'Rux.eth'
+  const t = title ? `${title} - Rux` : 'Rux'
   return (
     <>
       {t && (
