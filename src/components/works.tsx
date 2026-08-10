@@ -1,6 +1,11 @@
 import { categories, Tag } from '@src/components/category'
 import Link from '@src/components/link'
-import { compileTags, tagCounts, WorkInfo } from '@src/data/works'
+import {
+  compileTags,
+  defaultThumbnail,
+  tagCounts,
+  WorkInfo
+} from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Image from 'next/image'
 import { FC, Fragment, JSX, useState } from 'react'
@@ -419,10 +424,17 @@ export const WorkPage: FC<{ work: WorkInfo }> = ({ work }) => {
           }}
         >
           <BuildJSON />
-          {thumbnail === '/thumbnails/default.png' ? (
+          {/* Compare by src, not identity: works data crosses the
+              getStaticProps JSON boundary, so the StaticImageData object is
+              a fresh copy on the client. */}
+          {thumbnail.src === defaultThumbnail.src ? (
             <CommentedHeader content="No Preview Image Available" scale={120} />
           ) : (
-            <img src={thumbnail} />
+            <Image
+              src={thumbnail}
+              alt={title}
+              style={{ width: '100%', height: 'auto' }}
+            />
           )}
         </div>
       </div>

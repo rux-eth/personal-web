@@ -5,12 +5,22 @@ import {
   Tag,
   WorkStatus
 } from '@src/components/category'
+import blormmyImage from '@src/images/thumbnails/blormmy-image.png'
+import cryptoRates from '@src/images/thumbnails/crypto-rates.png'
+import defaultThumb from '@src/images/thumbnails/default.png'
+import paystandImage from '@src/images/thumbnails/paystand-image.png'
+import portfolioSite from '@src/images/thumbnails/portfolio-site.png'
+import zerepyImage from '@src/images/thumbnails/zerepy-image.png'
+import type { StaticImageData } from 'next/image'
+
+// Exported so consumers can branch on the placeholder (work-detail page).
+export const defaultThumbnail = defaultThumb
 
 export interface WorkInfo {
   id: string
   title: string
   description: string
-  thumbnail: string
+  thumbnail: StaticImageData
   status: WorkStatus
   role: Role
   languages: readonly LanguageTag[]
@@ -27,7 +37,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Hospital In A Box',
     description:
       'Simulates a very common hospital integration task: ingest HL7 v2 messages (e.g., ADT admit/discharge/transfer and ORU lab results), transform them into FHIR resources (Patient, Encounter, Observation), store them, and show a simple web UI timeline (“Patient admitted → lab results posted → discharged”).',
-    thumbnail: '/thumbnails/default.png',
+    thumbnail: defaultThumb,
     status: 'Building',
     role: 'Full-Stack',
     languages: ['java', 'typescript', 'javascript'],
@@ -39,7 +49,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Personal Site',
     description:
       "Website to show what I'm working on and what I've completed. The UI is completed, thinking about making a client page for them to manage projects. Visit the trello link for updates.",
-    thumbnail: '/thumbnails/portfolio-site.png',
+    thumbnail: portfolioSite,
     status: 'Completed',
     role: 'Full-Stack',
     languages: ['typescript', 'javascript'],
@@ -51,7 +61,7 @@ export const works: readonly WorkInfo[] = [
     title: 'ZerePy',
     description:
       'ZerePy an open-source framework for AI agents written in Python. I collaborated with several other talented engineers to build this framework. I was responsible for on-chain crypto integration as well as refactoring the codebase to be more efficient and enforce strict typing to reduce bugs.',
-    thumbnail: '/thumbnails/zerepy-image.png',
+    thumbnail: zerepyImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['python'],
@@ -64,7 +74,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Blormmy',
     description:
       'Blormmy is an AI powered chat assistant that helps users perform actions on chain. I led backend development and was responsible for building the back-end entirely from scratch using a hexagonal/vertical-slice architecture design. The backend is responsible for deploying zerepy instances to the phala network via TEEs. It also manages users, stores agents action history in the DB, routes agent commands to the appropriate zerepy instance, and allows for plugins to process agent commands from numerous platforms such as X and discord with username-to-address resolvement.',
-    thumbnail: '/thumbnails/blormmy-image.png',
+    thumbnail: blormmyImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['typescript'],
@@ -75,7 +85,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Paystand',
     description:
       'Involved with numerous projects at Paystand. I was responsible for building a new payment method for the Paystand platform called cross border payments. Cross border payments was a payment system that used the bitcoin lightning network to process large B2B payments across borders instantly and without fees. I also worked on secure enterprise funding, a decentralized way for the organization to fund crypto projects. I worked closely with the Vice President of Engineering to build this system and learned a lot about software architecture and design patterns. I consider my 1.5 years at Paystand to be one of the most valuable experiences in my career and the lessons and skills I learned there have been priceless.',
-    thumbnail: '/thumbnails/paystand-image.png',
+    thumbnail: paystandImage,
     status: 'Completed',
     role: 'Full-Stack',
     languages: ['typescript', 'rust', 'javascript'],
@@ -86,7 +96,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Crypto Rates',
     description:
       "Computes exchanges rates using CoinGecko's API. Supports thousands of cryptos and limits API calls and caches rates into MongoDB. Was originally going to be a back-end application that computes Defi taxes but I decided it would be better to be its own application. This project was a major learning experience and has taught me most of what I know about algorithms and debugging. Also, I became very efficient at reading documentation after this project.",
-    thumbnail: '/thumbnails/crypto-rates.png',
+    thumbnail: cryptoRates,
     status: 'Completed',
     role: 'Back-End',
     languages: ['typescript', 'javascript'],
@@ -98,7 +108,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Rarity Ranker',
     description:
       'An implicit way of defining rarities for each trait in an NFT collection. A simple and over-the-top program but I made it to help me learn more about Rust.',
-    thumbnail: '/thumbnails/default.png',
+    thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
     languages: ['rust'],
@@ -110,7 +120,7 @@ export const works: readonly WorkInfo[] = [
     title: 'NFT Data Miner V2',
     description:
       "Mines NFT collection data and compiles it into an csv file. It is currently not efficient and takes hours to get data for just one collection. I wrote it when I wasn't that experienced with Rust. Looking back, it could be optimized by encoding function parameters with the Rust library 'ethabi' and submitting thousands of requests at a time in a batch contract call then decoding the output. This would reduce the time to get data for each collection to minutes. I will do this when I have time.",
-    thumbnail: '/thumbnails/default.png',
+    thumbnail: defaultThumb,
     status: 'Deprecated',
     role: 'Back-End',
     languages: ['rust'],
@@ -122,7 +132,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Ethereum Scanner',
     description:
       'A Typescript/Javascript library for getting token information on Ethereum accounts. This library is incomplete and I may or may not come back and complete it. I would love to, but i just dont have time at the moment. If I do, I will open a trello board to manage it and I will post the link here.',
-    thumbnail: '/thumbnails/default.png',
+    thumbnail: defaultThumb,
     status: 'Deprecated',
     role: 'Back-End',
     languages: ['typescript', 'javascript', 'solidity'],
@@ -134,7 +144,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Club Cards',
     description:
       'An expandable ERC1155 card collection. I wrote the back-end, not the front. This included the contract and API that handles claims. Gas fees were insanely high when this project was in development so efficiency was a priority. Claim authorization is handled off-chain and signatures are verified on-chain to reduce transaction costs.',
-    thumbnail: '/thumbnails/default.png',
+    thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
     languages: ['typescript', 'solidity'],
