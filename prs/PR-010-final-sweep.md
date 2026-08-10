@@ -214,7 +214,7 @@ Closes out all sections; verifies § Overview end-state.
 - [x] `biome check` green — **the entire PR-002 off-list is retired; config carries zero rule overrides** (full recommended preset). Violations fixed; the only survivors are 8 per-line `biome-ignore` suppressions each naming its real justification (constant-trip-count hook loop; deliberate `[path]` effect dep; drawer dismiss affordances with Esc/focus-trap keyboard parity; index-in-key on render-static arrays)
 - [x] `yarn tsc --noEmit` + `yarn build` green; build output: **16 static pages** (was 17 — `/loading` absent), all ○/●
 - [x] No file in `src/` is unimported — mechanical importer sweep in State Assessment; deletions leave zero orphans
-- [ ] `/loading` returns the 404 page on the deployed preview (verify after merge deploy)
+- [x] `/loading` returns the 404 page on production (verified 2026-08-10 post-merge: 404 status + NOT FOUND title; `/sw.js` 200 with amended header; all routes 200)
 - [x] `public/sw.js` retained; header comment amended to the indefinite-retention decision
 - [x] Budget revisit: **works-index 80k / work-* 45k budgets retired** — three consecutive probe runs at `maxDiffPixels: 0` passed 88/88 each (PR-009's fixed-size images removed the WebKit resampling nondeterminism); all full-page captures now share the PR-001-calibrated 8000 budget
 - [x] Design-projection deltas documented (see Measurements below)
