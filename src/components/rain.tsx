@@ -137,7 +137,7 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
                     }%) translateX(${item.transX * (progress + 1)}%) rotate(${
                       item.rot * progress - item.rot
                     }turn) `,
-                    border: '1px solid black'
+                    border: '2px solid black'
                   }}
                 />
               ))}
