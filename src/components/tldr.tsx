@@ -52,7 +52,7 @@ const TLDR: React.FC = () => {
     },
     {
       header: 'now',
-      content: `Finishing a computer science and mathematics degree while building the trading platform in the open. Off the clock: a motorcycle, old country, and a philosophy habit I've stopped apologizing for. If any of this reads like your kind of engineering — or your kind of conversation — I'm easy to reach.`,
+      content: `Finishing a computer science and mathematics degree while building the trading platform in the open. Off the clock: a motorcycle, old country, and a philosophy habit I've stopped apologizing for. If any of this reads like your kind of engineering, or your kind of conversation, I'm easy to reach.`,
       extraCompenent: (
         <Link className="white-comp text-[2.2ch]" href={'/contact'}>
           Get In Touch
