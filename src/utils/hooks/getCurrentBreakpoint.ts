@@ -1,8 +1,11 @@
-import { Breakpoint, breakpoints as bpValues } from '@src/styles/constants'
+import {
+  Breakpoint,
+  breakpoints as getBreakpoints
+} from '@src/utils/hooks/breakpoints'
 import useMatchesMediaQuery from './useMatchesMediaQuery'
 
 const getCurrentBreakpoint = (): [string, number] => {
-  const breakpoints: Array<[string, number]> = Object.entries(bpValues)
+  const breakpoints: Array<[string, number]> = Object.entries(getBreakpoints())
   let res: [string, number] = breakpoints[0]
   for (let i = 1; i < breakpoints.length; i++) {
     let curr = breakpoints[i]

@@ -45,7 +45,7 @@ Site copy is rendered to look like code comments via `src/components/commented.t
 
 ### Styling
 
-Tailwind 3 (JIT) with custom breakpoints (`xs/mb/sm/md/lg/xl/2xl` plus `ha`, a `(hover: hover)` media-query breakpoint used to disable hover animations on touch devices). No component library — drawer, snackbar, and the breakpoint hook are hand-rolled (`src/components/`, `src/utils/hooks/`). Tailwind 4 / CSS-first config lands in PR-008.
+Tailwind 4, CSS-first config: `src/styles/global.css` holds the **single theme source** (`@theme static` — custom breakpoints `xs/mb/sm/md/lg/xl/2xl`, fonts, colors incl. v3-pinned default-palette hexes), a `ha` `@custom-variant` for hover capability, a base-layer button-cursor restore, and `@utility` overrides keeping v3 `space-x/y` semantics (margin-top/left on following siblings — load-bearing because the site spaces in `ch` units across mixed font sizes). There is no `tailwind.config.js`. The runtime breakpoint hooks read the same `--breakpoint-*` variables via `src/utils/hooks/breakpoints.ts` (SSR renders use its documented xs seed). No component library — drawer, snackbar, and the breakpoint hook are hand-rolled.
 
 ### State
 
