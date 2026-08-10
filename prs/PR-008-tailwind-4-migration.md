@@ -1,6 +1,6 @@
 # PR-008: Tailwind 4 migration
 
-**Landed-in:** (open — GitHub PR #25, awaiting merge)
+**Landed-in:** master via GitHub PR #25, 2026-08-09 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 
