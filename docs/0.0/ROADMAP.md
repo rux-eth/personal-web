@@ -12,7 +12,7 @@ Ordered PR sequence implementing the 2026-08-07 design (see `docs/0.0/DESIGN-log
 | PR-006 | Works content architecture (src/data/works.ts typed module, SSG, dissolve Works class; fix arrow-rotate bug, 404-flash, missing keys) | PR-001 | D7, D9 | merged (GitHub PR #23) |
 | PR-007 | Framework upgrade (Next 16, React 19, TS 5; framer-motion → motion v13 swap forced by peer deps; codemods; FC-children fixes) | PR-003, PR-004 | D1, D3 | merged (GitHub PR #24) |
 | PR-008 | Tailwind 4 migration (CSS-first config, single theme source) | PR-007 | D2 | merged (GitHub PR #25) |
-| PR-009 | Assets (next/font/local subset woff2; next/image everywhere; compress sources; delete dead public files after reference-check) | PR-007 | D6 | not started |
+| PR-009 | Assets (licensed typefaces via next/font — D6 amended; next/image everywhere; compress sources; dead files deleted) | PR-007 | D6 | merged (GitHub PR #26) |
 | PR-010 | Final sweep (remaining dead code/routes incl. /loading decision, interval-leak fix, re-measure bundle vs projections, doc reconciliation) | all prior | D5, D9 | not started |
 
 Ordering rationale:

@@ -1,6 +1,6 @@
 # PR-009: Assets — fonts, images, dead files
 
-**Landed-in:** (open — GitHub PR #26, awaiting merge)
+**Landed-in:** master via GitHub PR #26, 2026-08-10 (pre-versioning; v0.0 roadmap)
 
 ## Before Implementation (NON-NEGOTIABLE)
 
