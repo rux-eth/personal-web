@@ -6,7 +6,8 @@ import {
   dynamicFont,
   dynamicFontNum
 } from '@src/utils/hooks/getCurrentBreakpoint'
-import React, { JSX } from 'react'
+import type React from 'react'
+import type { JSX } from 'react'
 import Link from './link'
 
 type Section = {

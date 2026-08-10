@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { FC, PropsWithChildren } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 import { CommentedHeader } from '../commented'
 import Seperator from '../seperator'
 

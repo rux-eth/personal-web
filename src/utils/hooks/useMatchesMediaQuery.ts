@@ -1,4 +1,4 @@
-import { Breakpoint, breakpoints } from '@src/utils/hooks/breakpoints'
+import { type Breakpoint, breakpoints } from '@src/utils/hooks/breakpoints'
 import { useEffect, useState } from 'react'
 
 export type MatchQueryType = 'up' | 'down' | 'between'

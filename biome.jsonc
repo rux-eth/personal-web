@@ -35,45 +35,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended",
-      // Rules below fire on PRE-REFACTOR code. PR-002 is config+format only
-      // (One PR, One Thing) — each rule is re-enabled by the PR that fixes
-      // its violations. Do not add new violations while a rule is off.
-      "correctness": {
-        "useJsxKeyInIterable": "off", // → PR-006 (missing keys, D9 bug list)
-        "useHookAtTopLevel": "off", // → PR-006 (Works class dissolution)
-        "useExhaustiveDependencies": "off", // → PR-004/PR-006 (effect rewrites)
-        "noUnusedImports": "off", // → PR-010 (dead-code sweep)
-        "noUnusedVariables": "off", // → PR-010
-        "useParseIntRadix": "off", // → PR-004 (dynamicFont replacement)
-        "noUnknownProperty": "off" // → PR-003 (style cleanup)
-      },
-      "suspicious": {
-        "noExplicitAny": "off", // → PR-006/PR-007 (typed works data, TS 5)
-        "noTsIgnore": "off", // → PR-007 (React 19 types remove the need)
-        "noArrayIndexKey": "off", // → PR-006
-        "noShadowRestrictedNames": "off", // → PR-005 (immutable Set/Map removal)
-        "noUnknownAtRules": "off" // tailwind directives; revisit in PR-008 (v4 syntax)
-      },
-      "style": {
-        "useImportType": "off", // → PR-007 (TS 5 modernization pass)
-        "useConst": "off", // → PR-010
-        "noNonNullAssertion": "off", // → PR-010
-        "useExponentiationOperator": "off", // → PR-004 (rain math rewrite)
-        "useNodejsImportProtocol": "off" // → PR-004 (crypto import deleted)
-      },
-      "a11y": {
-        "useButtonType": "off", // → PR-003 (button rewrites in MUI removal)
-        "useAltText": "off", // → PR-009 (next/image everywhere adds alt)
-        "noStaticElementInteractions": "off", // → PR-006 (works rewrite)
-        "useKeyWithClickEvents": "off", // → PR-006
-        "useGenericFontNames": "off" // → PR-009 (font stack rework)
-      },
-      "complexity": {
-        "useLiteralKeys": "off", // → PR-006
-        "noUselessFragments": "off", // → PR-006 (tldr fragment cleanup)
-        "noBannedTypes": "off" // → PR-006 (types.tsx rewrite)
-      }
+      "preset": "recommended"
     }
   }
 }

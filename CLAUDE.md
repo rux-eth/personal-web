@@ -2,15 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Active refactor (read first)
+## Project governance (read first)
 
-This repo is mid-refactor under a designed plan (design session 2026-08-07). Before changing code:
+The v0.0 refactor (design session 2026-08-07, PR-001…PR-010) is **complete**. The governing docs remain binding for future work:
 
-- **`docs/CONSTRAINTS.md`** — non-negotiables, including the **Pixel-Identical Invariant** (the rendered site must not change; sole exception: documented bug fixes) and the **Per-Phase Approval Gate**. These bind all work in this repo.
-- **`docs/ARCHITECTURE.md`** — the *target* architecture. The "Architecture" section below describes the *current* (pre-refactor) code, which is migration source, not spec.
-- **`docs/0.0/ROADMAP.md`** — the ordered PR sequence (PR-001…PR-010 in `prs/`). One PR, one thing; PR-001's visual baseline must exist before any refactor PR lands.
-- **`docs/0.0/DESIGN-log.md`** — all decisions (D1–D9) with research trails.
-- No PR is implemented before running `PROCEDURE-pr-research.md` from `~/templates/vibe-rails/` and filling the PR file's Research findings section.
+- **`docs/CONSTRAINTS.md`** — non-negotiables, including the **Pixel-Identical Invariant** (documented exceptions: D9 bug fixes; PR-009 typeface replacement) and the **Per-Phase Approval Gate**. Visual changes still diff against the Playwright baseline.
+- **`docs/ARCHITECTURE.md`** — the as-built architecture (matches the "Architecture" section below).
+- **`docs/0.0/ROADMAP.md`** — the completed PR sequence (PR-001…PR-010 in `prs/`); **`docs/0.0/DESIGN-log.md`** — all decisions (D1–D9) with research trails.
+- New PRs still run `PROCEDURE-pr-research.md` from `~/templates/vibe-rails/` before implementation.
 
 ## Commands
 

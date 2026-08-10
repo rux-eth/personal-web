@@ -1,6 +1,6 @@
 import { navDrawerAtom } from '@src/store/jotai'
 import { useAtom } from 'jotai'
-import { FC, useCallback, useEffect, useRef } from 'react'
+import { type FC, useCallback, useEffect, useRef } from 'react'
 import Links from './links'
 
 // Hand-rolled replacement for MUI's temporary Drawer (anchor="top").
@@ -76,6 +76,8 @@ const NavDrawer: FC = () => {
         transition: `visibility 0ms linear ${isOpen ? 0 : 195}ms`
       }}
     >
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: backdrop click-close is a pointer-redundant dismiss affordance; keyboard parity is the document-level Esc handler (modal convention, parity contract in PR-003) */}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: as above — the backdrop is not a control; it is inert to AT (aria-hidden wrapper when closed) */}
       <div
         onClick={close}
         style={{
@@ -88,6 +90,8 @@ const NavDrawer: FC = () => {
             : 'opacity 195ms cubic-bezier(0.4, 0, 0.6, 1)'
         }}
       />
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: any-click-inside-closes is pointer-redundant (links navigate-and-close; Esc closes for keyboard — PR-003 parity contract) */}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: as above — the panel is a container, not a control; making it a button would break its content semantics */}
       <div
         ref={panelRef}
         tabIndex={-1}

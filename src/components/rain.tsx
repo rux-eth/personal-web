@@ -12,8 +12,8 @@ import nodeJSIcon from '@src/images/icons/nodeJSIcon.png'
 import pythonIcon from '@src/images/icons/pythonIcon.png'
 import solLogo from '@src/images/icons/sol-logo.png'
 import { floating, integer, pickset } from '@src/utils/chance'
-import Image, { StaticImageData } from 'next/image'
-import { FC, JSX, RefObject } from 'react'
+import Image, { type StaticImageData } from 'next/image'
+import type { FC, JSX, RefObject } from 'react'
 
 interface RainItem {
   src: StaticImageData
@@ -109,8 +109,8 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
     >
       {(() => {
         const items: RainItem[] = variants[v % variants.length]
-        let allComps: JSX.Element[] = []
-        let splits: number = Math.floor(items.length / config.vertSpread)
+        const allComps: JSX.Element[] = []
+        const splits: number = Math.floor(items.length / config.vertSpread)
         for (let i = 0; i <= splits; i++) {
           const s: RainItem[] = items.slice(i * splits, i * splits + splits)
           allComps.push(
@@ -129,15 +129,15 @@ const Rain: FC<RainProps> = ({ refContain, scrollY, variant }) => {
                   className="bg-white border-black"
                   alt=""
                   loading="eager"
+                  // biome-ignore lint/suspicious/noArrayIndexKey: sources repeat, so index disambiguates; array is render-static, never reordered (stable-id generation deliberately deleted in D5)
                   key={`${item.src.src}_${index}`}
                   src={item.src}
                   style={{
                     zIndex: index,
                     borderRadius: '50%',
-                    transform: `scale(${item.scale}) translateY(${Math.pow(
-                      progress * 200000,
-                      50 / 100
-                    )}%) translateX(${item.transX * (progress + 1)}%) rotate(${
+                    transform: `scale(${item.scale}) translateY(${
+                      (progress * 200000) ** (50 / 100)
+                    }%) translateX(${item.transX * (progress + 1)}%) rotate(${
                       item.rot * progress - item.rot
                     }turn) `,
                     border: '3px solid '
@@ -179,6 +179,7 @@ const Slot: FC<RainProps> = ({ refContain, scrollY }) => {
           <Image
             alt=""
             loading="eager"
+            // biome-ignore lint/suspicious/noArrayIndexKey: sources repeat, so index disambiguates; array is render-static, never reordered
             key={`slot_${c.src}_${index}`}
             src={c}
             style={{ transform: 'scale(0.7)', borderRadius: '50%' }}

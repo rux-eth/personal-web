@@ -2,7 +2,7 @@ import Layout from '@src/components/layouts/pages'
 import Link from '@src/components/link'
 import Seperator from '@src/components/seperator'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { FC } from 'react'
+import type { FC } from 'react'
 
 const NotFound: FC = () => {
   const fs = dynamicFont(100)
