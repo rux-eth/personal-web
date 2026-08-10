@@ -1,7 +1,7 @@
 import Layout from '@src/components/layouts/main'
 import '@src/styles/global.css'
 import { AnimatePresence, domAnimation, LazyMotion, m } from 'motion/react'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 

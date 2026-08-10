@@ -1,14 +1,14 @@
-import { categories, Tag } from '@src/components/category'
+import { categories, type Tag } from '@src/components/category'
 import Link from '@src/components/link'
 import {
   compileTags,
   defaultThumbnail,
   tagCounts,
-  WorkInfo
+  type WorkInfo
 } from '@src/data/works'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Image from 'next/image'
-import { FC, Fragment, JSX, useState } from 'react'
+import { type FC, Fragment, type JSX, type ReactNode, useState } from 'react'
 import {
   FaArrowDown,
   FaGithub,
@@ -17,7 +17,7 @@ import {
   FaTrello
 } from 'react-icons/fa'
 import { CommentedContent, CommentedHeader } from './commented'
-import Contact, { ContactItem } from './contact'
+import Contact, { type ContactItem } from './contact'
 import Layout from './layouts/pages'
 import Seperator from './seperator'
 
@@ -121,12 +121,18 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
       >
         <div className="flex flex-col items-center space-y-2">
           <div>
-            <div
+            {/* APG disclosure pattern (PR-010 A3): native button + aria-expanded;
+                pixel-neutral — v4 preflight strips all painting button UA styles. */}
+            <button
+              type="button"
+              aria-expanded={isList}
               onClick={() => setIsList(!isList)}
               className="white-comp flex items-center cursor-pointer mt-[1ch]"
             >
               Filter Tags
-              <div
+              {/* span, not div: button's content model is phrasing content
+                  (layout-identical — flex items are blockified). */}
+              <span
                 style={{
                   marginLeft: '0.5ch',
                   // D9 fix: was `isList ? 'rotate(0.5)turn' : 'rotate(0.5)turn'`
@@ -137,8 +143,8 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
                 }}
               >
                 <FaArrowDown />
-              </div>
-            </div>
+              </span>
+            </button>
             <div
               className="absolute p-[0.3ch] left-[50%] w-[20ch] text-white shadow-sm rounded-[0.5ch] z-10 bg-black"
               style={{
@@ -172,6 +178,7 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
                         {(Object.entries(subTags) as Array<[Tag, number]>).map(
                           ([subTag, nums]): JSX.Element => (
                             <button
+                              type="button"
                               key={subTag}
                               className="white-comp w-full flex items-center justify-between"
                               onClick={() => handleFilterChange(subTag)}
@@ -208,12 +215,14 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
               <div className="bg-black">
                 <div className="grid grid-cols-2 gap-2 p-2 justify-items-stretch">
                   <button
+                    type="button"
                     className="bg-red-500 rounded-[0.5ch]"
                     onClick={() => setFilters(new Set())}
                   >
                     Reset
                   </button>
                   <button
+                    type="button"
                     className="bg-blue-500 rounded-[0.5ch]"
                     onClick={() => setIsList(false)}
                   >
@@ -239,6 +248,7 @@ export const WorksPage: FC<{ works: readonly WorkInfo[] }> = ({ works }) => {
         >
           {[...filters].map(filter => (
             <button
+              type="button"
               key={filter}
               className="my-[-0.31ch]"
               onClick={() => handleFilterChange(filter)}
@@ -277,7 +287,7 @@ export const WorkPage: FC<{ work: WorkInfo }> = ({ work }) => {
     display: 'inline',
     transform: 'scale(115%)'
   }
-  const DefaultLink: FC<{ children: any; href: string }> = ({
+  const DefaultLink: FC<{ children: ReactNode; href: string }> = ({
     children,
     href
   }) => {

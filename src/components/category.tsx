@@ -1,4 +1,4 @@
-import { FC, JSX } from 'react'
+import type { FC, JSX } from 'react'
 
 interface Category {
   name: string

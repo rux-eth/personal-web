@@ -13,7 +13,8 @@ test('navbar shown after scrolling past tldr', async ({ page }) => {
   await page.goto('/')
   await awaitAppReady(page)
   await page.evaluate(() => {
-    const tldr = document.getElementById('tldr')!
+    const tldr = document.getElementById('tldr')
+    if (!tldr) throw new Error('#tldr not found')
     window.scrollTo(0, window.scrollY + tldr.getBoundingClientRect().y + 10)
   })
   await settleAfterScroll(page)

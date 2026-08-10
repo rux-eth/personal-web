@@ -1,7 +1,7 @@
-import Contact, { ContactItem } from '@src/components/contact'
+import Contact, { type ContactItem } from '@src/components/contact'
 import Layout from '@src/components/layouts/pages'
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 
 const contacts: ContactItem[] = [
   {

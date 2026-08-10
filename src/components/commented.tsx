@@ -1,5 +1,5 @@
 import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
-import { FC, JSX, useEffect, useRef, useState } from 'react'
+import { type FC, type JSX, useEffect, useRef, useState } from 'react'
 
 interface CommentedHeaderProps {
   content: string
@@ -27,7 +27,7 @@ const CommentedContent: FC<CommentedContentProps> = ({
     const el = refContain.current
     if (!el) return
     const compute = () => {
-      const lineHeight = parseInt(el.style.lineHeight)
+      const lineHeight = parseInt(el.style.lineHeight, 10)
       if (lineHeight > 0) setNl(Math.floor(el.offsetHeight / lineHeight) - 2)
     }
     const ro = new ResizeObserver(compute)

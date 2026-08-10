@@ -1,6 +1,7 @@
 import useMatchesMediaQuery from '@src/utils/hooks/useMatchesMediaQuery'
 import useScrollY from '@src/utils/hooks/useScrollY'
-import React, { JSX, useRef } from 'react'
+import type React from 'react'
+import { type JSX, useRef } from 'react'
 import Rain, { Slot } from './rain'
 
 interface Pieces {
@@ -21,7 +22,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
   }
 
   const allPieces = ((): Pieces => {
-    let pieceMap: Map<String, JSX.Element> = new Map()
+    const pieceMap: Map<string, JSX.Element> = new Map()
 
     pieces.forEach((p, index) => {
       pieceMap.set(
@@ -79,7 +80,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
     >
       <div
         style={{
-          transform: `scale(${100 * Math.pow(scale, 1 / 4)}%)`
+          transform: `scale(${100 * scale ** (1 / 4)}%)`
         }}
       >
         {useMatchesMediaQuery('up', 'sm') ? (
@@ -95,6 +96,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
               {Object.values(allPieces)
                 .slice(0, 3)
                 .map((elem, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: allPieces is a render-static ordered map; slices never reorder
                   <div key={`elem_${index}`} className="min-w-[25vw]">
                     {elem}
                   </div>
@@ -110,6 +112,7 @@ const Masthead: React.FC<{ scale?: number }> = ({ scale }) => {
               {Object.values(allPieces)
                 .slice(4)
                 .map((elem, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: allPieces is a render-static ordered map; slices never reorder
                   <div key={`elem_${index}`} className="min-w-[25vw]">
                     {elem}
                   </div>

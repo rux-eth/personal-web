@@ -122,7 +122,6 @@ body {
 .white-comp {
   color: white;
   text-align: center;
-  justify: center;
   border-radius: 0.5ch;
   font-family: var(--font-dejavu-mono);
   background: black;

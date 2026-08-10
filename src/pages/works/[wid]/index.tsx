@@ -1,6 +1,6 @@
 import { WorkPage } from '@src/components/works'
-import { getWork, WorkInfo, works } from '@src/data/works'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { getWork, type WorkInfo, works } from '@src/data/works'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 interface Props {
   work: WorkInfo

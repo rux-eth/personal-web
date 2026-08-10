@@ -1,10 +1,10 @@
 # Architecture
 
-Target architecture for the personal-web refactor, decided 2026-08-07 (design session, see `docs/0.0/DESIGN-log.md` for decisions D1–D9 and their research trails). Describes the site as it will be once the roadmap in `docs/0.0/ROADMAP.md` completes. Where current code differs, the current code is the *migration source*, not the spec.
+Architecture of the site as built, decided 2026-08-07 (design session, see `docs/0.0/DESIGN-log.md` for decisions D1–D9 and their research trails) and implemented by the PR sequence in `docs/0.0/ROADMAP.md` (PR-001…PR-010, completed 2026-08-10).
 
 ## Overview
 
-A fully static 8-page portfolio (rux.eth / Maxwell Rux) on **Next.js 16 (Pages Router) + React 19 + TypeScript 5**, deployed on Vercel. Every page is pre-rendered at build time. There is no server-side data, no database, and no runtime write path.
+A fully static portfolio (rux.eth / Maxwell Rux; 16 prerendered pages across 6 routes) on **Next.js 16 (Pages Router) + React 19 + TypeScript 5**, deployed on Vercel. Every page is pre-rendered at build time. There is no server-side data, no database, and no runtime write path.
 
 ## Stack (D1, D2, D3, D5, D8)
 
@@ -33,7 +33,7 @@ Escalation path (documented, not built): if content grows long-form prose, move 
 
 - **Fonts** (D6 as amended 2026-08-10): **Inter Bold** via `next/font/google` (SF Pro Display replacement) and **DejaVu Sans Mono** subset woff2 via `next/font/local` (Menlo replacement) — the Apple fonts' licenses prohibit web embedding (see CONSTRAINTS.md Exception 2). Single load point, automatic preload, no render-blocking font CSS, no font `<link>`s in `_app`/`_document`. `font-display: swap`. Inter is loaded at weight 700 only — the old SF file was a Bold face serving every weight, so all sans text has always rendered bold.
 - **Images**: everything renders through `next/image` sized to true display dimensions — including work-detail images and masthead rain/slot icons. Source assets are compressed to sane sizes (no multi-MB PNGs in `public/`).
-- **Public dir**: contains only referenced assets. No service-worker/workbox/manifest files (PWA remnants deleted), no editor backups, no orphaned images.
+- **Public dir**: contains only referenced assets — plus one deliberate exception: `sw.js`, a self-destroying service worker retained **indefinitely** (never delete a once-served SW path; a 404 permanently strands legacy registrations — PR-009 Q3 / PR-010 Q2 research). Workbox/manifest PWA remnants, editor backups, and orphaned images are gone.
 
 ## State
 
@@ -41,4 +41,4 @@ jotai for the two genuinely global atoms (snackbar, nav-drawer open). Everything
 
 ## Verification (D8)
 
-A Playwright visual-regression harness with baseline screenshots captured from the pre-refactor build: **Chromium + WebKit** projects across the **xs/mb/sm/md viewport matrix (350/600/960/1280)**, named snapshots per page/state (individually updatable), interactive states (drawer, filter dropdown, snackbar, navbar-shown) and fixed-scroll-offset masthead captures. Determinism via seeded `Math.random` (`addInitScript`) and a scoped fake clock on `/loading`. Every PR must diff clean against the baseline; deliberate deviations (the D9 bug fixes) are reviewed and documented per PR. This is the enforcement mechanism for the pixel-identical constraint in `docs/CONSTRAINTS.md`.
+A Playwright visual-regression harness with baseline screenshots captured from the pre-refactor build: **Chromium + WebKit** projects across the **xs/mb/sm/md viewport matrix (350/600/960/1280)**, named snapshots per page/state (individually updatable), interactive states (drawer, filter dropdown, snackbar, navbar-shown) and fixed-scroll-offset masthead captures. Determinism via seeded `Math.random` (`addInitScript`). Every PR must diff clean against the baseline; deliberate deviations (the D9 bug fixes) are reviewed and documented per PR. This is the enforcement mechanism for the pixel-identical constraint in `docs/CONSTRAINTS.md`.

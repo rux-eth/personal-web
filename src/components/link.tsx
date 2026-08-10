@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { AnchorHTMLAttributes, forwardRef } from 'react'
+import { type AnchorHTMLAttributes, forwardRef } from 'react'
 
 // Slim replacement for the former MUI-composed Link (131 lines → this).
 // Same import surface for all consumers; external URLs (http/mailto) render a

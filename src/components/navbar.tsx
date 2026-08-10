@@ -5,13 +5,13 @@ import { dynamicFont } from '@src/utils/hooks/getCurrentBreakpoint'
 import Hamburger from 'hamburger-react'
 import { useAtom } from 'jotai'
 import Image from 'next/image'
-import { FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import Link from './link'
 import Links from './links'
 
 // Former MUI AppBar, preserved exactly: header element, full-width flex
 // column, fixed on home / sticky elsewhere, z-index 1201, glass styling.
-const Navbar: FC<{ path: any }> = ({ path }) => {
+const Navbar: FC<{ path: string }> = ({ path }) => {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useAtom(navDrawerAtom)
   // Navbar-local visibility check, preserving the original expression exactly:
   // pages WITHOUT #tldr always show the navbar (?? 0), home shows it once
@@ -22,6 +22,7 @@ const Navbar: FC<{ path: any }> = ({ path }) => {
   // transitions — deviation from the original ARCHITECTURE.md wording,
   // amended in the same commit; render economics are identical.)
   const [showNavbar, setShowNavbar] = useState(false)
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `path` is deliberately unused in the body — the layout (and navbar) persists across routes, so the [path] dep is what re-runs check() on navigation
   useEffect(() => {
     let raf = 0
     const check = () => {
@@ -43,7 +44,7 @@ const Navbar: FC<{ path: any }> = ({ path }) => {
     }
   }, [path])
   const { w, h } = (() => {
-    let dynHNum = parseInt(dynamicFont(110))
+    const dynHNum = parseInt(dynamicFont(110), 10)
     return { w: dynHNum / 1.666, h: dynHNum }
   })()
 

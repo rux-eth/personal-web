@@ -1,4 +1,4 @@
-import { test as base, expect, Page } from '@playwright/test'
+import { test as base, expect, type Page } from '@playwright/test'
 
 // Seeded PRNG override, injected before any page module executes (addInitScript
 // contract: "after the document was created but before any of its scripts were

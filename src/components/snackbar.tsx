@@ -1,6 +1,6 @@
 import snackbarAtom from '@src/store/jotai'
 import { useAtom } from 'jotai'
-import { FC, useCallback, useEffect, useRef } from 'react'
+import { type FC, useCallback, useEffect, useRef } from 'react'
 
 // Hand-rolled replacement for MUI Snackbar + filled Alert.
 // Behavior parity contract (research-locked in prs/PR-003-mui-removal.md):

@@ -1,6 +1,6 @@
 import { WorksPage } from '@src/components/works'
-import { WorkInfo, works } from '@src/data/works'
-import { GetStaticProps, NextPage } from 'next'
+import { type WorkInfo, works } from '@src/data/works'
+import type { GetStaticProps, NextPage } from 'next'
 
 interface Props {
   works: readonly WorkInfo[]

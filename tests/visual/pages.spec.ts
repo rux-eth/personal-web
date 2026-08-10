@@ -49,31 +49,17 @@ for (const [name, path] of staticPages) {
     //    works-filter state capture, and all per-work pages.
     // Home's unique content (tl;dr sections, buttons — the canary surface)
     // remains under the strict 8000 budget.
-    // works-index budget: WebKit resamples all 10 thumbnails from unstable
-    // srcset candidates per invocation (observed up to ~62.5k px, ~2% of the
-    // page). Structural grid regressions measure in the hundreds of thousands;
-    // grid text/chips are cross-covered by the tight filter-state capture and
-    // the per-work pages. PR-009's image rework (fixed sizes) is expected to
-    // remove the instability — revisit the budget then.
-    //
-    // work-* budget (raised 8000 → 45000 in PR-007, control-verified): WebKit's
-    // downscale quality for the large plain-<img> thumbnail is BISTABLE across
-    // invocations (sharp vs smooth resampling; measured 12k px on
-    // crypto-rates, 36k px on blormmy — the 4096×2458 source). Control
-    // experiment 2026-08-08: the pre-PR-007 master build failed these same
-    // baselines identically, and the two builds' fresh captures differ by only
-    // ~163 px (the 12×20 navbar logo, optimizer bytes) — environmental, not
-    // code. Page text/layout regressions measure far above this budget
-    // (PR-006's hydration bug: >100k). PR-009's image rework is expected to
-    // remove this too.
+    // works-index/work-* budgets RETIRED (PR-010, 2026-08-10): the 80k/45k
+    // allowances existed for WebKit's unstable thumbnail resampling (srcset
+    // instability on works-index; bistable downscale quality on work pages —
+    // history in git). PR-009's fixed-size image rework removed the
+    // nondeterminism: three consecutive probe runs at maxDiffPixels 0 passed
+    // 88/88 each. All full-page captures now share the 8000 budget calibrated
+    // in PR-001 (real regressions measure far above it — PR-006's hydration
+    // bug exceeded 100k).
     await expect(page).toHaveScreenshot(`${name}.png`, {
       fullPage: true,
-      maxDiffPixels:
-        name === 'works-index'
-          ? 80000
-          : name.startsWith('work-')
-            ? 45000
-            : 8000,
+      maxDiffPixels: 8000,
       mask:
         name === 'home'
           ? [page.locator('.w-screen').first(), page.locator('.grid').first()]

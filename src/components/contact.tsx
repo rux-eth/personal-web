@@ -1,6 +1,6 @@
 import snackbarAtom from '@src/store/jotai'
 import { useAtom } from 'jotai'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { FaCopy, FaLink } from 'react-icons/fa'
 import Link from './link'
 
@@ -26,6 +26,8 @@ const Contact: FC<ContactProps> = ({ items }) => {
     >
       {items.map(c => (
         <div
+          // D9 bug class (missing keys): title is unique per contact item
+          key={c.title}
           className="flex flex-col space-y-[0.5ch] w-[20ch] items-center border border-[#CCCCCC] rounded-[0.5ch] text-center p-[0.7ch] "
           style={{
             lineHeight: '4ch'
@@ -59,6 +61,7 @@ const Contact: FC<ContactProps> = ({ items }) => {
               </Link>
             )}
             <button
+              type="button"
               className="white-comp"
               onClick={() => {
                 navigator.clipboard.writeText(c.value)
