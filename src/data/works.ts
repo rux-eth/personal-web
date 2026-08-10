@@ -34,7 +34,7 @@ export const works: readonly WorkInfo[] = [
     id: 'rumpy-execution',
     title: 'Rumpy Execution',
     description:
-      'The public execution layer of my quantitative trading research platform: a cost-aware convex portfolio optimizer (second-order cone program with a market-impact cost model) and a holdings-based backtester, in Rust. Optimality is independently verified rather than trusted — KKT-condition probes against closed-form references, dimensional-analysis checks, and byte-level cross-platform float determinism. 177 tests.',
+      'The public execution layer of my quantitative trading research platform: a cost-aware convex portfolio optimizer (second-order cone program with a market-impact cost model) and a holdings-based backtester, in Rust. Optimality is independently verified rather than trusted: KKT-condition probes against closed-form references, dimensional-analysis checks, and byte-level cross-platform float determinism. 177 tests.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
@@ -58,7 +58,7 @@ export const works: readonly WorkInfo[] = [
     id: 'iris',
     title: 'Iris',
     description:
-      'Self-hosted AI assistant that runs my calendar, tasks, and daily planning over Telegram. A TypeScript MCP tool server with a deterministic planner and a security envelope — prompt-injection quarantine, approval-gated writes, git-backed memory. A model-eval harness replaying its own captured traffic drove a default-model switch that cut per-turn cost by roughly two-thirds. 294 tests.',
+      'Self-hosted AI assistant that runs my calendar, tasks, and daily planning over Telegram. A TypeScript MCP tool server with a deterministic planner and a security envelope: prompt-injection quarantine, approval-gated writes, git-backed memory. A model-eval harness replaying its own captured traffic drove a default-model switch that cut per-turn cost by roughly two-thirds. 294 tests.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
@@ -107,7 +107,7 @@ export const works: readonly WorkInfo[] = [
     id: 'vid-to-text',
     title: 'Vid-To-Text',
     description:
-      'Turns video into a timestamped speech/visual/sound timeline using local models — Whisper on CPU, Qwen3-VL via Ollama on GPU — with ffmpeg chunking, transcript-aware vision prompting, and crash-resumable jobs. A Rust client/server pair; nothing leaves my machines except an optional formatting step.',
+      'Turns video into a timestamped speech/visual/sound timeline using local models (Whisper on CPU, Qwen3-VL via Ollama on GPU), with ffmpeg chunking, transcript-aware vision prompting, and crash-resumable jobs. A Rust client/server pair; nothing leaves my machines except an optional formatting step.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
@@ -166,7 +166,7 @@ export const works: readonly WorkInfo[] = [
     id: 'rarity-ranker',
     title: 'Rarity Ranker',
     description:
-      'An NLP + Elo-rating system built during my time at Treasure — generated tens of millions of ranked game items with tuned rarity distributions. Written in Rust with heavy testing.',
+      'An NLP + Elo-rating system built during my time at Treasure, which generated tens of millions of ranked game items with tuned rarity distributions. Written in Rust with heavy testing.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',
@@ -178,7 +178,7 @@ export const works: readonly WorkInfo[] = [
     id: 'club-cards',
     title: 'Club Cards',
     description:
-      'An expandable digital card collection. I wrote the back-end: the protocol contract and the API that handles claims. Transaction costs were a major constraint during development, so efficiency was the priority — claim authorization is handled off-chain and signatures are verified on-chain, with bit-level optimization to cut storage and transaction costs.',
+      'An expandable digital card collection. I wrote the back-end: the protocol contract and the API that handles claims. Transaction costs were a major constraint during development, so efficiency was the priority: claim authorization is handled off-chain and signatures are verified on-chain, with bit-level optimization to cut storage and transaction costs.',
     thumbnail: defaultThumb,
     status: 'Completed',
     role: 'Back-End',

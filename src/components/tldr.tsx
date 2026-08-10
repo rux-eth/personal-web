@@ -18,7 +18,7 @@ const TLDR: React.FC = () => {
   const sections: Section[] = [
     {
       header: 'whoami',
-      content: `Maxwell Rux — Rux professionally, Max to friends.\n\nI build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things.\n\nMy software doesn't trust itself — the optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
+      content: `Maxwell Rux. Rux professionally, Max to friends.\n\nI build systems that can't afford to be wrong: trading infrastructure, ML pipelines, and AI agents with write access to real things.\n\nMy software doesn't trust itself. The optimizers check their own math, the agents can't act without proof, and the backtests are built to refuse to flatter me.`
     },
     {
       header: 'evidence',
@@ -26,9 +26,9 @@ const TLDR: React.FC = () => {
       highlights: {
         'On the record': [
           'A 23-crate Rust research monorepo for quantitative trading; its execution core is public, with KKT-condition probes that verify the optimizer against closed-form references instead of trusting the solver',
-          'A production agent runtime where invalid graph wiring fails at compile time, orders are idempotent by construction, and every event lands in an append-only log — 994 of the 2,000+ tests across my public systems live here',
-          'An AI assistant with write access to my actual calendar and tasks — untrusted content is quarantined, destructive actions are verified against fresh reads and approval-gated, and its memory is one git revert from undone',
-          'An ML workbench where every trial carries full reproducibility provenance — config hashes, data hashes, seeds, environment — and models are promoted through a gated registry, never by hand'
+          'A production agent runtime where invalid graph wiring fails at compile time, orders are idempotent by construction, and every event lands in an append-only log. 994 of the 2,000+ tests across my public systems live here',
+          'An AI assistant with write access to my actual calendar and tasks, where untrusted content is quarantined, destructive actions are verified against fresh reads and approval-gated, and its memory is one git revert from undone',
+          'An ML workbench where every trial carries full reproducibility provenance (config hashes, data hashes, seeds, environment), and models are promoted through a gated registry, never by hand'
         ]
       },
       extraCompenent: (
