@@ -1,13 +1,16 @@
-import cssIcon from '@src/images/icons/cssIcon.png'
-import expressJSIcon from '@src/images/icons/expressJSIcon.png'
+import dockerIcon from '@src/images/icons/dockerIcon.png'
 import GitIcon from '@src/images/icons/GitIcon.png'
-import htmlIcon from '@src/images/icons/htmlIcon.png'
-import JavaIcon from '@src/images/icons/JavaIcon.png'
 import javascriptIcon from '@src/images/icons/javascriptIcon.png'
 import LinuxIcon from '@src/images/icons/LinuxIcon.png'
 import nodeJSIcon from '@src/images/icons/nodeJSIcon.png'
+import onnxIcon from '@src/images/icons/onnxIcon.png'
+import optunaIcon from '@src/images/icons/optunaIcon.png'
+import postgresIcon from '@src/images/icons/postgresIcon.png'
 import pythonIcon from '@src/images/icons/pythonIcon.png'
 import rustIcon from '@src/images/icons/rustIcon.png'
+import rustIconDark from '@src/images/icons/rustIconDark.png'
+import sklearnIcon from '@src/images/icons/sklearnIcon.png'
+import typescriptIcon from '@src/images/icons/typescriptIcon.png'
 import { floating, integer, pickset } from '@src/utils/chance'
 import Image, { type StaticImageData } from 'next/image'
 import type { FC, JSX, RefObject } from 'react'
@@ -43,15 +46,18 @@ const slotIcons = [pythonIcon, rustIcon, LinuxIcon, GitIcon]
 // Same icon order as the former string pool — rain layouts are seeded-random
 // and draw-order-sensitive (see tests/visual/fixtures.ts).
 const pool: StaticImageData[] = [
-  cssIcon,
-  expressJSIcon,
-  GitIcon,
-  htmlIcon,
-  JavaIcon,
+  pythonIcon,
+  rustIconDark,
+  typescriptIcon,
   javascriptIcon,
-  LinuxIcon,
   nodeJSIcon,
-  pythonIcon
+  dockerIcon,
+  postgresIcon,
+  LinuxIcon,
+  GitIcon,
+  sklearnIcon,
+  onnxIcon,
+  optunaIcon
 ]
 
 // Utility to generate random rain items, using custom replacements instead of Chance
