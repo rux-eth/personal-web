@@ -21,7 +21,13 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       )
     }
     return (
-      <NextLink href={href} ref={ref} style={mergedStyle} {...rest}>
+      <NextLink
+        href={href}
+        ref={ref}
+        scroll={false}
+        style={mergedStyle}
+        {...rest}
+      >
         {children}
       </NextLink>
     )

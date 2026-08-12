@@ -41,7 +41,17 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <Layout router={router} fontsClass={fontsClass}>
       <LazyMotion features={domAnimation} strict>
-        <AnimatePresence mode="wait" initial={true}>
+        <AnimatePresence
+          mode="wait"
+          initial={true}
+          onExitComplete={() => {
+            // The old page has fully faded; jump invisibly, then let the new
+            // page fade in at the top. scroll={false} on internal links defers
+            // scrolling to exactly this moment.
+            window.scrollTo(0, 0)
+            window.dispatchEvent(new Event('page-transition-done'))
+          }}
+        >
           <m.article
             key={router.route}
             initial="hidden"

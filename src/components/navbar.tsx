@@ -34,11 +34,21 @@ const Navbar: FC<{ path: string }> = ({ path }) => {
       if (!raf) raf = requestAnimationFrame(check)
     }
     check()
+    // After a route transition the new article mounts one frame after
+    // onExitComplete; a double rAF re-checks against the settled DOM (the
+    // [path] re-run fires too early, while the old page is still exiting).
+    const onTransitionDone = () => {
+      requestAnimationFrame(() => {
+        if (!raf) raf = requestAnimationFrame(check)
+      })
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
+    window.addEventListener('page-transition-done', onTransitionDone)
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      window.removeEventListener('page-transition-done', onTransitionDone)
       if (raf) cancelAnimationFrame(raf)
     }
   }, [path])
