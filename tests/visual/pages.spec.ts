@@ -2,15 +2,18 @@ import { awaitAppReady, expect, loadAllImages, test } from './fixtures'
 
 // Full-page baselines for every route. Work ids mirror src/data/works.ts.
 const workIds = [
+  'rumpy-execution',
+  'casus',
+  'iris',
+  'maestro',
+  'rux-ml',
+  'pp-editor',
+  'vid-to-text',
   'hospital-in-a-box',
-  'personal',
   'zerepy',
   'blormmy',
   'paystand',
-  'crypto-rates',
   'rarity-ranker',
-  'nft-data-miner-v2',
-  'eth-scanner',
   'club-cards'
 ]
 
