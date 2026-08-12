@@ -5,11 +5,6 @@ import type { NextPage } from 'next'
 
 const contacts: ContactItem[] = [
   {
-    title: 'Calendly',
-    value: 'Book a call',
-    link: 'https://calendly.com/maxjrux/new-meeting'
-  },
-  {
     title: 'Email',
     value: 'ruxdoteth@gmail.com',
     link: 'mailto:ruxdoteth@gmail.com'

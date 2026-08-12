@@ -33,7 +33,7 @@ const allLinks: LinkFormat = {
       icon: <FaTelegram style={defaultStyles.icon} />
     }
   },
-  internal: ['works', 'services', 'contact']
+  internal: ['works', 'contact']
 }
 
 const Links: LinkReturn = {

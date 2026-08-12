@@ -50,30 +50,6 @@ test('works filter dropdown open', async ({ page }) => {
   })
 })
 
-test('services section expanded', async ({ page }) => {
-  await page.goto('/services')
-  await awaitAppReady(page)
-  await page.locator('summary').first().click()
-  // Expanding mounts new CommentedContent blocks whose comment-gutter line
-  // counts only recompute on the app's scroll/resize handler — nothing fires
-  // it after a click. Jiggle the scroll position to force the recompute,
-  // then let React flush.
-  await page.evaluate(() => {
-    window.scrollBy(0, 1)
-    window.scrollBy(0, -1)
-  })
-  await settleAfterScroll(page)
-  // The sticky <header> gets stitched at nondeterministic offsets in this
-  // fullPage capture (Playwright scrolls to stitch segments; paint timing
-  // shifted with PR-009's font/image loading and made it bistable across
-  // runs). The navbar has dedicated coverage (navbar-shown + every state
-  // capture); mask it here so the expanded-section content stays the signal.
-  await expect(page).toHaveScreenshot('services-section-open.png', {
-    fullPage: true,
-    mask: [page.locator('header')]
-  })
-})
-
 test('snackbar after copy', async ({ page }) => {
   await page.goto('/contact')
   await awaitAppReady(page)

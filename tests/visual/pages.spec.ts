@@ -18,7 +18,6 @@ const staticPages: Array<[name: string, path: string]> = [
   ['home', '/'],
   ['works-index', '/works'],
   ['contact', '/contact'],
-  ['services', '/services'],
   ['not-found', '/404'],
   ...workIds.map(id => [`work-${id}`, `/works/${id}`] as [string, string])
 ]
