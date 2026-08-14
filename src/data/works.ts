@@ -7,7 +7,14 @@ import type {
 } from '@src/components/category'
 import blormmyImage from '@src/images/thumbnails/blormmy-image.png'
 import defaultThumb from '@src/images/thumbnails/default.png'
+import hospitalImage from '@src/images/thumbnails/hospital-in-a-box.png'
+import irisImage from '@src/images/thumbnails/iris.png'
+import maestroImage from '@src/images/thumbnails/maestro.png'
 import paystandImage from '@src/images/thumbnails/paystand-image.png'
+import ppEditorImage from '@src/images/thumbnails/pp-editor.png'
+import rumpyExecutionImage from '@src/images/thumbnails/rumpy-execution.png'
+import ruxMlImage from '@src/images/thumbnails/rux-ml.png'
+import vidToTextImage from '@src/images/thumbnails/vid-to-text.png'
 import zerepyImage from '@src/images/thumbnails/zerepy-image.png'
 import type { StaticImageData } from 'next/image'
 
@@ -35,7 +42,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Rumpy Execution',
     description:
       'The public execution layer of my quantitative trading research platform: a cost-aware convex portfolio optimizer (second-order cone program with a market-impact cost model) and a holdings-based backtester, in Rust. Optimality is independently verified rather than trusted: KKT-condition probes against closed-form references, dimensional-analysis checks, and byte-level cross-platform float determinism. 177 tests.',
-    thumbnail: defaultThumb,
+    thumbnail: rumpyExecutionImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['rust'],
@@ -59,7 +66,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Iris',
     description:
       'Self-hosted AI assistant that runs my calendar, tasks, and daily planning over Telegram. A TypeScript MCP tool server with a deterministic planner and a security envelope: prompt-injection quarantine, approval-gated writes, git-backed memory. A model-eval harness replaying its own captured traffic drove a default-model switch that cut per-turn cost by roughly two-thirds. 294 tests.',
-    thumbnail: defaultThumb,
+    thumbnail: irisImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['typescript'],
@@ -71,7 +78,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Maestro',
     description:
       'Production runtime for a DAG of trading agents (NestJS): compile-time-typed graph wiring where invalid connections fail the build, staleness gates and circuit breakers, idempotent order submission, and an append-only event log that feeds the research loop. Hexagonal architecture with CI-enforced boundaries; validated on testnet. 994 tests.',
-    thumbnail: defaultThumb,
+    thumbnail: maestroImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['typescript'],
@@ -83,7 +90,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Rux-ML',
     description:
       'Config-driven ML workbench for gradient-boosted models (XGBoost, LightGBM, CatBoost): Optuna hyperparameter search with purged, time-aware cross-validation for leakage control, full per-trial reproducibility provenance (config hashes, data hashes, seeds, environment), and a gated model registry with atomic champion promotion. 407 tests.',
-    thumbnail: defaultThumb,
+    thumbnail: ruxMlImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['python'],
@@ -95,7 +102,7 @@ export const works: readonly WorkInfo[] = [
     title: 'PP-Editor',
     description:
       "AI-driven PowerPoint editor built on a hard constraint: anything the AI doesn't touch passes through untouched. Decks live as their raw OOXML tree with a JSON editing view projected on top; edits splice back with hash-verified passthrough regions and Microsoft's OpenXML SDK as the validation gate. The repo includes an end-to-end tour with before/after renders.",
-    thumbnail: defaultThumb,
+    thumbnail: ppEditorImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['python', 'csharp'],
@@ -108,7 +115,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Vid-To-Text',
     description:
       'Turns video into a timestamped speech/visual/sound timeline using local models (Whisper on CPU, Qwen3-VL via Ollama on GPU), with ffmpeg chunking, transcript-aware vision prompting, and crash-resumable jobs. A Rust client/server pair; nothing leaves my machines except an optional formatting step.',
-    thumbnail: defaultThumb,
+    thumbnail: vidToTextImage,
     status: 'Completed',
     role: 'Back-End',
     languages: ['rust'],
@@ -120,7 +127,7 @@ export const works: readonly WorkInfo[] = [
     title: 'Hospital In A Box',
     description:
       'Simulates a very common hospital integration task: ingest HL7 v2 messages (e.g., ADT admit/discharge/transfer and ORU lab results), transform them into FHIR resources (Patient, Encounter, Observation), store them, and show a simple web UI timeline (“Patient admitted → lab results posted → discharged”).',
-    thumbnail: defaultThumb,
+    thumbnail: hospitalImage,
     status: 'Completed',
     role: 'Full-Stack',
     languages: ['java', 'typescript', 'javascript'],
