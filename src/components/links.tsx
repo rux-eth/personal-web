@@ -1,5 +1,5 @@
 import type { JSX } from 'react'
-import { FaGithub, FaMedium, FaTelegram } from 'react-icons/fa'
+import { FaGithub, FaMedium } from 'react-icons/fa'
 import Link from './link'
 
 interface LinkFormat {
@@ -27,10 +27,6 @@ const allLinks: LinkFormat = {
     github: {
       link: 'https://github.com/rux-eth',
       icon: <FaGithub style={defaultStyles.icon} />
-    },
-    telegram: {
-      link: 'https://t.me/Rux0x',
-      icon: <FaTelegram style={defaultStyles.icon} />
     }
   },
   internal: ['works', 'contact']

@@ -25,8 +25,6 @@ const Layout: React.FC<React.PropsWithChildren<LayoutProps>> = ({
         <title>Rux - Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Maxwell Rux" />
-        <meta name="twitter:site" content="@rux_eth" />
-        <meta name="twitter:creator" content="@rux_eth" />
         <meta property="og:site_name" content="Rux" />
         <meta name="og:title" content="Rux" />
         <meta property="og:type" content="website" />
