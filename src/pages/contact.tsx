@@ -6,27 +6,13 @@ import type { NextPage } from 'next'
 const contacts: ContactItem[] = [
   {
     title: 'Email',
-    value: 'ruxdoteth@gmail.com',
-    link: 'mailto:ruxdoteth@gmail.com'
+    value: 'maxjrux@gmail.com',
+    link: 'mailto:maxjrux@gmail.com'
   },
   {
-    title: 'Telegram',
-    value: '@Rux0x',
-    link: 'https://t.me/Rux0x'
-  },
-  {
-    title: 'Twitter',
-    value: '@Rux_eth',
-    link: 'https://twitter.com/Rux_eth'
-  },
-  {
-    title: 'Discord',
-    value: 'Rux#2216'
-  },
-  {
-    title: 'Instagram',
-    value: '@ruxdoteth',
-    link: 'https://www.instagram.com/ruxdoteth/'
+    title: 'GitHub',
+    value: 'https://github.com/rux-eth',
+    link: 'https://github.com/rux-eth'
   },
   {
     title: 'LinkedIn',
@@ -45,9 +31,6 @@ const ContactPage: NextPage = () => {
           fontSize: fs
         }}
       >
-        <div className="text-[2ch]">
-          <p>I only give out my phone number to verified clients</p>
-        </div>
         <Contact items={contacts} />
       </div>
     </Layout>
